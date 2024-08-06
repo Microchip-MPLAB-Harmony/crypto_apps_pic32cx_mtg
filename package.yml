@@ -19,6 +19,6 @@ package:
     - name: "core"
       type: "package"
       version: "v3.13.1"
-    - name: "crypto"
+    - name: "crypto_v4"
       type: "package"
-      version: "dev"
+      version: "master"
