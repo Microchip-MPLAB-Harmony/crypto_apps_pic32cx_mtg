@@ -2,7 +2,7 @@
 
 manifest_file_version: 1.0.0
 project: symmetric
-creation_date: 2024-07-29T14:16:42.456-07:00[America/Phoenix]
+creation_date: 2024-08-08T11:41:56.277-07:00[America/Phoenix]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
@@ -21,6 +21,6 @@ modules:
 - {name: csp, type: HARMONY, version: v3.18.3}
 - {name: core, type: HARMONY, version: v3.13.1}
 - {name: CMSIS_5, type: HARMONY, version: 5.8.0}
-- {name: crypto_v4, type: HARMONY, version: dev}
-- {name: wolfssl, type: HARMONY, version: v5.7.0-stable}
+- {name: crypto_v4, type: HARMONY, version: v4.0.0-E2}
+- {name: wolfssl, type: HARMONY, version: v5.7.0}
 - {name: bsp, type: HARMONY, version: v3.18.0}

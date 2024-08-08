@@ -60,8 +60,8 @@
 #include "peripheral/tc/plib_tc0.h"
 #include "peripheral/flexcom/usart/plib_flexcom0_usart.h"
 #include "peripheral/sefc/plib_sefc0.h"
-#include "peripheral/sefc/plib_sefc1.h"
 #include "system/time/sys_time.h"
+#include "peripheral/sefc/plib_sefc1.h"
 #include "peripheral/trng/plib_trng.h"
 //KEEP THIS - Not used for now
 //#include "wolfssl/wolfcrypt/port/pic32/crypt_wolfcryptcb.h"

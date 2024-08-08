@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Package name="crypto_apps_pic32cx_mtg">
     <Dependencies>
+        <Dependency name="bsp" version="v3.18.0">
+        <Dependency name="csp" version="v3.18.3">
+        <Dependency name="wolfssl" version="5.7.0">
+        <Dependency name="core" version="v3.13.1">
+        <Dependency name="crypto_v4" version="v4.0.0-E2">
     </Dependencies>
 </Package>
