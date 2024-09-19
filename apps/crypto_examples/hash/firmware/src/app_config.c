@@ -174,8 +174,12 @@ void SHA1_Test (void)
     st_Crypto_Hash_Sha_Ctx  Hash_Sha_Ctx;
     
     HASH SHA1 = {
-        .Hash_Sha_Ctx    = Hash_Sha_Ctx,      
+        .Hash_Sha_Ctx    = Hash_Sha_Ctx,
+#ifdef CRYPTO_HASH_HW_SHA1_EN
+        .handler         = CRYPTO_HANDLER_HW_INTERNAL,
+#else
         .handler         = CRYPTO_HANDLER_SW_WOLFCRYPT,
+#endif
         .hashMode        = CRYPTO_HASH_SHA1,
         .msg             = msgSha1,
         .msgSize         = sizeof(msgSha1),
@@ -186,11 +190,19 @@ void SHA1_Test (void)
     };
 
     printf("\r\n-----------------------------------\r\n");
+#ifdef CRYPTO_HASH_HW_SHA1_EN
+    printf("SHA1 HW Digest Test\r\n");
+#else
     printf("SHA1 SW Digest Test\r\n");
+#endif
     SingleStepDigest(&SHA1);
 
     printf("\r\n-----------------------------------\r\n");
+#ifdef CRYPTO_HASH_HW_SHA1_EN
+    printf("SHA1 HW Init->Update->Final Test\r\n");
+#else
     printf("SHA1 SW Init->Update->Final Test\r\n");
+#endif
     MultiStepDigest(&SHA1);
 }
 
