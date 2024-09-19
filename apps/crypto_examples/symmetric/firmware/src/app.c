@@ -367,7 +367,7 @@ void SingleStepDecrypt (AES *aes)
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to encrypt direct\r\n");
+        printf("\r\nFailed to decrypt direct\r\n");
         testsFailed++;
     }
     else
