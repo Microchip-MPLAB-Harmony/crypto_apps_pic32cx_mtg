@@ -57,17 +57,14 @@
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/supc/plib_supc.h"
 #include "peripheral/tc/plib_tc0.h"
-//KEEP THIS - Not used for now
-//#include "wolfssl/wolfcrypt/port/pic32/crypt_wolfcryptcb.h"
-//#include "crypto/crypto.h"
 #include "peripheral/flexcom/usart/plib_flexcom0_usart.h"
 #include "peripheral/sefc/plib_sefc0.h"
-#include "peripheral/sefc/plib_sefc1.h"
-#include "system/time/sys_time.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
+#include "peripheral/sefc/plib_sefc1.h"
+#include "system/time/sys_time.h"
 #include "app.h"
 
 

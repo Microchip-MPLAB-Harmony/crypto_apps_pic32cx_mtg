@@ -163,7 +163,7 @@ extern "C" {
         This function is used for testing purposes to validate the MD5 implementation.
       */
 
-    void MD5_Test (void);
+    void MD5_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
@@ -191,7 +191,7 @@ extern "C" {
         This function is used for testing purposes to validate the SHA1 implementation.
       */
 
-    void SHA1_Test (void);
+    void SHA1_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
@@ -219,7 +219,7 @@ extern "C" {
         This function is used for testing purposes to validate the SHA2 implementation.
       */
 
-    void SHA2_Test (void);
+    void SHA2_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**

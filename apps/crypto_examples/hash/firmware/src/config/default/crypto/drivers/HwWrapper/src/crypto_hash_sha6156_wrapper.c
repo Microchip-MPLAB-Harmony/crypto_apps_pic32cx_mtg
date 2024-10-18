@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    MCHP_Crypto_Hash_HwWrapper.c
+    crypto_hash_sha6156_wrapper.c
 
   Summary:
     Crypto Framework Library wrapper file for hardware SHA.
@@ -49,8 +49,8 @@ Microchip or any third party.
 #include <stdint.h>
 #include <string.h>
 #include "device.h"
-#include "crypto/common_crypto/MCHP_Crypto_Hash_HwWrapper.h"
-#include "crypto/drivers/drv_crypto_sha_hw_6156.h"
+#include "crypto/drivers/HwWrapper/crypto_hash_sha6156_wrapper.h"
+#include "crypto/drivers/Driver/drv_crypto_sha_hw_6156.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -89,60 +89,38 @@ static crypto_Hash_Status_E lCrypto_Hash_Hw_Sha_GetAlgorithm
     crypto_Hash_Status_E ret_status = CRYPTO_HASH_ERROR_FAIL;
     switch(shaAlgorithm)
     {  
-#ifdef CRYPTO_HASH_SHA1_EN
         case CRYPTO_HASH_SHA1:
             *shaAlgo = CRYPTO_SHA_ALGO_SHA1;
             ret_status = CRYPTO_HASH_SUCCESS;
             break;
-#endif
-         
-#ifdef CRYPTO_HASH_SHA2_224_EN
         case CRYPTO_HASH_SHA2_224:
             *shaAlgo = CRYPTO_SHA_ALGO_SHA224;
             ret_status = CRYPTO_HASH_SUCCESS;
             break; 
-#endif
-            
-#ifdef CRYPTO_HASH_SHA2_256_EN
         case CRYPTO_HASH_SHA2_256:
             *shaAlgo = CRYPTO_SHA_ALGO_SHA256;
             ret_status = CRYPTO_HASH_SUCCESS;
             break;
-#endif
-       
-#ifdef CRYPTO_HASH_SHA2_384_EN 
         case CRYPTO_HASH_SHA2_384:
             *shaAlgo = CRYPTO_SHA_ALGO_SHA384;
             ret_status = CRYPTO_HASH_SUCCESS;
             break;
-#endif
-           
-#ifdef CRYPTO_HASH_SHA2_512_EN  
         case CRYPTO_HASH_SHA2_512:
             *shaAlgo = CRYPTO_SHA_ALGO_SHA512;
             ret_status = CRYPTO_HASH_SUCCESS;
             break;
-#endif
-
-#ifdef CRYPTO_HASH_SHA2_512_224_EN 
         case CRYPTO_HASH_SHA2_512_224:
             *shaAlgo = CRYPTO_SHA_ALGO_SHA512_224;
             ret_status = CRYPTO_HASH_SUCCESS;
             break;        
-#endif
-        
-#ifdef CRYPTO_HASH_SHA2_512_256_EN
         case CRYPTO_HASH_SHA2_512_256:
             *shaAlgo = CRYPTO_SHA_ALGO_SHA512_256;
             ret_status = CRYPTO_HASH_SUCCESS;
             break; 
-#endif
-
         default:
             ret_status = CRYPTO_HASH_ERROR_ALGO;
             break;
-    }
-    
+    }    
    return ret_status;
 }
 
@@ -435,7 +413,6 @@ crypto_Hash_Status_E Crypto_Hash_Hw_Sha_Digest(uint8_t *data, uint32_t dataLen,
     if (result != CRYPTO_HASH_SUCCESS)
     {
         return result;
-    }
-    
+    }    
     return Crypto_Hash_Hw_Sha_Final(&shaCtx, digest);
 }

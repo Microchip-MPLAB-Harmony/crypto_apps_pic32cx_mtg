@@ -13,7 +13,7 @@
   Description:
     This source file contains the interface that make up the SHA hardware 
     driver for the following families of Microchip microcontrollers:
-    PIC32CXMTxx, SAMA5D2, SAM9X60.
+    PIC32CXMTxx, SAMA5D2, SAM9X60, SAMA7D65.
 **************************************************************************/
 
 //DOM-IGNORE-BEGIN
@@ -49,7 +49,7 @@ Microchip or any third party.
 
 #include "definitions.h"
 #include "device.h"
-#include "drv_crypto_sha_hw_6156.h"
+#include "../drv_crypto_sha_hw_6156.h"
 
 // *****************************************************************************
 // *****************************************************************************

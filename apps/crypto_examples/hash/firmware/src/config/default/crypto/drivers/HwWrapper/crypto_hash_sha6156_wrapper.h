@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    MCHP_Crypto_Hash_HwWrapper.h
+    crypto_hash_sha6156_wrapper.h
 
   Summary:
     Crypto Framework Library wrapper file for hardware SHA.
@@ -40,8 +40,8 @@ Microchip or any third party.
 */
 //DOM-IGNORE-END
 
-#ifndef MCHP_CRYPTO_HASH_HWWRAPPER_H
-#define MCHP_CRYPTO_HASH_HWWRAPPER_H
+#ifndef CRYPTO_HASH_SHA6156_WRAPPER_H
+#define CRYPTO_HASH_SHA6156_WRAPPER_H
 
 // *****************************************************************************
 // *****************************************************************************
@@ -101,4 +101,4 @@ crypto_Hash_Status_E Crypto_Hash_Hw_Sha_Final(void *shaFinalCtx,
 #endif
 // DOM-IGNORE-END
 
-#endif /* MCHP_CRYPTO_HASH_HWWRAPPER_H */
+#endif /* CRYPTO_HASH_SHA6156_WRAPPER_H */

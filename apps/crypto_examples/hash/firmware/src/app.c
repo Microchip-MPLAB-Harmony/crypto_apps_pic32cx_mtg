@@ -104,11 +104,11 @@ void SingleStepDigest(HASH *hash)
     }
 
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("%lf (ms)\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
-        printf("\r\nFailed to create message digest, status: %d\r\n", status);
+        printf("Failed to create message digest, status: %d\r\n", status);
         testsFailed++;
     }
     else
@@ -117,12 +117,12 @@ void SingleStepDigest(HASH *hash)
 
         if (outputMatch) {
             testsPassed++;
-            printf("\r\nMessage digest correct: Test Successful\r\n");
+            printf("Test Successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nMessage digest incorrect: Test Unsuccessful\r\n");
+            printf("Test Unsuccessful\r\n");
         }
     }
 }
@@ -164,7 +164,7 @@ void MultiStepDigest(HASH *hash)
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
-        printf("\r\nInit Failed, status: %d\r\n", status);
+        printf("Init Failed, status: %d\r\n", status);
     }
 
     if (hash->hashMode == CRYPTO_HASH_MD5)
@@ -178,7 +178,7 @@ void MultiStepDigest(HASH *hash)
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
-        printf("\r\nUpdate Failed, status: %d\r\n", status);
+        printf("Update Failed, status: %d\r\n", status);
     }
 
     if (hash->hashMode == CRYPTO_HASH_MD5)
@@ -191,11 +191,11 @@ void MultiStepDigest(HASH *hash)
     }
     
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("%lf (ms)\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
-        printf("\r\nFailed to create message digest, status: %d\r\n", status);
+        printf("Failed to create message digest, status: %d\r\n", status);
         testsFailed++;
     }
     else
@@ -204,12 +204,12 @@ void MultiStepDigest(HASH *hash)
 
         if (outputMatch) {
             testsPassed++;
-            printf("\r\nMessage digest correct: Test Successful\r\n");
+            printf("Test Successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nMessage digest incorrect: Test Unsuccessful\r\n");
+            printf("Test Unsuccessful\r\n");
         }
     }
 }
@@ -275,14 +275,31 @@ void APP_Tasks (void)
                     !appData.isTestedSha2   &&
                     !appData.isTestedMd5
                 )
-            {
-                MD5_Test();
+            {          
+                printf("\r\n-----------------------------------\r\n");
+                printf("MD5 SW Test\r\n");
+                MD5_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                
                 appData.isTestedMd5 = true;
 
-                SHA1_Test();
+                printf("\r\n-----------------------------------\r\n");
+                printf("SHA1 HW Test\r\n");
+                SHA1_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                
+                printf("\r\n-----------------------------------\r\n");
+                printf("SHA1 SW Test\r\n");
+                SHA1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                
                 appData.isTestedSha1 = true;
-
-                SHA2_Test();
+                
+                printf("\r\n-----------------------------------\r\n");
+                printf("SHA2 HW Test\r\n");
+                SHA2_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                
+                printf("\r\n-----------------------------------\r\n");
+                printf("SHA2 SW Test\r\n");
+                SHA2_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                
                 appData.isTestedSha2 = true;
 
                 printf("\r\n-----------------------------------\r\n");

@@ -136,13 +136,13 @@ uint8_t expectedSha2_512[64] = {
     See prototype in app_config.h.
  */
 
-void MD5_Test (void)
+void MD5_Test (crypto_HandlerType_E cryptoHandler)
 {
     st_Crypto_Hash_Md5_Ctx  Hash_Md5_Ctx;
         
     HASH MD5 = {
         .Hash_Md5_Ctx    = Hash_Md5_Ctx,
-        .handler         = CRYPTO_HANDLER_SW_WOLFCRYPT,
+        .handler         = cryptoHandler,
         .hashMode        = CRYPTO_HASH_MD5,
         .msg             = msgMD5,
         .msgSize         = sizeof(msgMD5),
@@ -152,12 +152,10 @@ void MD5_Test (void)
         .expectedMsgSize = sizeof(expectedMD5)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("MD5 SW Digest Test\r\n" );
+    printf("\r\nDigest\r\n");
     SingleStepDigest(&MD5);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("MD5 SW Init->Update->Final Test\r\n");
+    printf("\r\nInit->Update->Final\r\n");
     MultiStepDigest(&MD5);
 }
 
@@ -169,17 +167,13 @@ void MD5_Test (void)
     See prototype in app_config.h.
  */
 
-void SHA1_Test (void)
+void SHA1_Test (crypto_HandlerType_E cryptoHandler)
 {
     st_Crypto_Hash_Sha_Ctx  Hash_Sha_Ctx;
     
     HASH SHA1 = {
         .Hash_Sha_Ctx    = Hash_Sha_Ctx,
-#ifdef CRYPTO_HASH_HW_SHA1_EN
-        .handler         = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler         = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler         = cryptoHandler,
         .hashMode        = CRYPTO_HASH_SHA1,
         .msg             = msgSha1,
         .msgSize         = sizeof(msgSha1),
@@ -188,21 +182,11 @@ void SHA1_Test (void)
         .expectedMsg     = expectedSha1,
         .expectedMsgSize = sizeof(expectedSha1)
     };
-
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA1_EN
-    printf("SHA1 HW Digest Test\r\n");
-#else
-    printf("SHA1 SW Digest Test\r\n");
-#endif
+    
+    printf("\r\nMD5 Digest\r\n");
     SingleStepDigest(&SHA1);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA1_EN
-    printf("SHA1 HW Init->Update->Final Test\r\n");
-#else
-    printf("SHA1 SW Init->Update->Final Test\r\n");
-#endif
+    printf("\r\nMD5 Init->Update->Final\r\n");
     MultiStepDigest(&SHA1);
 }
 
@@ -214,17 +198,13 @@ void SHA1_Test (void)
     See prototype in app_config.h.
  */
 
-void SHA2_Test (void)
+void SHA2_Test (crypto_HandlerType_E cryptoHandler)
 {
     st_Crypto_Hash_Sha_Ctx  Hash_Sha_Ctx;
     
     HASH SHA2_224 = {
         .Hash_Sha_Ctx    = Hash_Sha_Ctx,
-#ifdef CRYPTO_HASH_HW_SHA2_224_EN
-        .handler         = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler         = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler         = cryptoHandler,
         .hashMode        = CRYPTO_HASH_SHA2_224,
         .msg             = msgSha2_224,
         .msgSize         = sizeof(msgSha2_224),
@@ -234,30 +214,15 @@ void SHA2_Test (void)
         .expectedMsgSize = sizeof(expectedSha2_224)
     };
     
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_224_EN
-    printf("SHA2-224 HW Digest Test\r\n");
-#else
-    printf("SHA2-224 SW Digest Test\r\n");
-#endif
+    printf("\r\nSHA2_224 Digest\r\n");
     SingleStepDigest(&SHA2_224);
 
-    
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_224_EN   
-    printf("SHA2-224 HW Init->Update->Final Test\r\n");
-#else
-    printf("SHA2-224 SW Init->Update->Final Test\r\n");
-#endif
+    printf("\r\nSHA2_224 Init->Update->Final\r\n");
     MultiStepDigest(&SHA2_224);
 
     HASH SHA2_256 = {
         .Hash_Sha_Ctx    = Hash_Sha_Ctx,
-#ifdef CRYPTO_HASH_HW_SHA2_256_EN
-        .handler         = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler         = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler         = cryptoHandler,
         .hashMode        = CRYPTO_HASH_SHA2_256,
         .msg             = msgSha2_256,
         .msgSize         = sizeof(msgSha2_256),
@@ -267,30 +232,15 @@ void SHA2_Test (void)
         .expectedMsgSize = sizeof(expectedSha2_256)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_256_EN
-    printf("SHA2-256 HW Digest Test\r\n");
-#else
-    printf("SHA2-256 SW Digest Test\r\n");
-#endif
+    printf("\r\nSHA2_256 Digest\r\n");
     SingleStepDigest(&SHA2_256);
 
-    
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_256_EN   
-    printf("SHA2-256 HW Init->Update->Final Test\r\n");
-#else
-    printf("SHA2-256 SW Init->Update->Final Test\r\n");
-#endif
+    printf("\r\nSHA2_256 Init->Update->Final\r\n");
     MultiStepDigest(&SHA2_256);
 
     HASH SHA2_384 = {
         .Hash_Sha_Ctx    = Hash_Sha_Ctx,
-#ifdef CRYPTO_HASH_HW_SHA2_384_EN
         .handler         = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler         = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
         .hashMode        = CRYPTO_HASH_SHA2_384,
         .msg             = msgSha2_384,
         .msgSize         = sizeof(msgSha2_384),
@@ -300,30 +250,15 @@ void SHA2_Test (void)
         .expectedMsgSize = sizeof(expectedSha2_384)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_256_EN
-    printf("SHA2-384 HW Digest Test\r\n");
-#else
-    printf("SHA2-384 SW Digest Test\r\n");
-#endif
+    printf("\r\nSHA2_384 Digest\r\n");
     SingleStepDigest(&SHA2_384);
 
-    
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_256_EN   
-    printf("SHA2-384 HW Init->Update->Final Test\r\n");
-#else
-    printf("SHA2-384 SW Init->Update->Final Test\r\n");
-#endif
+    printf("\r\nSHA2_384 Init->Update->Final\r\n");
     MultiStepDigest(&SHA2_384);
 
     HASH SHA2_512 = {
         .Hash_Sha_Ctx    = Hash_Sha_Ctx,
-#ifdef CRYPTO_HASH_HW_SHA2_512_EN
-        .handler         = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler         = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler         = cryptoHandler,
         .hashMode        = CRYPTO_HASH_SHA2_512,
         .msg             = msgSha2_512,
         .msgSize         = sizeof(msgSha2_512),
@@ -333,21 +268,10 @@ void SHA2_Test (void)
         .expectedMsgSize = sizeof(expectedSha2_384),
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_512_EN
-    printf("SHA2-512 HW Digest Test\r\n");
-#else
-    printf("SHA2-512 SW Digest Test\r\n");
-#endif
+    printf("\r\nSHA2_512 Digest\r\n");
     SingleStepDigest(&SHA2_512);
 
-    
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_HASH_HW_SHA2_512_EN   
-    printf("SHA2-512 HW Init->Update->Final Test\r\n");
-#else
-    printf("SHA2-512 SW Init->Update->Final Test\r\n");
-#endif
+    printf("\r\nSHA2_512 Init->Update->Final\r\n");
     MultiStepDigest(&SHA2_512);
 }
 
