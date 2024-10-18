@@ -152,10 +152,10 @@ void MD5_Test (crypto_HandlerType_E cryptoHandler)
         .expectedMsgSize = sizeof(expectedMD5)
     };
 
-    printf("\r\nDigest\r\n");
+    printf("\r\nMD5 Digest\r\n");
     SingleStepDigest(&MD5);
 
-    printf("\r\nInit->Update->Final\r\n");
+    printf("\r\nMD5 Init->Update->Final\r\n");
     MultiStepDigest(&MD5);
 }
 
@@ -183,10 +183,10 @@ void SHA1_Test (crypto_HandlerType_E cryptoHandler)
         .expectedMsgSize = sizeof(expectedSha1)
     };
     
-    printf("\r\nMD5 Digest\r\n");
+    printf("\r\nSHA1 Digest\r\n");
     SingleStepDigest(&SHA1);
 
-    printf("\r\nMD5 Init->Update->Final\r\n");
+    printf("\r\nSHA1 Init->Update->Final\r\n");
     MultiStepDigest(&SHA1);
 }
 
