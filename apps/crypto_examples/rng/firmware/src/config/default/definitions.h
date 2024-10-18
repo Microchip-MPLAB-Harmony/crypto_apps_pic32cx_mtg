@@ -63,9 +63,6 @@
 #include "system/time/sys_time.h"
 #include "peripheral/sefc/plib_sefc1.h"
 #include "peripheral/trng/plib_trng.h"
-//KEEP THIS - Not used for now
-//#include "wolfssl/wolfcrypt/port/pic32/crypt_wolfcryptcb.h"
-//#include "crypto/crypto.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "osal/osal.h"

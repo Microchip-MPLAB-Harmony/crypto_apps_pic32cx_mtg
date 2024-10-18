@@ -59,16 +59,4 @@
 
 //*****OPERATION MODE ENABLE MACROS************
 
-//AEAD SW/HW Algorithms
-#define CRYPTO_AEAD_WC_ALGO_EN
-
-
-//------------------------------------------------------------------------------
-//AES Algorithms Operational Mode Macros
-
-
-
-
-
-
 #endif //MCHP_CRYPTO_AEAD_CONFIG_H

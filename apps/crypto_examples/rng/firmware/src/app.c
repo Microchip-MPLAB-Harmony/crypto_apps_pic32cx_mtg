@@ -72,19 +72,10 @@ APP_DATA appData;
     See prototype in app.h.
  */
 
-void GenerateRng (void)
+void GenerateRng (crypto_HandlerType_E cryptoHandler)
 {
     crypto_Rng_Status_E status;
-
-    uint8_t rngData[DATA_SIZE];
-    
-#ifdef CRYPTO_RNG_HW_TRNG_EN
-    printf("\r\n-----------------------------------\r\n");
-    printf("TRNG Test\r\n");
-#else
-    printf("\r\n-----------------------------------\r\n");
-    printf("PRNG Test\r\n");
-#endif
+    uint8_t rngData[DATA_SIZE];  
     
     memset(rngData, 0, DATA_SIZE);
     
@@ -92,11 +83,7 @@ void GenerateRng (void)
     startTime = TC0_CH1_TimerCounterGet(); 
     
     status = Crypto_Rng_Prng_Generate(
-#ifdef CRYPTO_RNG_HW_TRNG_EN
-            CRYPTO_HANDLER_HW_INTERNAL,
-#else
-            CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+            cryptoHandler,
             rngData,
             DATA_SIZE,
             NULL,       // ptr_nonce
@@ -118,7 +105,6 @@ void GenerateRng (void)
 
         printf("\r\nRNG generated: Test Successful\r\n");
     }
-
 }
 
 // *****************************************************************************
@@ -163,7 +149,6 @@ void APP_Tasks ( void )
 
             if (appInitialized)
             {
-
                 appData.state = APP_STATE_SERVICE_TASKS;
             }
             break;
@@ -175,7 +160,13 @@ void APP_Tasks ( void )
             
             if ( !appData.isTestedRng )
             {
-                GenerateRng();
+                printf("\r\n-----------------------------------\r\n");
+                printf("PRNG Test\r\n");
+                GenerateRng(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                
+                printf("\r\n-----------------------------------\r\n");
+                printf("TRNG Test\r\n");
+                GenerateRng(CRYPTO_HANDLER_HW_INTERNAL);
                 appData.isTestedRng = true;
 
                 printf("\r\n-----------------------------------\r\n");

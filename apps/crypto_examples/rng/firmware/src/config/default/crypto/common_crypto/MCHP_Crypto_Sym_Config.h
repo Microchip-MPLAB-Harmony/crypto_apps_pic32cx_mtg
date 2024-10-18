@@ -85,50 +85,6 @@ extern "C" {
 // Section: Middleware & Other Library Configuration
 // *****************************************************************************
 // *****************************************************************************
-//MCHP Configurations Macros
-//***Symmetric Algorithm Macros****
-#undef CRYPTO_SYM_AES_ENABLE         //No AES algorithm is selected in MCC GUI
-
-//#define CRYPTO_SYM_CAMELLIA_ENABLE      //Camellia algorithm is selected in MCC GUI
-//#define CRYPTO_SYM_TDES_ENABLE          //3DES/TDES algorithm option is selected in MCC GUI
-//#define CRYPTO_SYM_CHACHA20_ENABLE      //ChaCha20 algorithm is selected in MCC-GUI
-//***************************************
-
-    
-//*****SYM OPERATION MODE ENABLE MACROS************
-//AES Algorithms Operational Mode Macros
-
-
-    
-
-
-
-
-
-
-
-
-//****************************************************
-
-//Camellia Algorithm Operational Mode Macros    
-//#define CRYPTO_SYM_CAMECB_EN            //ECB mode is selected under Camellia algorithm in MCC-GUI   
-//#define CRYPTO_SYM_CAMCBC_EN            //CBC mode is selected under Camellia algorithm in MCC-GUI
-//****************************************************
-
-//TDES/3-DES Algorithm Operational Mode Macros    
-//#define CRYPTO_SYM_TDESECB_EN           //ECB mode is option selected under 3DES/TDES algorithm in MCC-GUI        
-//#define CRYPTO_SYM_TDESCBC_EN           //CBC mode is option selected under 3DES/TDES algorithm in MCC-GUI   
-//*****************************************************
-
-
-//**************************************************
-
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Application Configuration
-// *****************************************************************************
-// *****************************************************************************
 
 
 //DOM-IGNORE-BEGIN

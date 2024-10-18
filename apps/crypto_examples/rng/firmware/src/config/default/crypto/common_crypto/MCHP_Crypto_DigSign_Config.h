@@ -30,7 +30,6 @@
 //Max session allowed for Digital Signature Algorithms
 #define CRYPTO_DIGISIGN_SESSION_MAX (1)      
 
-
 #endif /* MCHP_CRYPTO_DIGSIGN_CONFIG_H */
 
 // *****************************************************************************

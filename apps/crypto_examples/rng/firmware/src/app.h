@@ -187,7 +187,7 @@ void APP_Tasks (void);
     None.
  */
 
-void GenerateRng (void);
+void GenerateRng (crypto_HandlerType_E cryptoHandler);
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus
