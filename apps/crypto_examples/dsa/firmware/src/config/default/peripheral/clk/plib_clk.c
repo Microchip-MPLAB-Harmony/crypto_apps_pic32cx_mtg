@@ -81,7 +81,7 @@ static void SlowClockInitialize(void)
 {
     /* 32KHz Crystal Oscillator is selected as the Slow Clock (SLCK) source.
        Enable 32KHz Crystal Oscillator  */
-    SUPC_REGS->SUPC_CR |= SUPC_CR_KEY_PASSWD | SUPC_CR_TDXTALSEL_XTAL;
+    SUPC_REGS->SUPC_CR = SUPC_CR_KEY_PASSWD | SUPC_CR_TDXTALSEL_XTAL;
 
     /* Wait until Slow Clock (SLCK) is switched from RC */
     while ((SUPC_REGS->SUPC_SR & SUPC_SR_TDOSCSEL_XTAL) == 0U)
@@ -95,7 +95,7 @@ void CLK_TDSCLKSelectXTAL(void)
     /* 32KHz Crystal Oscillator is selected as the Slow Clock (SLCK) source.
     Enable 32KHz Crystal Oscillator  */
 
-    SUPC_REGS->SUPC_CR |= SUPC_CR_KEY_PASSWD | SUPC_CR_TDXTALSEL_XTAL;
+    SUPC_REGS->SUPC_CR = SUPC_CR_KEY_PASSWD | SUPC_CR_TDXTALSEL_XTAL;
 
     /* Wait until Slow Clock (SLCK) is switched from RC */
     while ((SUPC_REGS->SUPC_SR & SUPC_SR_TDOSCSEL_XTAL) == 0U)
@@ -430,8 +430,6 @@ static void PeripheralClockInitialize(void)
         { ID_PIOA, 1U, 0U, 0U, 0U},
 
         { ID_TC0_CHANNEL0, 1U, 0U, 0U, 0U},
-
-        { ID_TC0_CHANNEL1, 1U, 0U, 0U, 0U},
 
         { ID_TRNG, 1U, 0U, 0U, 0U},
 

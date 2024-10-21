@@ -79,7 +79,7 @@ void SingleStepDigest(HASH *hash)
     (void) memset(hash->msgDigest, 0, hash->msgDigestSize);
 
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = TC0_CH0_TimerCounterGet(); 
     
     if (hash->hashMode == CRYPTO_HASH_MD5)
     {
@@ -103,7 +103,7 @@ void SingleStepDigest(HASH *hash)
         );
     }
 
-    endTime = TC0_CH1_TimerCounterGet();
+    endTime = TC0_CH0_TimerCounterGet();
     printf("%lf (ms)\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_HASH_SUCCESS)
@@ -142,7 +142,7 @@ void MultiStepDigest(HASH *hash)
     (void) memset(hash->msgDigest, 0, hash->msgDigestSize);
 
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = TC0_CH0_TimerCounterGet(); 
     
     if (hash->hashMode == CRYPTO_HASH_MD5)
     {
@@ -190,7 +190,7 @@ void MultiStepDigest(HASH *hash)
         status = Crypto_Hash_Sha_Final(&hash->Hash_Sha_Ctx, hash->msgDigest);
     }
     
-    endTime = TC0_CH1_TimerCounterGet();
+    endTime = TC0_CH0_TimerCounterGet();
     printf("%lf (ms)\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_HASH_SUCCESS)
@@ -268,7 +268,7 @@ void APP_Tasks (void)
 
         case APP_STATE_SERVICE_TASKS:
         {
-            TC0_CH1_TimerStart();
+            TC0_CH0_TimerStart();
             
             if (
                     !appData.isTestedSha1   &&
@@ -307,7 +307,7 @@ void APP_Tasks (void)
                 printf("\r\nTests successful: %d\r\n", testsPassed);
             }
             
-            TC0_CH1_TimerStop();
+            TC0_CH0_TimerStop();
 
             break;
         }

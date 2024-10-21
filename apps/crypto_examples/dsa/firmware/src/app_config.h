@@ -103,7 +103,7 @@ extern "C" {
       @Remarks
         None.
     */
-    void ECDSA_Test (void);
+void ECDSA_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
@@ -195,6 +195,7 @@ extern "C" {
      */
 
     bool CompareHexArray (uint8_t *arr1, uint8_t *arr2, size_t size);
+
 
     /* Provide C++ Compatibility */
 #ifdef __cplusplus

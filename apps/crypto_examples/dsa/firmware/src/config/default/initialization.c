@@ -200,7 +200,7 @@ void SYS_Initialize ( void* data )
 	BSP_Initialize();
  
     TC0_CH0_TimerInitialize(); 
-    TC0_CH1_TimerInitialize(); 
+     
     
     FLEXCOM0_USART_Initialize();
 
@@ -213,10 +213,6 @@ void SYS_Initialize ( void* data )
      #pragma coverity compliance block \
      (deviate "MISRA C-2012 Rule 11.3" "H3_MISRAC_2012_R_11_3_DR_1" )\
      (deviate "MISRA C-2012 Rule 11.8" "H3_MISRAC_2012_R_11_8_DR_1" )
-
-
-    /* Crypto Callback initialize */
-    //CRYPT_WCCB_Initialize();
 
 
     /* MISRA C-2012 Rule 11.3, 11.8 deviated below. Deviation record ID -  

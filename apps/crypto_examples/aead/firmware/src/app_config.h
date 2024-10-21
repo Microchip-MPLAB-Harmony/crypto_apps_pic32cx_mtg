@@ -254,7 +254,7 @@ extern "C" {
         This function is used for testing purposes to validate the GCM implementation.
      */
 
-    void AES_GCM_Test (void);
+    void AES_GCM_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
@@ -282,7 +282,7 @@ extern "C" {
         This function is used for testing purposes to validate the CCM implementation.
      */
 
-    void AES_CCM_Test (void);
+    void AES_CCM_Test (crypto_HandlerType_E cryptoHandler);
         
     // *****************************************************************************
     /**

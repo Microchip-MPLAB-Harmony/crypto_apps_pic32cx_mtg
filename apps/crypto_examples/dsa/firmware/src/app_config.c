@@ -33,6 +33,7 @@ uint8_t sig256[64];
 
 uint8_t sig384[96];
 
+
 // *****************************************************************************
 /* NIST Test Vectors
 
@@ -139,14 +140,10 @@ uint8_t pubKeyECDSA384_Compressed[49] =
     See prototype in app_config.h.
  */
 
-void ECDSA_Test (void)
+void ECDSA_Test (crypto_HandlerType_E cryptoHandler)
 {
     ECDSA ECDSA_Sign256 = {
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-        .handler   = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler   = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler     = cryptoHandler,
         .curveType = CRYPTO_ECC_CURVE_SECP256R1,
         .inputHash = msg,
         .inputHashSize = sizeof(msg),
@@ -156,20 +153,11 @@ void ECDSA_Test (void)
         .sigSize = sizeof(sig256)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-    printf("ECDSA p-256 HW Sign Test Using Uncompressed Key\r\n");
-#else
-    printf("ECDSA p-256 SW Sign Test Using Uncompressed Key\r\n");
-#endif
+    printf("\r\nECDSA p-256 Sign Test Using Uncompressed Key");
     ECDSA_Sign_Test(&ECDSA_Sign256);
 
     ECDSA ECDSA_Verify256 = {
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-        .handler   = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler   = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler     = cryptoHandler,
         .curveType = CRYPTO_ECC_CURVE_SECP256R1,
         .inputHash = msg,
         .inputHashSize = sizeof(msg),
@@ -179,15 +167,11 @@ void ECDSA_Test (void)
         .sigSize = sizeof(sig256),
         .hashVerifyStat = 0
     };
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-    printf("ECDSA p-256 HW Verify Test Using Uncompressed Key\r\n");
-#else
-    printf("ECDSA p-256 SW Verify Test Using Uncompressed Key\r\n");
-#endif
+//    printf("\r\n-----------------------------------\r\n");
+    printf("\r\nECDSA p-256 Verify Test Using Uncompressed Key");
     ECDSA_Verify_Test(&ECDSA_Verify256);
 
-#ifndef CRYPTO_DIGISIGN_HW_ALGO_EN
+    if (ECDSA_Verify256.handler == CRYPTO_HANDLER_SW_WOLFCRYPT ){
     ECDSA_Verify256.handler   = CRYPTO_HANDLER_SW_WOLFCRYPT;
     ECDSA_Verify256.curveType = CRYPTO_ECC_CURVE_SECP256R1;
     ECDSA_Verify256.inputHash = msg;
@@ -198,17 +182,13 @@ void ECDSA_Test (void)
     ECDSA_Verify256.sigSize = sizeof(sig256);
     ECDSA_Verify256.hashVerifyStat = 0;
             
-    printf("\r\n-----------------------------------\r\n");
-    printf("ECDSA p-256 SW Verify Test Using Compressed Key\r\n");
+//    printf("\r\n-----------------------------------\r\n");
+    printf("\r\nECDSA p-256 SW Verify Test Using Compressed Key");
     ECDSA_Verify_Test(&ECDSA_Verify256);
-#endif    
+    }
     
     ECDSA ECDSA_Sign384 = {
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-        .handler   = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler   = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler     = cryptoHandler,
         .curveType = CRYPTO_ECC_CURVE_SECP384R1,
         .inputHash = msg,
         .inputHashSize = sizeof(msg),
@@ -218,20 +198,12 @@ void ECDSA_Test (void)
         .sigSize = sizeof(sig384),
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-    printf("ECDSA p-384 HW Sign Test Using Uncompressed Key\r\n");
-#else
-    printf("ECDSA p-384 SW Sign Test Using Uncompressed Key\r\n");
-#endif
+//    printf("\r\n-----------------------------------\r\n");
+    printf("\r\nECDSA p-384 Sign Test Using Uncompressed Key");
     ECDSA_Sign_Test(&ECDSA_Sign384);
 
     ECDSA ECDSA_Verify384 = {
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-        .handler   = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler   = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler     = cryptoHandler,
         .curveType = CRYPTO_ECC_CURVE_SECP384R1,
         .inputHash = msg,
         .inputHashSize = sizeof(msg),
@@ -241,15 +213,11 @@ void ECDSA_Test (void)
         .sigSize = sizeof(sig384),
         .hashVerifyStat = 0
     };
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_DIGISIGN_HW_ALGO_EN
-    printf("ECDSA p-384 HW Verify Test Using Uncompressed Key\r\n");
-#else
-    printf("ECDSA p-384 SW Verify Test Using Uncompressed Key\r\n");
-#endif
+//    printf("\r\n-----------------------------------\r\n");
+    printf("\r\nECDSA p-384 Verify Test Using Uncompressed Key");
     ECDSA_Verify_Test(&ECDSA_Verify384);
     
-#ifndef CRYPTO_DIGISIGN_HW_ALGO_EN
+    if (ECDSA_Verify384.handler == CRYPTO_HANDLER_SW_WOLFCRYPT){
     ECDSA_Verify384.handler   = CRYPTO_HANDLER_SW_WOLFCRYPT;
     ECDSA_Verify384.curveType = CRYPTO_ECC_CURVE_SECP384R1;
     ECDSA_Verify384.inputHash = msg;
@@ -260,10 +228,10 @@ void ECDSA_Test (void)
     ECDSA_Verify384.sigSize = sizeof(sig384);
     ECDSA_Verify384.hashVerifyStat = 0;
             
-    printf("\r\n-----------------------------------\r\n");
-    printf("ECDSA p-384 SW Verify Test Using Compressed Key\r\n");
+//    printf("\r\n-----------------------------------\r\n");
+    printf("\r\nECDSA p-384 SW Verify Test Using Compressed Key");
     ECDSA_Verify_Test(&ECDSA_Verify384);
-#endif
+    }
 }
 
 /*******************************************************************************

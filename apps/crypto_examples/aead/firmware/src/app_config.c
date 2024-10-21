@@ -104,17 +104,13 @@ uint8_t AEAD_CCM_Tag[4] = {
     See prototype in app_config.
  */
 
-void AES_GCM_Test (void)
+void AES_GCM_Test (crypto_HandlerType_E cryptoHandler)
 {
     st_Crypto_Aead_AesGcm_ctx AesGcm_ctx;
     
     GCM AES_GCM = {
         .AesGcm_ctx = AesGcm_ctx,
-#ifdef CRYPTO_AEAD_HW_AESGCM_EN
-        .handler     = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler     = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler     = cryptoHandler,
         .pt          = AEAD_GCM_Plaintext,
         .ptSize      = sizeof(AEAD_GCM_Plaintext),
         .cipher      = cipher,
@@ -131,21 +127,12 @@ void AES_GCM_Test (void)
         .authTagSize = sizeof(AEAD_GCM_Tag)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_AEAD_HW_AESGCM_EN
-    printf("AES_GCM HW Single-Step Test\r\n");
-#else
-    printf("AES_GCM SW Single-Step Test\r\n");
-#endif
+    printf("\r\nAES_GCM Single-Step Test\r\n");
     AES_GCM_SingleStep(&AES_GCM);
-
     printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_AEAD_HW_AESGCM_EN
-    printf("AES_GCM HW Multi-Step Test\r\n");
-#else
-    printf("AES_GCM SW Multi-Step Test\r\n");
-#endif
+    printf("\r\nAES_GCM Multi-Step Test\r\n");
     AES_GCM_MultiStep(&AES_GCM);
+    printf("\r\n-----------------------------------\r\n");
 }
 
 
@@ -157,17 +144,13 @@ void AES_GCM_Test (void)
     See prototype in app_config.
  */
 
-void AES_CCM_Test (void)
+void AES_CCM_Test (crypto_HandlerType_E cryptoHandler)
 {
     st_Crypto_Aead_AesCcm_ctx AesCcm_ctx;
     
     CCM AES_CCM = {
         .AesCcm_ctx = AesCcm_ctx,
-#ifdef CRYPTO_AEAD_HW_AESCCM_EN
-        .handler     = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler     = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler     = cryptoHandler,
         .pt          = AEAD_CCM_Plaintext,
         .ptSize      = sizeof(AEAD_CCM_Plaintext),
         
@@ -190,20 +173,8 @@ void AES_CCM_Test (void)
         .authTagSize = sizeof(AEAD_CCM_Tag)
     };
 
-//    printf("\r\n-----------------------------------\r\n");
-//#ifdef CRYPTO_AEAD_HW_AESCCM_EN
-//    printf("AES_CCM HW Single-Step Test\r\n");
-//#else
-//    printf("AES_CCM SW Single-Step Test\r\n");
-//#endif
-//    AES_CCM_Direct(&AES_CCM);
+    printf("\r\nAES_CCM Multi-Step Test\r\n");
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_AEAD_HW_AESCCM_EN
-    printf("AES_CCM HW Multi-Step Test\r\n");
-#else
-    printf("AES_CCM SW Multi-Step Test\r\n");
-#endif
     AES_CCM_MultiStep(&AES_CCM);
 }
 

@@ -44,14 +44,6 @@ typedef enum {
     CRYPTO_HASH_SHA2_512 = 5,
     CRYPTO_HASH_SHA2_512_224 = 6,
     CRYPTO_HASH_SHA2_512_256 = 7,
-    CRYPTO_HASH_SHA3_224 = 8,
-    CRYPTO_HASH_SHA3_256 = 9,
-    CRYPTO_HASH_SHA3_384 = 10,
-    CRYPTO_HASH_SHA3_512 = 11,
-    CRYPTO_HASH_SHA3_SHAKE128 = 12,
-    CRYPTO_HASH_SHA3_SHAKE256 = 13,
-    CRYPTO_HASH_BLAKE2B = 14,
-    CRYPTO_HASH_BLAKE2S = 15,
     CRYPTO_HASH_MD5 = 16,
     CRYPTO_HASH_RIPEMD160 = 17,
     CRYPTO_HASH_MAX
@@ -92,26 +84,6 @@ typedef struct{
     crypto_HandlerType_E shaHandler_en;
     uint8_t arr_shaDataCtx[CRYPTO_HASH_SHA512CTX_SIZE] __attribute__((aligned (4)));
 }st_Crypto_Hash_Sha_Ctx;
-
-//SHA-3 only SHAKE
-typedef struct{
-    uint32_t shakeSessionId;
-    uint32_t digestLen;
-    crypto_Hash_Algo_E shakeAlgo_en;
-    crypto_HandlerType_E shakeHandler_en;
-    uint8_t arr_shakeDataCtx[CRYPTO_HASH_SHA512CTX_SIZE];// __attribute__((aligned (8)));
-}st_Crypto_Hash_Shake_Ctx;
-
-//BLAKE Algorithm
-typedef struct{
-    uint32_t blakeSessionId;
-    uint32_t digestLen;
-    crypto_Hash_Algo_E blakeAlgo_en;
-    crypto_HandlerType_E blakeHandler_en;
-    uint8_t *ptr_key;
-    uint32_t keyLen;
-    uint8_t arr_blakeDataCtx[400];// __attribute__((aligned (8)));
-}st_Crypto_Hash_Blake_Ctx;
 // *****************************************************************************
 //MD5 Algorithm
 crypto_Hash_Status_E Crypto_Hash_Md5_Digest(crypto_HandlerType_E md5Handler_en, uint8_t *ptr_data, uint32_t dataLen, uint8_t *ptr_digest, uint32_t md5SessionId);
@@ -130,18 +102,6 @@ crypto_Hash_Status_E Crypto_Hash_Sha_Digest(crypto_HandlerType_E shaHandler_en, 
 crypto_Hash_Status_E Crypto_Hash_Sha_Init(st_Crypto_Hash_Sha_Ctx *ptr_shaCtx_st, crypto_Hash_Algo_E shaAlgorithm_en, crypto_HandlerType_E shaHandler_en, uint32_t shaSessionId);
 crypto_Hash_Status_E Crypto_Hash_Sha_Update(st_Crypto_Hash_Sha_Ctx *ptr_shaCtx_st, uint8_t *ptr_data, uint32_t dataLen);
 crypto_Hash_Status_E Crypto_Hash_Sha_Final(st_Crypto_Hash_Sha_Ctx *ptr_shaCtx_st, uint8_t *ptr_digest);
-
-//SHA-3 only SHAKE
-crypto_Hash_Status_E Crypto_Hash_Shake_Digest(crypto_HandlerType_E shakeHandlerType_en, crypto_Hash_Algo_E shakeAlgorithm_en, uint8_t *ptr_data, uint32_t dataLen, uint8_t *ptr_digest, uint32_t digestLen, uint32_t shakeSessionId);
-crypto_Hash_Status_E Crypto_Hash_Shake_Init(st_Crypto_Hash_Shake_Ctx* ptr_shakeCtx_st, crypto_Hash_Algo_E shakeAlgorithm_en, crypto_HandlerType_E shakeHandlerType_en, uint32_t digestLen, uint32_t shakeSessionId);
-crypto_Hash_Status_E Crypto_Hash_Shake_Update(st_Crypto_Hash_Shake_Ctx* ptr_shakeCtx_st, uint8_t *ptr_data, uint32_t dataLen);
-crypto_Hash_Status_E Crypto_Hash_Shake_Final(st_Crypto_Hash_Shake_Ctx* ptr_shakeCtx_st, uint8_t *ptr_digest);
-
-//BLAKE Algorithm
-crypto_Hash_Status_E Crypto_Hash_Blake_Digest(crypto_HandlerType_E blakeHandlerType_en, crypto_Hash_Algo_E blakeAlgorithm_en, uint8_t *ptr_data, uint32_t dataLen, uint8_t *ptr_blakeKey, uint32_t keySize, uint8_t *ptr_digest, uint32_t digestLen, uint32_t blakeSessionId);
-crypto_Hash_Status_E Crypto_Hash_Blake_Init(st_Crypto_Hash_Blake_Ctx *ptr_blakeCtx_st,crypto_Hash_Algo_E blakeAlgorithm_en, uint8_t *ptr_blakeKey, uint32_t keySize, uint32_t digestSize, crypto_HandlerType_E blakeHandlerType_en, uint32_t blakeSessionId);
-crypto_Hash_Status_E Crypto_Hash_Blake_Update(st_Crypto_Hash_Blake_Ctx * ptr_blakeCtx_st, uint8_t *ptr_data, uint32_t dataLen);
-crypto_Hash_Status_E Crypto_Hash_Blake_Final(st_Crypto_Hash_Blake_Ctx * ptr_blakeCtx_st, uint8_t *ptr_digest);
 
 uint32_t Crypto_Hash_GetHashAndHashSize(crypto_HandlerType_E shaHandler_en, crypto_Hash_Algo_E hashType_en, uint8_t *ptr_wcInputData, uint32_t wcDataLen, uint8_t *ptr_outHash);
 #endif //MCHP_CRYPTO_HASH_H

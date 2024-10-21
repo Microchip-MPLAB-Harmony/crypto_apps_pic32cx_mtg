@@ -41,6 +41,7 @@
 uint8_t testsPassed;
 uint8_t testsFailed;
 
+
 // *****************************************************************************
 /* Application Data
 
@@ -79,7 +80,7 @@ void ECDSA_Sign_Test(ECDSA *ecdsa)
     (void) memset(ecdsa->sig, 0, ecdsa->sigSize);
 
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = TC0_CH0_TimerCounterGet(); 
 
     status = Crypto_DigiSign_Ecdsa_Sign(
         ecdsa->handler,
@@ -93,7 +94,7 @@ void ECDSA_Sign_Test(ECDSA *ecdsa)
         SESSION_ID
     );
     
-    endTime = TC0_CH1_TimerCounterGet();
+    endTime = TC0_CH0_TimerCounterGet();
     printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
@@ -121,7 +122,7 @@ void ECDSA_Verify_Test(ECDSA *ecdsa)
     crypto_DigiSign_Status_E status;
     
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = TC0_CH0_TimerCounterGet(); 
     
     status = Crypto_DigiSign_Ecdsa_Verify(
         ecdsa->handler,
@@ -136,8 +137,8 @@ void ECDSA_Verify_Test(ECDSA *ecdsa)
         SESSION_ID
     );
     
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = TC0_CH0_TimerCounterGet();
+    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
     {
@@ -210,11 +211,17 @@ void APP_Tasks ( void )
 
         case APP_STATE_SERVICE_TASKS:
         {
-            TC0_CH1_TimerStart();
+            TC0_CH0_TimerStart();
                 
             if (!appData.isTestedECDSA)
             {
-                ECDSA_Test();
+                printf("\r\n-----------------------------------\r\n");
+                printf("\r\nDSA SW Test\r\n");
+                ECDSA_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                printf("\r\n-----------------------------------\r\n");
+                printf("\r\nDSA HW Test\r\n");
+                ECDSA_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                
                 appData.isTestedECDSA = true;
 
                 printf("\r\n-----------------------------------\r\n");
@@ -222,7 +229,7 @@ void APP_Tasks ( void )
                 printf("\r\nTests successful: %d\r\n", testsPassed);
             }
 
-            TC0_CH1_TimerStop();
+            TC0_CH0_TimerStop();
             
             break;
         }

@@ -68,16 +68,17 @@ volatile static TC_TIMER_CALLBACK_OBJECT TC0_CH0_CallbackObj;
 /* Initialize channel in timer mode */
 void TC0_CH0_TimerInitialize(void)
 {
+    /* Use peripheral clock */
+    TC0_REGS->TC_CHANNEL[0].TC_EMR = TC_EMR_NODIVCLK_Msk;
     /* clock selection and waveform selection */
-    TC0_REGS->TC_CHANNEL[0].TC_CMR = TC_CMR_TCCLKS_TIMER_CLOCK4 | TC_CMR_WAVEFORM_WAVSEL_UP_RC | \
-                                                        TC_CMR_WAVE_Msk ;
+    TC0_REGS->TC_CHANNEL[0].TC_CMR =  TC_CMR_WAVEFORM_WAVSEL_UP_RC | TC_CMR_WAVE_Msk ;
 
     /* write period */
-    TC0_REGS->TC_CHANNEL[0].TC_RC = 0U;
+    TC0_REGS->TC_CHANNEL[0].TC_RC = 100000U;
 
 
     /* enable interrupt */
-    TC0_REGS->TC_CHANNEL[0].TC_IER = TC_IER_CPAS_Msk;
+    TC0_REGS->TC_CHANNEL[0].TC_IER = TC_IER_CPCS_Msk;
     TC0_CH0_CallbackObj.callback_fn = NULL;
 }
 
@@ -95,7 +96,7 @@ void TC0_CH0_TimerStop (void)
 
 uint32_t TC0_CH0_TimerFrequencyGet( void )
 {
-    return (uint32_t)(1562500UL);
+    return (uint32_t)(100000000UL);
 }
 
 /* Configure timer period */
@@ -151,67 +152,6 @@ void __attribute__((used)) TC0_CH0_InterruptHandler(void)
  
  
 
-
-
-/* Initialize channel in timer mode */
-void TC0_CH1_TimerInitialize(void)
-{
-    /* Use peripheral clock */
-    TC0_REGS->TC_CHANNEL[1].TC_EMR = TC_EMR_NODIVCLK_Msk;
-    /* clock selection and waveform selection */
-    TC0_REGS->TC_CHANNEL[1].TC_CMR =  TC_CMR_WAVEFORM_WAVSEL_UP_RC | TC_CMR_WAVE_Msk ;
-
-    /* write period */
-    TC0_REGS->TC_CHANNEL[1].TC_RC = 0U;
-
-
-}
-
-/* Start the timer */
-void TC0_CH1_TimerStart (void)
-{
-    TC0_REGS->TC_CHANNEL[1].TC_CCR = (TC_CCR_CLKEN_Msk | TC_CCR_SWTRG_Msk);
-}
-
-/* Stop the timer */
-void TC0_CH1_TimerStop (void)
-{
-    TC0_REGS->TC_CHANNEL[1].TC_CCR = (TC_CCR_CLKDIS_Msk);
-}
-
-uint32_t TC0_CH1_TimerFrequencyGet( void )
-{
-    return (uint32_t)(100000000UL);
-}
-
-/* Configure timer period */
-void TC0_CH1_TimerPeriodSet (uint32_t period)
-{
-    TC0_REGS->TC_CHANNEL[1].TC_RC = period;
-}
-
-
-/* Read timer period */
-uint32_t TC0_CH1_TimerPeriodGet (void)
-{
-    return TC0_REGS->TC_CHANNEL[1].TC_RC;
-}
-
-/* Read timer counter value */
-uint32_t TC0_CH1_TimerCounterGet (void)
-{
-    return TC0_REGS->TC_CHANNEL[1].TC_CV;
-}
-
-
-/* Check if timer period status is set */
-bool TC0_CH1_TimerPeriodHasExpired(void)
-{
-    return ((((TC0_REGS->TC_CHANNEL[1].TC_SR) & TC_SR_CPCS_Msk) >> TC_SR_CPCS_Pos) != 0U);
-}
- 
- 
- 
  
  
 
