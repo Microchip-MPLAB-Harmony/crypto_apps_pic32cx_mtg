@@ -215,11 +215,10 @@ void APP_Tasks ( void )
                 
             if (!appData.isTestedECDSA)
             {
-                printf("\r\n-----------------------------------\r\n");
-                printf("\r\nDSA SW Test\r\n");
+                printf("\r\nBegin DSA Demo Application\r\n");
+                printf("\r\n-----------DSA SW test-------------\r\n");
                 ECDSA_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------------------------------\r\n");
-                printf("\r\nDSA HW Test\r\n");
+                printf("\r\n-----------DSA HW test-------------\r\n");
                 ECDSA_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
                 appData.isTestedECDSA = true;

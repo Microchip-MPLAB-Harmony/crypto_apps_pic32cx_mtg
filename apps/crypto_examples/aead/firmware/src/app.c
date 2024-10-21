@@ -122,7 +122,7 @@ void AES_GCM_SingleStep (GCM *gcm)
     );
 
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
@@ -257,7 +257,7 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
 
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
@@ -344,7 +344,7 @@ void AES_CCM_MultiStep (CCM *ccm)
     );
 
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {

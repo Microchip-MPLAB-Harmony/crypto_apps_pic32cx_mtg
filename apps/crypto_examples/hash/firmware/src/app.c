@@ -276,28 +276,24 @@ void APP_Tasks (void)
                     !appData.isTestedMd5
                 )
             {          
-                printf("\r\n-----------------------------------\r\n");
-                printf("MD5 SW Test\r\n");
+                printf("\r\nBegin Hash Demo Application\r\n");
+                printf("\r\n-----------MD5 SW Test-------------\r\n");
                 MD5_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedMd5 = true;
 
-                printf("\r\n-----------------------------------\r\n");
-                printf("SHA1 HW Test\r\n");
+                printf("\r\n-----------SHA1 HW Test-------------\r\n");
                 SHA1_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
-                printf("\r\n-----------------------------------\r\n");
-                printf("SHA1 SW Test\r\n");
+                printf("\r\n-----------SHA1 SW Test-------------\r\n");
                 SHA1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedSha1 = true;
                 
-                printf("\r\n-----------------------------------\r\n");
-                printf("SHA2 HW Test\r\n");
+                printf("\r\n-----------SHA2 HW Test-------------\r\n");
                 SHA2_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
-                printf("\r\n-----------------------------------\r\n");
-                printf("SHA2 SW Test\r\n");
+                printf("\r\n-----------SHA2 SW Test-------------\r\n");
                 SHA2_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedSha2 = true;
