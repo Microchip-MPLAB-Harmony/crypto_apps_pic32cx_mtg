@@ -30,16 +30,9 @@
 #include "crypto/common_crypto/MCHP_Crypto_Common.h"
 #include "crypto/common_crypto/MCHP_Crypto_Kas.h"
 #include "crypto/common_crypto/MCHP_Crypto_Kas_Config.h"
+#include "crypto/wolfcrypt/crypto_kas_wc_wrapper.h"
+#include "crypto/drivers/HwWrapper/crypto_kas_cpkcc44163_wrapper.h"
 
-#ifdef CRYPTO_KAS_WC_ALGO_EN
-#include "crypto/common_crypto/MCHP_Crypto_Kas_WolfcryptWrapper.h"
-#endif /* CRYPTO_KAS_WC_ALGO_EN */
-
-#ifdef CRYPTO_KAS_HW_ALGO_EN
-#include "crypto/common_crypto/MCHP_Crypto_Kas_HwWrapper.h"
-#endif /* CRYPTO_KAS_HW_ALGO_EN */
-
-#ifdef CRYPTO_KAS_ECDH_EN
 crypto_Kas_Status_E Crypto_Kas_Ecdh_SharedSecret(crypto_HandlerType_E ecdhHandlerType_en, uint8_t *ptr_privKey, uint32_t privKeyLen, uint8_t *ptr_pubKey, uint32_t pubKeyLen,
                                                     uint8_t *ptr_sharedSecret, uint32_t sharedSecretLen, crypto_EccCurveType_E eccCurveType_en, uint32_t ecdhSessionId)
 {
@@ -65,26 +58,18 @@ crypto_Kas_Status_E Crypto_Kas_Ecdh_SharedSecret(crypto_HandlerType_E ecdhHandle
     {
         switch(ecdhHandlerType_en)
         {            
-#ifdef CRYPTO_KAS_WC_ECDH_EN           
             case CRYPTO_HANDLER_SW_WOLFCRYPT:
                 ret_ecdhStat_en = Crypto_Kas_Wc_Ecdh_SharedSecret(ptr_privKey, privKeyLen, ptr_pubKey, pubKeyLen, ptr_sharedSecret,
                                                                     sharedSecretLen, eccCurveType_en);
             break; 
-#endif /* CRYPTO_KAS_WC_ECDH_EN */  
-
-#ifdef CRYPTO_KAS_HW_ALGO_EN            
             case CRYPTO_HANDLER_HW_INTERNAL:
-            ret_ecdhStat_en = Crypto_Kas_Ecdh_Hw_SharedSecret(ptr_privKey, privKeyLen, ptr_pubKey, pubKeyLen, ptr_sharedSecret,
-                                                                    sharedSecretLen, eccCurveType_en);
-            break;
-#endif /* CRYPTO_KAS_HW_ALGO_EN */
-            
+	            ret_ecdhStat_en = Crypto_Kas_Ecdh_Hw_SharedSecret(ptr_privKey, privKeyLen, ptr_pubKey, pubKeyLen, ptr_sharedSecret,
+	                                                                    sharedSecretLen, eccCurveType_en);
+	            break;
             default:
                 ret_ecdhStat_en = CRYPTO_KAS_ERROR_HDLR;
-            break;
+                break;
         }
     }
-    
     return ret_ecdhStat_en;
 }
-#endif /* CRYPTO_KAS_ECDH_EN */

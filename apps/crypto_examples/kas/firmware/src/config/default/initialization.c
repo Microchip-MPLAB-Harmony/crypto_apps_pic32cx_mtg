@@ -217,10 +217,6 @@ void SYS_Initialize ( void* data )
      (deviate "MISRA C-2012 Rule 11.8" "H3_MISRAC_2012_R_11_8_DR_1" )
 
 
-    /* Crypto Callback initialize */
-    //CRYPT_WCCB_Initialize();
-
-
     /* MISRA C-2012 Rule 11.3, 11.8 deviated below. Deviation record ID -  
     H3_MISRAC_2012_R_11_3_DR_1 & H3_MISRAC_2012_R_11_8_DR_1*/
         #pragma coverity compliance block \

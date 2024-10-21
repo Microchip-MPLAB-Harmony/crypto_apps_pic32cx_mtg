@@ -110,7 +110,7 @@ extern "C" {
     // *****************************************************************************
     /**
       @Function
-        void SECP384R1_Test(void)
+        void SECP384R1_Test(crypto_HandlerType_E cryptoHandler)
 
       @Summary
         Runs SECP384R1 test vectors.
@@ -132,12 +132,12 @@ extern "C" {
       @Remarks
         This function is used for testing purposes to validate the SECP384R1 implementation.
     */
-    void SECP384R1_Test(void);
+    void SECP384R1_Test(crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
       @Function
-        void SECP256R1_Test(void)
+        void SECP256R1_Test (crypto_HandlerType_E cryptoHandler);
 
       @Summary
         Runs SECP256R1 test vectors.
@@ -159,7 +159,7 @@ extern "C" {
       @Remarks
         This function is used for testing purposes to validate the SECP256R1 implementation.
     */
-    void SECP256R1_Test(void);
+    void SECP256R1_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**

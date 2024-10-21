@@ -5,6 +5,6 @@
 #define WOLFCRYPT_USER_SETTINGS_H
 
 //Include the WolfSSL configuration defines
-#include "crypto_config.h"
+#include "wolfcrypt_config.h"
 
 #endif

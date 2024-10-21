@@ -94,7 +94,7 @@ void GenerateSharedSecret (ECDH *ecdh)
     );
     
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_KAS_SUCCESS)
     {
@@ -179,8 +179,15 @@ void APP_Tasks ( void )
             
             if (!appData.isTestedECDH)
             {
-                SECP256R1_Test();
-                SECP384R1_Test();
+                printf("\r\nBegin KAS Demo Application\r\n");
+                printf("\r\n-----------ECDH SECP256 SW test-------------\r\n");
+                SECP256R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                printf("\r\n-----------ECDH SECP256  HW test-------------\r\n");
+                SECP256R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                printf("\r\n-----------ECDH SECP384  SW test-------------\r\n");
+                SECP384R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                printf("\r\n-----------ECDH SECP384 HW test-------------\r\n");
+                SECP384R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 appData.isTestedECDH = true;
 
                 printf("\r\n-----------------------------------\r\n");

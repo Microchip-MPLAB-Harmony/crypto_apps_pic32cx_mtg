@@ -35,9 +35,4 @@
 //Max session allowed for Key Agreement Scheme Algorithms
 #define CRYPTO_KAS_SESSION_MAX (1) 
 
-#define CRYPTO_KAS_ECDH_EN
-
-#define CRYPTO_KAS_HW_ALGO_EN
-#define CRYPTO_KAS_HW_ECDH_EN
-
 #endif /* MCHP_CRYPTO_KAS_CONFIG_H */

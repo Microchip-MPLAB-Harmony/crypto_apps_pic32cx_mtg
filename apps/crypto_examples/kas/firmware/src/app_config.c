@@ -137,14 +137,10 @@ uint8_t Secret_SECP384R1[48] = {
     See prototype in app_config.h.
  */
 
-void SECP256R1_Test (void)
+void SECP256R1_Test (crypto_HandlerType_E cryptoHandler)
 {
     ECDH secp256r1 = {
-#ifdef CRYPTO_KAS_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler         = cryptoHandler,
         .curveType          = CRYPTO_ECC_CURVE_SECP256R1,
         .privKey            = Priv_SECP256R1,
         .privKeySize        = sizeof(Priv_SECP256R1),
@@ -156,15 +152,10 @@ void SECP256R1_Test (void)
         .expectedSecretSize = sizeof(Secret_SECP256R1)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_KAS_HW_ALGO_EN
-    printf("secp256r1 HW Test Using Uncompressed Key\r\n");
-#else
-    printf("secp256r1 SW Test Using Uncompressed Key\r\n");
-#endif
+    printf("secp256r1 Test Using Uncompressed Key");
     GenerateSharedSecret(&secp256r1);
     
-#ifdef CRYPTO_KAS_WC_ALGO_EN
+ if (secp256r1.handler == CRYPTO_HANDLER_SW_WOLFCRYPT ){
     secp256r1.handler            = CRYPTO_HANDLER_SW_WOLFCRYPT;
     secp256r1.curveType          = CRYPTO_ECC_CURVE_SECP256R1;
     secp256r1.privKey            = Priv_SECP256R1;
@@ -176,20 +167,16 @@ void SECP256R1_Test (void)
     secp256r1.expectedSecret     = Secret_SECP256R1;
     secp256r1.expectedSecretSize = sizeof(Secret_SECP256R1);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("secp256r1 SW Test Using Compressed Key\r\n");
+    
+    printf("\r\nsecp256r1 SW Test Using Compressed Key");
     GenerateSharedSecret(&secp256r1);
-#endif
+ }
 }
 
-void SECP384R1_Test(void)
+void SECP384R1_Test(crypto_HandlerType_E cryptoHandler)
 {
     ECDH secp384r1 = {
-#ifdef CRYPTO_KAS_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler         = cryptoHandler,
         .curveType          = CRYPTO_ECC_CURVE_SECP384R1,
         .privKey            = Priv_SECP384R1,
         .privKeySize        = sizeof(Priv_SECP384R1),
@@ -201,16 +188,11 @@ void SECP384R1_Test(void)
         .expectedSecretSize = sizeof(Secret_SECP384R1)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_KAS_HW_ALGO_EN
-    printf("secp384r1 HW Test Using Uncompressed Key\r\n");
-#else
-    printf("secp384r1 SW Test Using Uncompressed Key\r\n");
-#endif
+    printf("secp384r1 Test Using Uncompressed Key");
     GenerateSharedSecret(&secp384r1);
     
 
-#ifdef CRYPTO_KAS_WC_ALGO_EN
+ if (secp384r1.handler == CRYPTO_HANDLER_SW_WOLFCRYPT ){
     secp384r1.handler            = CRYPTO_HANDLER_SW_WOLFCRYPT;
     secp384r1.curveType          = CRYPTO_ECC_CURVE_SECP384R1;
     secp384r1.privKey            = Priv_SECP384R1;
@@ -222,10 +204,9 @@ void SECP384R1_Test(void)
     secp384r1.expectedSecret     = Secret_SECP384R1;
     secp384r1.expectedSecretSize = sizeof(Secret_SECP384R1);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("secp384r1 SW Test Using Compressed Key\r\n");
+    printf("\r\nsecp384r1 SW Test Using Compressed Key");
     GenerateSharedSecret(&secp384r1); 
-#endif    
+ }    
 }
 
 /*******************************************************************************
