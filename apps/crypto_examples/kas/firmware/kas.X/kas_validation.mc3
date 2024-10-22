@@ -9379,7 +9379,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_wc_common_wrapper.c</file>
-         <hash>b97aad1a3c0a99629f288bbcf75ac192afdca3f048bfe2acad3803c126bc0bf5</hash>
+         <hash>9a7c3d99d36d517c04ac1a71a91db8d70d56cbcb5b31225e37fe3118a360e6b6</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\user_settings.h</file>
@@ -9387,7 +9387,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\wolfcrypt_config.h</file>
-         <hash>2ebf6832f685aa66622dd925952f619f0f05c4340745cb5fc07f7ad96502ed7b</hash>
+         <hash>5755271e5c236152d1138a84c1d07b1fcd1f0c52014464abc0dedd18f8d74254</hash>
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>

@@ -180,13 +180,13 @@ void APP_Tasks ( void )
             if (!appData.isTestedECDH)
             {
                 printf("\r\nBegin KAS Demo Application\r\n");
-                printf("\r\n-----------ECDH SECP256 SW test-------------\r\n");
+                printf("\r\n-----------ECDH SECP256 SW Test-------------\r\n");
                 SECP256R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------ECDH SECP256  HW test-------------\r\n");
+                printf("\r\n-----------ECDH SECP256  HW Test-------------\r\n");
                 SECP256R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
-                printf("\r\n-----------ECDH SECP384  SW test-------------\r\n");
+                printf("\r\n-----------ECDH SECP384  SW Test-------------\r\n");
                 SECP384R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------ECDH SECP384 HW test-------------\r\n");
+                printf("\r\n-----------ECDH SECP384 HW Test-------------\r\n");
                 SECP384R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 appData.isTestedECDH = true;
 

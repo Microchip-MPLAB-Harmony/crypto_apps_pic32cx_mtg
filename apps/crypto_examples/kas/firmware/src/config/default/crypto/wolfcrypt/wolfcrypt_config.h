@@ -193,7 +193,11 @@ extern "C" {
 #define WOLFSSL_AES_EAX 
 #define WOLFSSL_AESGCM_STREAM
 //*********************************************************
+int Crypto_Rng_Wc_Prng_EntropySource(void); //User-modifiable entropy for PRNG 
+int Crypto_Rng_Wc_Prng_Srand(uint8_t* output, unsigned int sz);
 
+//*********************************************************
+#define CUSTOM_RAND_GENERATE_SEED Crypto_Rng_Wc_Prng_Srand
 //#define WC_NO_RNG //when using RNG
 //#define WC_NO_HASHDRBG
 //#define HAVE_ECC_ENCRYPT

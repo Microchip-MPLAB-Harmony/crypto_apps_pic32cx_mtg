@@ -160,12 +160,11 @@ void APP_Tasks ( void )
             
             if ( !appData.isTestedRng )
             {
-                printf("\r\n-----------------------------------\r\n");
-                printf("PRNG Test\r\n");
+                printf("\r\nBegin RNG Demo Application\r\n");
+                printf("\r\n-----------PRNG Test-------------\r\n");
                 GenerateRng(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
-                printf("\r\n-----------------------------------\r\n");
-                printf("TRNG Test\r\n");
+                printf("\r\n-----------TRNG Test-------------\r\n");
                 GenerateRng(CRYPTO_HANDLER_HW_INTERNAL);
                 appData.isTestedRng = true;
 

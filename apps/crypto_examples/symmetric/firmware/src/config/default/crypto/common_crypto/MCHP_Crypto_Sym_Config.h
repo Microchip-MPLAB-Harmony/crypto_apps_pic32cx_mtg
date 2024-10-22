@@ -85,64 +85,6 @@ extern "C" {
 // Section: Middleware & Other Library Configuration
 // *****************************************************************************
 // *****************************************************************************
-//MCHP Configurations Macros
-//***Symmetric Algorithm Macros****
-#define CRYPTO_SYM_AES_ENABLE         //any AES algorithm is selected in MCC GUI
-#define CRYPTO_SYM_WC_ALGO_EN         //Any symmetric algorithm selected to use Wolfcrypt
-#define CRYPTO_SYM_WC_AES_EN          //AES algorithm selected to use Wolfcrypt 
-#define CRYPTO_SYM_WC_AESKW_EN        //AES KeyWrap selected to use Wolfcrypt 
-
-//#define CRYPTO_SYM_CAMELLIA_ENABLE      //Camellia algorithm is selected in MCC GUI
-//#define CRYPTO_SYM_TDES_ENABLE          //3DES/TDES algorithm option is selected in MCC GUI
-//#define CRYPTO_SYM_CHACHA20_ENABLE      //ChaCha20 algorithm is selected in MCC-GUI
-//***************************************
-
-//HW Acceleration Enable
-#define CRYPTO_SYM_HW_ALGO_EN
-    
-//*****SYM OPERATION MODE ENABLE MACROS************
-//AES Algorithms Operational Mode Macros
-#define CRYPTO_SYM_AESECB_EN            //ECB mode is selected under AES algorithm in MCC-GUI
-
-#define CRYPTO_SYM_AESCBC_EN             //CBC mode is selected under AES algorithm in MCC-GUI
-
-#define CRYPTO_SYM_AESOFB_EN            //OFB mode is selected under AES algorithm in MCC-GUI
-    
-#define CRYPTO_SYM_AESCFB1_EN           //CFB1 mode is selected under AES algorithm in MCC-GUI
-
-#define CRYPTO_SYM_AESCFB8_EN           //CFB8 mode is selected under AES algorithm in MCC-GUI
-
-#define CRYPTO_SYM_AESCFB64_EN          //CFB64 mode is selected under AES algorithm in MCC-GUI
-
-#define CRYPTO_SYM_AESCFB128_EN         //CFB128 mode is selected under AES algorithm in MCC-GUI
-
-#define CRYPTO_SYM_AESCTR_EN            //CTR mode is selected under AES algorithm in MCC-GUI 
-
-
-#define CRYPTO_SYM_AESKEYWRAP_ENABLE    //Key Wrap (KW) mode is selected under AES algorithm in MCC-GUI
-
-
-//****************************************************
-
-//Camellia Algorithm Operational Mode Macros    
-//#define CRYPTO_SYM_CAMECB_EN            //ECB mode is selected under Camellia algorithm in MCC-GUI   
-//#define CRYPTO_SYM_CAMCBC_EN            //CBC mode is selected under Camellia algorithm in MCC-GUI
-//****************************************************
-
-//TDES/3-DES Algorithm Operational Mode Macros    
-//#define CRYPTO_SYM_TDESECB_EN           //ECB mode is option selected under 3DES/TDES algorithm in MCC-GUI        
-//#define CRYPTO_SYM_TDESCBC_EN           //CBC mode is option selected under 3DES/TDES algorithm in MCC-GUI   
-//*****************************************************
-
-
-//**************************************************
-
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Application Configuration
-// *****************************************************************************
-// *****************************************************************************
 
 
 //DOM-IGNORE-BEGIN

@@ -131,7 +131,7 @@ void MultiStepEncrypt (AES *aes)
     }
     
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
     
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -145,12 +145,12 @@ void MultiStepEncrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("\r\nCipher correct: Multi-Step Encrypt Test Successful\r\n");
+            printf("Cipher correct: Multi-Step Encrypt Test Successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nCipher incorrect: Multi-Step Encrypt Test Unsuccessful\r\n");
+            printf("Cipher incorrect: Multi-Step Encrypt Test Unsuccessful\r\n");
         }
     }
 }
@@ -223,7 +223,7 @@ void MultiStepDecrypt (AES *aes)
     }
 
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
     
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -237,12 +237,12 @@ void MultiStepDecrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("\r\nDeciphered text correct: Multi-Step Test Successful\r\n");
+            printf("Deciphered text correct: Multi-Step Test Successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nDeciphered text incorrect: Multi-Step Test Unsuccessful\r\n");
+            printf("Deciphered text incorrect: Multi-Step Test Unsuccessful\r\n");
         }
     }
 }
@@ -293,7 +293,7 @@ void SingleStepEncrypt (AES *aes)
     }
 
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -307,12 +307,12 @@ void SingleStepEncrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("\r\nCipher correct: Single-Step Test Successful\r\n");
+            printf("Cipher correct: Single-Step Test Successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nCipher incorrect: Single-Step Test Unsuccessful\r\n");
+            printf("Cipher incorrect: Single-Step Test Unsuccessful\r\n");
         }
     }
 }
@@ -363,7 +363,7 @@ void SingleStepDecrypt (AES *aes)
     }
     
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -377,12 +377,12 @@ void SingleStepDecrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("\r\nDeciphered text correct: Single-Step Test Successful\r\n");
+            printf("Deciphered text correct: Single-Step Test Successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nDeciphered text incorrect: Single-Step Test Unsuccessful\r\n");
+            printf("Deciphered text incorrect: Single-Step Test Unsuccessful\r\n");
         }
     }
 }
@@ -451,12 +451,23 @@ void APP_Tasks(void) {
                     !appData.isTestedKeyWrap
                 )
             {
-                AES_ECB_Test();
-                AES_CBC_Test();
-                AES_CTR_Test();
+                printf("\r\nBegin Symmetric Demo Application\r\n");
+                printf("\r\n-----------AES-ECB SW Test-------------\r\n");
+                AES_ECB_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                printf("\r\nBegin KAS Demo Application\r\n");
+                printf("\r\n-----------AES-ECB HW Test-------------\r\n");
+                AES_ECB_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                printf("\r\n-----------AES-CBC SW Test-------------\r\n");
+                AES_CBC_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                printf("\r\n-----------AES-CBC HW Test-------------\r\n");
+                AES_CBC_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                printf("\r\n-----------AES-CTR SW Test-------------\r\n");
+                AES_CTR_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                printf("\r\n-----------AES-CTR HW Test-------------\r\n");
+                AES_CTR_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 appData.isTestedAes      = true;
-
-                AES_KeyWrap_Test();
+                printf("\r\n-----------AES-KW SW Test-------------\r\n");
+                AES_KeyWrap_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 appData.isTestedKeyWrap  = true;
 
                 // TODO - implement these methods

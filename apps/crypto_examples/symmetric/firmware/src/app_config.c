@@ -359,17 +359,13 @@ uint8_t Ciphertext_AES_KW256_Decrypt[24] = {
     See prototype in app_config.h.
  */
 
-void AES_ECB_Test (void)
+void AES_ECB_Test (crypto_HandlerType_E cryptoHandler)
 {
     st_Crypto_Sym_BlockCtx  Sym_Block_Ctx;
 
     AES ecb128 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_ECB,
 
         .iv                 = NULL,
@@ -387,44 +383,23 @@ void AES_ECB_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_ECB128)
     };
     
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES ECB HW 128 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES ECB SW 128 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES ECB 128 Encrypt Test\r\n");
     MultiStepEncrypt(&ecb128);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES ECB HW 128 Decrypt Test\r\n");
-#else
-    printf("Multi-Step AES ECB SW 128 Decrypt Test\r\n");
-#endif
+    printf("\r\nMulti-Step AES ECB 128 Decrypt Test\r\n");
     MultiStepDecrypt(&ecb128);
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES ECB 128 HW Encrypt Test\r\n");
-#else
-    printf("Single-Step AES ECB 128 SW Encrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES ECB 128 Encrypt Test\r\n");
     SingleStepEncrypt(&ecb128);
     
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES ECB HW 128 Decrypt Test\r\n");
-#else
-    printf("Single-Step AES ECB SW 128 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES ECB 128 Decrypt Test\r\n");
     SingleStepDecrypt(&ecb128);
 
     AES ecb192 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_ECB,
 
         .iv                 = NULL,
@@ -442,45 +417,25 @@ void AES_ECB_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_ECB192)
     };
     
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES ECB HW 192 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES ECB SW 192 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES ECB 192 Encrypt Test\r\n");
     MultiStepEncrypt(&ecb192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES ECB HW 192 Decrypt Test\r\n");
-#else
-    printf("Multi-Step AES ECB SW 192 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES ECB 192 Decrypt Test\r\n");
     MultiStepDecrypt(&ecb192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES ECB HW 192 Encrypt Test\r\n");
-#else
-    printf("Single-Step AES ECB SW 192 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES ECB 192 Encrypt Test\r\n");
     SingleStepEncrypt(&ecb192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES ECB HW 192 Decrypt Test\r\n");
-#else
-    printf("Single-Step AES ECB SW 192 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES ECB 192 Decrypt Test\r\n");
     SingleStepDecrypt(&ecb192);
 
     AES ecb256 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_ECB,
 
         .iv                 = NULL,
@@ -498,36 +453,19 @@ void AES_ECB_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_ECB256)
     };
     
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES ECB HW 256 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES ECB SW 256 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES ECB 256 Encrypt Test\r\n");
     MultiStepEncrypt(&ecb256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES ECB HW 256 Decrypt Test\r\n");
-#else
-    printf("Multi-Step AES ECB SW 256 Decrypt Test\r\n");
-#endif
+    printf("\r\nMulti-Step AES ECB 256 Decrypt Test\r\n");
     MultiStepDecrypt(&ecb256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES ECB HW 256 Encrypt Test\r\n");
-#else
-    printf("Single-Step AES ECB SW 256 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES ECB 256 Encrypt Test\r\n");
     SingleStepEncrypt(&ecb256);
     
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES ECB HW 256 Decrypt Test\r\n");
-#else
-    printf("Single-Step AES ECB SW 256 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES ECB 256 Decrypt Test\r\n");
     SingleStepDecrypt(&ecb256);
 }
 
@@ -539,17 +477,13 @@ void AES_ECB_Test (void)
     See prototype in app_config.h.
  */
 
-void AES_CBC_Test (void)
+void AES_CBC_Test (crypto_HandlerType_E cryptoHandler)
 {
     st_Crypto_Sym_BlockCtx  Sym_Block_Ctx;
     
     AES cbc128 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CBC,
 
         .iv                 = AES_CBC_IV,
@@ -567,45 +501,26 @@ void AES_CBC_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_CBC128)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CBC HW 128 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES CBC SW 128 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CBC 128 Encrypt Test\r\n");
     MultiStepEncrypt(&cbc128);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CBC HW 128 Decrypt Test\r\n");
-#else 
-    printf("Multi-Step AES CBC SW 128 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CBC 128 Decrypt Test\r\n");
+
     MultiStepDecrypt(&cbc128);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CBC HW 128 Encrypt Test\r\n");
-#else
-    printf("Single-Step AES CBC SW 128 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CBC 128 Encrypt Test\r\n");
     SingleStepEncrypt(&cbc128);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CBC HW 128 Decrypt Test\r\n");
-#else
-    printf("Single-Step AES CBC SW 128 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CBC 128 Decrypt Test\r\n");
     SingleStepDecrypt(&cbc128);
 
     AES cbc192 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CBC,
 
         .iv                 = AES_CBC_IV,
@@ -623,45 +538,26 @@ void AES_CBC_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_CBC192)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CBC HW 192 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES CBC SW 192 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CBC 192 Encrypt Test\r\n");
     MultiStepEncrypt(&cbc192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CBC HW 192 Decrypt Test\r\n");
-#else
-    printf("Multi-Step AES CBC SW 192 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CBC 192 Decrypt Test\r\n");
     MultiStepDecrypt(&cbc192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CBC HW 192 Encrypt Test\r\n");
-#else
-    printf("Single-Step AES CBC SW 192 Encrypt Test\r\n");
-#endif
+    printf("\r\nSingle-Step AES CBC 192 Encrypt Test\r\n");
+
     SingleStepEncrypt(&cbc192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CBC HW 192 Decrypt Test\r\n");
-#else
-    printf("Single-Step AES CBC SW 192 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CBC  192 Decrypt Test\r\n");
+
     SingleStepDecrypt(&cbc192);
 
     AES cbc256 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CBC,
 
         .iv                 = AES_CBC_IV,
@@ -679,36 +575,20 @@ void AES_CBC_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_CBC256)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CBC HW 256 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES CBC SW 256 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CBC 256 Encrypt Test\r\n");
     MultiStepEncrypt(&cbc256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CBC HW 256 Decrypt Test\r\n");
-#else 
-    printf("Multi-Step AES CBC SW 256 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CBC 256 Decrypt Test\r\n");
     MultiStepDecrypt(&cbc256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CBC HW 256 Encrypt Test\r\n");
-#else
-    printf("Single-Step AES CBC SW 256 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CBC 256 Encrypt Test\r\n");
     SingleStepEncrypt(&cbc256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CBC HW 256 Decrypt Test\r\n");
-#else 
-    printf("Single-Step AES CBC SW 256 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CBC 256 Decrypt Test\r\n");
     SingleStepDecrypt(&cbc256);
 }
 
@@ -720,17 +600,13 @@ void AES_CBC_Test (void)
     See prototype in app_config.h.
  */
 
-void AES_CTR_Test (void)
+void AES_CTR_Test (crypto_HandlerType_E cryptoHandler)
 {    
     st_Crypto_Sym_BlockCtx  Sym_Block_Ctx;
     
     AES CTR128 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CTR,
 
         .iv                 = AES_CTR_NONCE,
@@ -748,45 +624,25 @@ void AES_CTR_Test (void)
         .cipherSize     = sizeof(Ciphertext_AES_CTR128)        
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CTR HW 128 Encrypt Test\r\n");
-#else 
-    printf("Multi-Step AES CTR SW 128 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CTR 128 Encrypt Test\r\n");
     MultiStepEncrypt(&CTR128);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CTR HW 128 Decrypt Test\r\n");
-#else 
-    printf("Multi-Step AES CTR SW 128 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CTR 128 Decrypt Test\r\n");
     MultiStepDecrypt(&CTR128);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CTR HW 128 Encrypt Test\r\n");
-#else
-    printf("Single-Step AES CTR SW 128 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CTR 128 Encrypt Test\r\n");
     SingleStepEncrypt(&CTR128);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CTR HW 128 Decrypt Test\r\n");
-#else
-    printf("Single-Step AES CTR SW 128 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CTR 128 Decrypt Test\r\n");
     SingleStepDecrypt(&CTR128);
 
     AES CTR192 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CTR,
 
         .iv                 = AES_CTR_NONCE,
@@ -804,45 +660,25 @@ void AES_CTR_Test (void)
         .cipherSize     = sizeof(Ciphertext_AES_CTR192)        
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CTR HW 192 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES CTR SW 192 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CTR 192 Encrypt Test\r\n");
     MultiStepEncrypt(&CTR192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CTR 192 HW Decrypt Test\r\n");
-#else
-    printf("Multi-Step AES CTR 192 SW Decrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CTR 192 Decrypt Test\r\n");
     MultiStepDecrypt(&CTR192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CTR HW 192 Encrypt Test\r\n");
-#else 
-    printf("Single-Step AES CTR SW 192 Encrypt Test\r\n");
-#endif
+    printf("\r\nSingle-Step AES CTR 192 Encrypt Test\r\n");
     SingleStepEncrypt(&CTR192);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CTR HW 192 Decrypt Test\r\n");
-#else
-    printf("Single-Step AES CTR SW 192 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CTR 192 Decrypt Test\r\n");
+
     SingleStepDecrypt(&CTR192);
 
     AES CTR256 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-        .handler            = CRYPTO_HANDLER_HW_INTERNAL,
-#else
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
-#endif
+        .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CTR,
 
         .iv                 = AES_CTR_NONCE,
@@ -860,36 +696,20 @@ void AES_CTR_Test (void)
         .cipherSize     = sizeof(Ciphertext_AES_CTR256)        
     };
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CTR HW 256 Encrypt Test\r\n");
-#else
-    printf("Multi-Step AES CTR SW 256 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CTR 256 Encrypt Test\r\n");
     MultiStepEncrypt(&CTR256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Multi-Step AES CTR HW  256 Decrypt Test\r\n");
-#else
-    printf("Multi-Step AES CTR SW 256 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nMulti-Step AES CTR 256 Decrypt Test\r\n");
     MultiStepDecrypt(&CTR256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CTR HW 256 Encrypt Test\r\n");
-#else 
-    printf("Single-Step AES CTR SW 256 Encrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CTR 256 Encrypt Test\r\n");
     SingleStepEncrypt(&CTR256);
 
-    printf("\r\n-----------------------------------\r\n");
-#ifdef CRYPTO_SYM_HW_ALGO_EN
-    printf("Single-Step AES CTR HW 256 Decrypt Test\r\n");
-#else 
-    printf("Single-Step AES CTR SW 256 Decrypt Test\r\n");
-#endif
+
+    printf("\r\nSingle-Step AES CTR 256 Decrypt Test\r\n");
     SingleStepDecrypt(&CTR256);
 }
 
@@ -901,7 +721,7 @@ void AES_CTR_Test (void)
     See prototype in app_config.h.
  */
 
-void AES_KeyWrap_Test (void) 
+void AES_KeyWrap_Test (crypto_HandlerType_E cryptoHandler) 
 {    
     st_Crypto_Sym_BlockCtx  Sym_Block_Ctx;
     
@@ -910,7 +730,7 @@ void AES_KeyWrap_Test (void)
     AES kw128_Encrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
 
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
+        .handler            = cryptoHandler,
         .iv                 = NULL,
 
         .key                = Key_AES_KW128_Encrypt,
@@ -929,7 +749,7 @@ void AES_KeyWrap_Test (void)
     AES kw128_Decrypt = {
         .Sym_Block_Ctx  = Sym_Block_Ctx,
 
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
+        .handler            = cryptoHandler,
         .iv                 = NULL,
 
         .key                = Key_AES_KW128_Decrypt,
@@ -945,26 +765,26 @@ void AES_KeyWrap_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_KW128_Decrypt)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Multi-Step AES Keywrap SW 128 Encrypt Test\r\n");
+
+    printf("\r\nMulti-Step AES Keywrap 128 Encrypt Test\r\n");
     MultiStepEncrypt(&kw128_Encrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Multi-Step AES Keywrap SW 128 Decrypt Test\r\n");
+
+    printf("\r\nMulti-Step AES Keywrap 128 Decrypt Test\r\n");
     MultiStepDecrypt(&kw128_Decrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Single-Step AES Keywrap SW 128 Encrypt Test\r\n");
+
+    printf("\r\nSingle-Step AES Keywrap 128 Encrypt Test\r\n");
     SingleStepEncrypt(&kw128_Encrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Single-Step AES Keywrap SW 128 Decrypt Test\r\n");
+
+    printf("\r\nSingle-Step AES Keywrap 128 Decrypt Test\r\n");
     SingleStepDecrypt(&kw128_Decrypt);
 
     AES kw192_Encrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
 
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
+        .handler            = cryptoHandler,
         .iv                 = NULL,
 
         .key                = Key_AES_KW192_Encrypt,
@@ -983,7 +803,7 @@ void AES_KeyWrap_Test (void)
     AES kw192_Decrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
 
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
+        .handler            = cryptoHandler,
         .iv                 = NULL,
 
         .key                = Key_AES_KW192_Decrypt,
@@ -999,26 +819,26 @@ void AES_KeyWrap_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_KW192_Decrypt)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Multi-Step AES Keywrap SW 192 Encrypt Test\r\n");
+
+    printf("\r\nMulti-Step AES Keywrap 192 Encrypt Test\r\n");
     MultiStepEncrypt(&kw192_Encrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Multi-Step AES Keywrap SW 192 Decrypt Test\r\n");
+
+    printf("\r\nMulti-Step AES Keywrap 192 Decrypt Test\r\n");
     MultiStepDecrypt(&kw192_Decrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Single-Step AES Keywrap SW 192 Encrypt Test\r\n");
+
+    printf("\r\nSingle-Step AES Keywrap 192 Encrypt Test\r\n");
     SingleStepEncrypt(&kw192_Encrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Single-Step AES Keywrap SW 192 Decrypt Test\r\n");
+
+    printf("\r\nSingle-Step AES Keywrap SW 192 Decrypt Test\r\n");
     SingleStepDecrypt(&kw192_Decrypt);
 
     AES kw256_Encrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
 
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
+        .handler            = cryptoHandler,
         .iv                 = NULL,
 
         .key                = Key_AES_KW256_Encrypt,
@@ -1037,7 +857,7 @@ void AES_KeyWrap_Test (void)
     AES kw256_Decrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
 
-        .handler            = CRYPTO_HANDLER_SW_WOLFCRYPT,
+        .handler            = cryptoHandler,
         .iv                 = NULL,
 
         .key                = Key_AES_KW256_Decrypt,
@@ -1053,20 +873,20 @@ void AES_KeyWrap_Test (void)
         .cipherSize         = sizeof(Ciphertext_AES_KW256_Decrypt)
     };
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Multi-Step AES Keywrap SW 256 Encrypt Test\r\n");
+
+    printf("\r\nMulti-Step AES Keywrap 256 Encrypt Test\r\n");
     MultiStepEncrypt(&kw256_Encrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Multi-Step AES Keywrap SW 256 Decrypt Test\r\n");
+
+    printf("\r\nMulti-Step AES Keywrap 256 Decrypt Test\r\n");
     MultiStepDecrypt(&kw256_Decrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Single-Step AES Keywrap SW 256 Encrypt Test\r\n");
+
+    printf("\r\nSingle-Step AES Keywrap 256 Encrypt Test\r\n");
     SingleStepEncrypt(&kw256_Encrypt);
 
-    printf("\r\n-----------------------------------\r\n");
-    printf("Single-Step AES Keywrap SW 256 Decrypt Test\r\n");
+
+    printf("\r\nSingle-Step AES Keywrap 256 Decrypt Test\r\n");
     SingleStepDecrypt(&kw256_Decrypt);
 
     isKeyWrap = false;

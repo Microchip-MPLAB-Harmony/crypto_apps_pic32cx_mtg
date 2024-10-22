@@ -8880,7 +8880,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_wc_common_wrapper.c</file>
-         <hash>ed62f0bfefb85ac414bbf19240dac19c4747eeb17be0860e8b2bb42ec6d5331b</hash>
+         <hash>00046f3622e1fc22bf87055b666cd02a59d6c2c956a94183c84c92031690c820</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\user_settings.h</file>
@@ -8888,11 +8888,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\wolfcrypt_config.h</file>
-         <hash>2ebf6832f685aa66622dd925952f619f0f05c4340745cb5fc07f7ad96502ed7b</hash>
+         <hash>5755271e5c236152d1138a84c1d07b1fcd1f0c52014464abc0dedd18f8d74254</hash>
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>3ea30e0b2eecb104edf3a1fa1c58387247a88bb2c7a630d17eeec4334bc02e08</hash>
+         <hash>b41eaf86b68841bf066382347310cc7bab68a5dc9f2bd3eca676c5370739dee8</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>

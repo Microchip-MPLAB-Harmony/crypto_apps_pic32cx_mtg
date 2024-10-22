@@ -78,7 +78,7 @@ extern "C" {
     */
 
     typedef struct {
-        st_Crypto_Sym_StreamCtx Sym_Stream_Ctx;
+//        st_Crypto_Sym_StreamCtx Sym_Stream_Ctx;
         st_Crypto_Sym_BlockCtx  Sym_Block_Ctx;
 
         crypto_HandlerType_E handler;
@@ -249,7 +249,7 @@ extern "C" {
         This function is used for testing purposes to validate the ECB implementation.
     */
 
-    void AES_ECB_Test (void);
+    void AES_ECB_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
@@ -277,7 +277,7 @@ extern "C" {
         This function is used for testing purposes to validate the CBC implementation.
     */
 
-    void AES_CBC_Test (void);
+    void AES_CBC_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
@@ -305,7 +305,7 @@ extern "C" {
         This function is used for testing purposes to validate the CTR implementation.
     */
 
-    void AES_CTR_Test (void);
+    void AES_CTR_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
@@ -333,7 +333,7 @@ extern "C" {
         This function is used for testing purposes to validate the Key Wrap implementation.
     */
 
-    void AES_KeyWrap_Test (void);
+    void AES_KeyWrap_Test (crypto_HandlerType_E cryptoHandler);
 
     // *****************************************************************************
     /**
