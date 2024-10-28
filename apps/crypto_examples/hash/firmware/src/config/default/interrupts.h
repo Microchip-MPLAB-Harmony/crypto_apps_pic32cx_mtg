@@ -65,6 +65,7 @@ void BusFault_Handler (void);
 void UsageFault_Handler (void);
 void DebugMonitor_Handler (void);
 void TC0_CH0_InterruptHandler (void);
+void TC0_CH1_InterruptHandler (void);
 
 
 

@@ -95,16 +95,17 @@ void ECDSA_Sign_Test(ECDSA *ecdsa)
     );
     
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
     {
-        printf("\r\nFailed to create message signature\r\n");
-        printf("\r\nStatus: %d\r\n", status);
+        printf("Failed to create message signature\r\n");
+        printf("Status: %d\r\n", status);
         testsFailed++;
     }
     else
     {
+        printf("Test successful\r\n");
         testsPassed++;
     }
 }
@@ -138,23 +139,24 @@ void ECDSA_Verify_Test(ECDSA *ecdsa)
     );
     
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
     {
-        printf("\r\nFailed to verify signature\r\n");
-        printf("\r\nStatus: %d\r\n", status);
+        printf("Failed to verify signature\r\n");
+        printf("Status: %d\r\n", status);
         testsFailed++;
     }
 
-    printf("\r\nVerify signature (1 = pass, 0 = fail): %d\r\n", ecdsa->hashVerifyStat);
     if (ecdsa->hashVerifyStat)
     {
         testsPassed++;
+        printf("Test successful\r\n");
     }
     else
     {
         testsFailed++;
+        printf("Test unsuccessful\r\n");
     }
 }
 
@@ -215,10 +217,10 @@ void APP_Tasks ( void )
                 
             if (!appData.isTestedECDSA)
             {
-                printf("\r\nBegin DSA Demo Application\r\n");
-                printf("\r\n-----------DSA SW test-------------\r\n");
+                printf("\r\n-----------ECDSA wolfCrypt Wrapper-------------\r\n");
                 ECDSA_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------DSA HW test-------------\r\n");
+
+                printf("\r\n-----------ECDSA Hardware Wrapper-------------\r\n");
                 ECDSA_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
                 appData.isTestedECDSA = true;

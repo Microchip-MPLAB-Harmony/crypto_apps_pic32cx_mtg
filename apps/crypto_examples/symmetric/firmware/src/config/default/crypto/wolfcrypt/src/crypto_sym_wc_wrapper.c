@@ -21,7 +21,7 @@
     files.
 *******************************************************************************/
 
-#include "crypto/common_crypto/MCHP_Crypto_Sym_Cipher.h"
+#include "crypto/common_crypto/crypto_sym_cipher.h"
 #include "crypto/wolfcrypt/crypto_sym_wc_wrapper.h"
 #include "wolfssl/wolfcrypt/aes.h"
 #include "wolfssl/wolfcrypt/error-crypt.h"
@@ -103,6 +103,18 @@ crypto_Sym_Status_E Crypto_Sym_Wc_Aes_Encrypt(void *ptr_aesCtx, crypto_Sym_OpMod
             case CRYPTO_SYM_OPMODE_CBC:
                 wcAesStatus = wc_AesCbcEncrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
                 break;
+            case CRYPTO_SYM_OPMODE_OFB:
+                wcAesStatus = wc_AesOfbEncrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break;
+            case CRYPTO_SYM_OPMODE_CFB1:         
+                wcAesStatus = wc_AesCfb1Encrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break;
+            case CRYPTO_SYM_OPMODE_CFB8:
+                wcAesStatus = wc_AesCfb8Encrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break;
+            case CRYPTO_SYM_OPMODE_CFB128:
+                wcAesStatus = wc_AesCfbEncrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break;  
             case CRYPTO_SYM_OPMODE_CTR:
                 wcAesStatus = wc_AesCtrEncrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
                 break;
@@ -153,6 +165,18 @@ crypto_Sym_Status_E Crypto_Sym_Wc_Aes_Decrypt(void *ptr_aesCtx, crypto_Sym_OpMod
             case CRYPTO_SYM_OPMODE_CBC:
                 wcAesStatus = wc_AesCbcDecrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
                 break;
+            case CRYPTO_SYM_OPMODE_OFB:
+                wcAesStatus = wc_AesOfbDecrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break;
+            case CRYPTO_SYM_OPMODE_CFB1:         
+                wcAesStatus = wc_AesCfb1Decrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break;
+            case CRYPTO_SYM_OPMODE_CFB8:
+                wcAesStatus = wc_AesCfb8Decrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break;
+            case CRYPTO_SYM_OPMODE_CFB128:
+                wcAesStatus = wc_AesCfbDecrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                break; 
             case CRYPTO_SYM_OPMODE_CTR:
                 wcAesStatus = wc_AesCtrEncrypt((Aes*)ptr_aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
                 break;
@@ -184,6 +208,115 @@ crypto_Sym_Status_E Crypto_Sym_Wc_Aes_Decrypt(void *ptr_aesCtx, crypto_Sym_OpMod
     
     return ret_aesStatus_En;
 }
+
+crypto_Sym_Status_E Crypto_Sym_Wc_AesXts_Init(void *ptr_aesCtx, crypto_CipherOper_E symCipherOper_en, uint8_t *ptr_key, uint32_t keySize)
+{
+    crypto_Sym_Status_E ret_aesStatus_en = CRYPTO_SYM_ERROR_CIPNOTSUPPTD;
+    int wcAesStatus = BAD_FUNC_ARG;
+    int dir = 0;
+    if(ptr_aesCtx != NULL)
+    {
+        if(symCipherOper_en == CRYPTO_CIOP_ENCRYPT)
+        {
+            dir = AES_ENCRYPTION;
+        }
+        else if(symCipherOper_en == CRYPTO_CIOP_DECRYPT)
+        {
+            dir = AES_DECRYPTION;
+        }
+        else
+        {
+            ret_aesStatus_en = CRYPTO_SYM_ERROR_CIPOPER;
+        }
+        
+        if(ret_aesStatus_en != CRYPTO_SYM_ERROR_CIPOPER)
+        {
+            wcAesStatus = wc_AesXtsSetKey( (XtsAes*)ptr_aesCtx, (const byte*)ptr_key, (word32)keySize, dir, NULL, 0); 
+
+            if(wcAesStatus == 0)
+            {
+                ret_aesStatus_en = CRYPTO_SYM_CIPHER_SUCCESS;
+            }
+            else if (wcAesStatus == WC_KEY_SIZE_E)
+            {
+                ret_aesStatus_en = CRYPTO_SYM_ERROR_KEY;
+            }
+            else if(wcAesStatus == BAD_FUNC_ARG)
+            {
+                ret_aesStatus_en = CRYPTO_SYM_ERROR_ARG;
+            }
+            else
+            {
+                ret_aesStatus_en  = CRYPTO_SYM_ERROR_CIPFAIL;
+            }
+        }
+    }
+    else
+    {
+        ret_aesStatus_en = CRYPTO_SYM_ERROR_CTX;
+    }
+    return ret_aesStatus_en;
+}
+
+//Every encryption or decryption call requires different tweak
+crypto_Sym_Status_E Crypto_Sym_Wc_AesXts_Encrypt(void *ptr_aesXtsCtx, uint8_t *ptr_inputData, uint32_t dataLen, uint8_t *ptr_outData, uint8_t *ptr_tweak)
+{
+    crypto_Sym_Status_E ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_CIPNOTSUPPTD;
+  
+    int wcAesXtsStatus = BAD_FUNC_ARG;
+    if( (ptr_aesXtsCtx!= NULL) && (ptr_inputData != NULL) && (dataLen > 0u) && (ptr_outData != NULL) && (ptr_tweak != NULL) )
+    {
+        wcAesXtsStatus = wc_AesXtsEncrypt( (XtsAes*)ptr_aesXtsCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen, (const byte*)ptr_tweak, AES_BLOCK_SIZE);
+        if(wcAesXtsStatus == 0)
+        {
+            ret_aesXtsStatus_en = CRYPTO_SYM_CIPHER_SUCCESS;
+        }
+        else if(wcAesXtsStatus == BAD_FUNC_ARG)
+        {
+           ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_ARG; 
+        }
+        else
+        {
+            ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_CIPFAIL;
+        }
+    }
+    else
+    {
+        ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_ARG;
+    }
+   
+    return ret_aesXtsStatus_en;
+}
+
+crypto_Sym_Status_E Crypto_Sym_Wc_AesXts_Decrypt(void *ptr_aesXtsCtx, uint8_t *ptr_inputData, uint32_t dataLen, uint8_t *ptr_outData, uint8_t *ptr_tweak)
+{
+    crypto_Sym_Status_E ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_CIPNOTSUPPTD;
+    
+    int wcAesXtsStatus = BAD_FUNC_ARG;
+    if( (ptr_aesXtsCtx!= NULL) && (ptr_inputData != NULL) && (dataLen > 0u) && (ptr_outData != NULL) && (ptr_tweak != NULL) )
+    {
+        wcAesXtsStatus = wc_AesXtsDecrypt( (XtsAes*)ptr_aesXtsCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen, (const byte*)ptr_tweak, AES_BLOCK_SIZE);
+        
+        if(wcAesXtsStatus == 0)
+        {
+            ret_aesXtsStatus_en = CRYPTO_SYM_CIPHER_SUCCESS;
+        }
+        else if(wcAesXtsStatus == BAD_FUNC_ARG)
+        {
+           ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_ARG; 
+        }
+        else
+        {
+            ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_CIPFAIL;
+        }
+    }
+    else
+    {
+        ret_aesXtsStatus_en = CRYPTO_SYM_ERROR_ARG;
+    }
+    
+    return ret_aesXtsStatus_en;
+}
 	
 crypto_Sym_Status_E Crypto_Sym_Wc_Aes_EncryptDirect(crypto_Sym_OpModes_E symAlgoMode_en, uint8_t *ptr_inputData, uint32_t dataLen, uint8_t *ptr_outData,
                                                         uint8_t *ptr_key, uint32_t keySize, uint8_t *ptr_initVect)
@@ -191,6 +324,17 @@ crypto_Sym_Status_E Crypto_Sym_Wc_Aes_EncryptDirect(crypto_Sym_OpModes_E symAlgo
     crypto_Sym_Status_E ret_aesStat_en = CRYPTO_SYM_ERROR_CIPNOTSUPPTD;    
    
     int wcAesStatus = BAD_FUNC_ARG;
+    if(symAlgoMode_en == CRYPTO_SYM_OPMODE_XTS)
+    {           
+        XtsAes aesXtsCtx[1];
+        wcAesStatus = wc_AesXtsSetKey(aesXtsCtx, (const byte*)ptr_key, (word32)keySize, AES_ENCRYPTION, NULL, 0);
+        if(wcAesStatus == 0)
+        {
+            wcAesStatus = wc_AesXtsEncrypt(aesXtsCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen, (const byte*)ptr_initVect, AES_BLOCK_SIZE);
+        }
+        ret_aesStat_en = CRYPTO_SYM_ERROR_OPMODE;            
+    }
+    else
     {
         Aes aesCtx[1];
         wcAesStatus = wc_AesSetKey(aesCtx, (const byte*)ptr_key, (word32)keySize, (const byte*)ptr_initVect, AES_ENCRYPTION);
@@ -203,6 +347,18 @@ crypto_Sym_Status_E Crypto_Sym_Wc_Aes_EncryptDirect(crypto_Sym_OpModes_E symAlgo
                     break;
                 case CRYPTO_SYM_OPMODE_CBC:
                     wcAesStatus = wc_AesCbcEncrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                    break;
+                case CRYPTO_SYM_OPMODE_OFB:
+                    wcAesStatus = wc_AesOfbEncrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                    break;
+                case CRYPTO_SYM_OPMODE_CFB1:           
+                    wcAesStatus = wc_AesCfb1Encrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                    break;
+                case CRYPTO_SYM_OPMODE_CFB8:  
+                    wcAesStatus = wc_AesCfb8Encrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                    break;
+                case CRYPTO_SYM_OPMODE_CFB128:
+                    wcAesStatus = wc_AesCfbEncrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
                     break;
                 case CRYPTO_SYM_OPMODE_CTR:
                     wcAesStatus = wc_AesCtrEncrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
@@ -243,6 +399,16 @@ crypto_Sym_Status_E Crypto_Sym_Wc_Aes_DecryptDirect(crypto_Sym_OpModes_E symAlgo
     int wcAesStatus = BAD_FUNC_ARG;
     if( (ptr_inputData != NULL) && (dataLen > 0u) && (ptr_outData != NULL) && (ptr_key != NULL) && (keySize > 0u) )
     {
+        if(symAlgoMode_en == CRYPTO_SYM_OPMODE_XTS)
+        {           
+            XtsAes aesXtsCtx[1];
+            wcAesStatus = wc_AesXtsSetKey(aesXtsCtx, (const byte*)ptr_key, (word32)keySize, AES_DECRYPTION, NULL, 0);
+            if(wcAesStatus == 0)
+            {
+                wcAesStatus = wc_AesXtsDecrypt(aesXtsCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen, (const byte*)ptr_initVect, AES_BLOCK_SIZE);
+            }
+        }
+        else
         {
             Aes aesCtx[1];
 			if(symAlgoMode_en == CRYPTO_SYM_OPMODE_CTR)
@@ -263,6 +429,18 @@ crypto_Sym_Status_E Crypto_Sym_Wc_Aes_DecryptDirect(crypto_Sym_OpModes_E symAlgo
                         break;
                     case CRYPTO_SYM_OPMODE_CBC:
                         wcAesStatus = wc_AesCbcDecrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                        break;
+                    case CRYPTO_SYM_OPMODE_OFB:
+                        wcAesStatus = wc_AesOfbDecrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                        break;
+                    case CRYPTO_SYM_OPMODE_CFB1:           
+                        wcAesStatus = wc_AesCfb1Decrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                        break;
+                    case CRYPTO_SYM_OPMODE_CFB8:  
+                        wcAesStatus = wc_AesCfb8Decrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
+                        break;
+                    case CRYPTO_SYM_OPMODE_CFB128:
+                        wcAesStatus = wc_AesCfbDecrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);
                         break;
                     case CRYPTO_SYM_OPMODE_CTR:
                         wcAesStatus = wc_AesCtrEncrypt(aesCtx, (byte*)ptr_outData, (const byte*)ptr_inputData, (word32)dataLen);

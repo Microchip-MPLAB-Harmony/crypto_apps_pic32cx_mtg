@@ -2929,7 +2929,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;352&quot; canvasWidth=&quot;937&quot; dnOrder=&quot;0&quot;/&gt;
+    &lt;GraphSettings canvasHeight=&quot;352&quot; canvasWidth=&quot;697&quot; dnOrder=&quot;0&quot;/&gt;
     &lt;PowerProfiles dnOrder=&quot;1&quot;&gt;
       &lt;Profile dnOrder=&quot;0&quot; id=&quot;profile0&quot; name=&quot;Main&quot;/&gt;
     &lt;/PowerProfiles&gt;
@@ -2946,7 +2946,7 @@
         &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;sefc1&quot; x=&quot;640&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;stdio&quot; x=&quot;615&quot; y=&quot;258&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;sys_time&quot; x=&quot;475&quot; y=&quot;124&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;tc0&quot; x=&quot;966&quot; y=&quot;134&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;tc0&quot; x=&quot;312&quot; y=&quot;171&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
   &lt;/UserData&gt;
@@ -3220,7 +3220,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;NVIC_32_0_ENABLE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3231,7 +3231,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;NVIC_32_0_HANDLER&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;TC0_CH1_Handler&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;TC0_CH1_InterruptHandler&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3242,7 +3242,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;NVIC_32_0_HANDLER_LOCK&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3891,7 +3891,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;TC0_CH1_INTERRUPT_ENABLE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3902,7 +3902,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;TC0_CH1_INTERRUPT_ENABLE_UPDATE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;true&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;core&quot; value=&quot;false&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3913,7 +3913,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;TC0_CH1_INTERRUPT_HANDLER&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;TC0_CH1_Handler&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;TC0_CH1_InterruptHandler&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3924,7 +3924,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;TC0_CH1_INTERRUPT_HANDLER_LOCK&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -3990,7 +3990,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
   &lt;core dnOrder=&quot;0&quot; id=&quot;TC0_CHANNEL1_CLOCK_ENABLE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
@@ -6055,300 +6055,6 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Aead_Cipher_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Aead_Cipher_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Aead_Cipher_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Aead_Cipher_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Aead_Config_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Aead_Config_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Common_h_ftl"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Common_h_ftl&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Common_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Common_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_DigSign_Config_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_DigSign_Config_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_DigSign_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_DigSign_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_DigSign_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_DigSign_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Hash_Config_h_ftl"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Hash_Config_h_ftl&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Hash_Config_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Hash_Config_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Hash_c_ftl"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Hash_c_ftl&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Hash_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Hash_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Hash_h_ftl"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Hash_h_ftl&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Hash_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Hash_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Kas_Config_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Kas_Config_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Kas_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Kas_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Kas_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Kas_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Mac_Cipher_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Mac_Cipher_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Mac_Cipher_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Mac_Cipher_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Mac_Config_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Mac_Config_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Rng_Config_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Rng_Config_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Rng_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Rng_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Rng_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Rng_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Sym_Cipher_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Sym_Cipher_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Sym_Cipher_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Sym_Cipher_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="MCHP_Crypto_Sym_Config_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
-  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;MCHP_Crypto_Sym_Config_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_crypto&gt;
-&lt;/lib_crypto&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="crypto_aead_aes6149_wrapper_c_ftl_flag"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
   &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;crypto_aead_aes6149_wrapper_c_ftl_flag&quot;&gt;
@@ -7080,28 +6786,6 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_wolfcrypt" name="crypto_wc_common_wrapper_c_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_wolfcrypt&gt;
-  &lt;lib_wolfcrypt dnOrder=&quot;0&quot; id=&quot;crypto_wc_common_wrapper_c_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_wolfcrypt&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_wolfcrypt&gt;
-&lt;/lib_wolfcrypt&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_wolfcrypt" name="crypto_wc_common_wrapper_h_ftl_flag"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_wolfcrypt&gt;
-  &lt;lib_wolfcrypt dnOrder=&quot;0&quot; id=&quot;crypto_wc_common_wrapper_h_ftl_flag&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_wolfcrypt&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/lib_wolfcrypt&gt;
-&lt;/lib_wolfcrypt&gt;
-</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sefc0" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>__ROOTVIEW</value>
       </entry>
@@ -7779,6 +7463,7 @@
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC0_IER_CPCS&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
@@ -7788,7 +7473,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tc0" name="TC0_OPERATING_MODE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tc0&gt;
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC0_OPERATING_MODE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;TIMER&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
 </value>
@@ -7835,6 +7522,7 @@
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;1.0&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;1.0&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
@@ -7844,7 +7532,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tc0" name="TC0_TIMER_UNIT"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tc0&gt;
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC0_TIMER_UNIT&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;millisecond&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
 </value>
@@ -7898,7 +7588,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tc0" name="TC1_CLOCK_FREQ"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tc0&gt;
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC1_CLOCK_FREQ&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;100000000&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
 </value>
@@ -8089,6 +7781,7 @@
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC1_ENABLE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;false&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
@@ -8120,6 +7813,7 @@
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC1_IER_CPCS&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;false&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
@@ -8159,7 +7853,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tc0&gt;
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC1_TIMER_PERIOD_COUNT&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;0&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;1000000&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
@@ -8169,8 +7863,14 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tc0" name="TC1_TIMER_PERIOD_MS"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tc0&gt;
   &lt;tc0 dnOrder=&quot;0&quot; id=&quot;TC1_TIMER_PERIOD_MS&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Float dnOrder=&quot;0&quot; id=&quot;max&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;42949.67&lt;/Value&gt;
+      &lt;/Float&gt;
+    &lt;/Attributes&gt;
+    &lt;Values dnOrder=&quot;1&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tc0&quot; value=&quot;0.0&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;10.0&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tc0&gt;
 &lt;/tc0&gt;
@@ -8760,60 +8460,56 @@
          <hash>ec96930b1313bd882a2e14a2a1236856c33f091ab3ee9db643e211ba2190c2d1</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\common_crypto\MCHP_Crypto_Common.h</file>
-         <hash>45838551cf197db78fb5f2629f2085dbf7d33f19a6ed4d0906801e1c0c57c519</hash>
+         <file>..\src\config\default\crypto\common_crypto\crypto_common.h</file>
+         <hash>b29f23ef60b40732413f62605122428ad92b93d3e37ea8353200f078b91b1772</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\common_crypto\MCHP_Crypto_Hash.h</file>
-         <hash>67f24caf39cb206d19c1186e7135d6e93e4e6f2516e032c4eb416c28a079b5ac</hash>
+         <file>..\src\config\default\crypto\common_crypto\crypto_hash.h</file>
+         <hash>6a76fff831e5457adc23e8e0ee1d8668fc6641a1629ba8b151b16683f8f8a54e</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\common_crypto\MCHP_Crypto_Hash_Config.h</file>
-         <hash>c7d5bad0a5047d2a6e5aeba7cee5bd149b7f1bd5667c5aed0f2e9f547485b54f</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\default\crypto\common_crypto\src\MCHP_Crypto_Hash.c</file>
-         <hash>d937bbaf45cbc36f7e3e6ca6cf660faf462324bb4d0c6c39ee03dceeb60b6bde</hash>
+         <file>..\src\config\default\crypto\common_crypto\src\crypto_hash.c</file>
+         <hash>add8e10eba0e910e33723c16c1950503eef0ab2eb6048e2b638685872d620525</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\crypto_config.h</file>
          <hash>20aa84229b9697bc8f5100cdb96a2b73222682ca7827888ea11afe1733d92656</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\drivers\Driver\drv_crypto_sha_hw_6156.h</file>
+         <file>..\src\config\default\crypto\drivers\driver\drv_crypto_sha_hw_6156.h</file>
          <hash>383f6a97c3dc887eab23d864871891178970acf201438798d0f21d82fe947fa6</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\drivers\Driver\src\drv_crypto_sha_hw_6156.c</file>
+         <file>..\src\config\default\crypto\drivers\driver\src\drv_crypto_sha_hw_6156.c</file>
          <hash>ef15ed7715f52c75ad24af3f082cdaacd585c5ba4886df34e62e30c53b17f940</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\drivers\HwWrapper\crypto_hash_sha6156_wrapper.h</file>
-         <hash>e2f249a92446f8ccd089cb1342a26ac8a0289e0aa837a8d778370acc709f0b01</hash>
+         <file>..\src\config\default\crypto\drivers\wrapper\crypto_hash_sha6156_wrapper.h</file>
+         <hash>2ae24ffc8b187e047efe3dfb4b90c06f4c532a241f35884cc2b4ae77d7c80e62</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\drivers\HwWrapper\src\crypto_hash_sha6156_wrapper.c</file>
-         <hash>7d0dab82c72b04561f24ebccc0a5fa8cd1f4d87434e9e105103941f6971d1e1f</hash>
+         <file>..\src\config\default\crypto\drivers\wrapper\src\crypto_hash_sha6156_wrapper.c</file>
+         <hash>8ac7e5899957c1bd50e816d01445cee25eda4cb2907bc1f0ec0778635024d3b9</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\config.h</file>
          <hash>e2525147ac1de663a008fc1f1c2ccb4830db00e0697247427825ca4f3b5d6e35</hash>
       </entry>
       <entry>
+         <file>..\src\config\default\crypto\wolfcrypt\crypto_common_wc_wrapper.h</file>
+         <hash>2c79290b452eceb9400985005f6152d1aee02181401c0a8d8503597e0e54a693</hash>
+      </entry>
+      <entry>
          <file>..\src\config\default\crypto\wolfcrypt\crypto_hash_wc_wrapper.h</file>
          <hash>d6be5a349c2604f7e57cfbb68f3735e29f356556161462f933d676cc31f80057</hash>
       </entry>
       <entry>
-         <file>..\src\config\default\crypto\wolfcrypt\crypto_wc_common_wrapper.h</file>
-         <hash>922e4d7995628a32bd1412e208b0291a301c1d8eeee381e7e4a3e71c1202858b</hash>
+         <file>..\src\config\default\crypto\wolfcrypt\src\crypto_common_wc_wrapper.c</file>
+         <hash>64e95fa65b44560e30881c523bf43e74f8f7a403e371afbf3549185a69527913</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_hash_wc_wrapper.c</file>
-         <hash>caa8d42841c0eee6eb989f2a0323d2eab455cf6d64ab73515175508988d85a10</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\default\crypto\wolfcrypt\src\crypto_wc_common_wrapper.c</file>
-         <hash>00046f3622e1fc22bf87055b666cd02a59d6c2c956a94183c84c92031690c820</hash>
+         <hash>d13f4a637558d8970421c2bbf73f35c3c42bd3b020768e6764ccf2360cc300d6</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\user_settings.h</file>
@@ -8825,7 +8521,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>4613de45f2ddc17d81a1a95519cdaa1a6c7420fdeef284ed89fd3a8979d44fc7</hash>
+         <hash>9fc65e069c4464ac497c3ad9cd3b6d858c51aa905f5dd5e6962a202ec72799ad</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>
@@ -8845,15 +8541,15 @@
       </entry>
       <entry>
          <file>..\src\config\default\initialization.c</file>
-         <hash>3ab838405ac90fb469bb21718d56160a061fef3798d8f2ba3ba266e2989b7bce</hash>
+         <hash>c091c52fde87364e36828d734eebf9fd78f826a5dcbc05d1691bb53e4eef4ea1</hash>
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.c</file>
-         <hash>1e775e6b298aa30ede898aab4a994c7c70e1fe113793108e3818240dec5fd738</hash>
+         <hash>83dfe9843ab9c5e5e7049ee06ca5af8e85f8ebd416750b143c90591972ac420d</hash>
       </entry>
       <entry>
          <file>..\src\config\default\interrupts.h</file>
-         <hash>9b5894fbac82420103a41b74232d69f503e0766273dedf949dfa20f5ae725f8f</hash>
+         <hash>016ba1b8d2d0e121e64747606c5cdb018bf05b4e3f8edd26229c6b1b509fd828</hash>
       </entry>
       <entry>
          <file>..\src\config\default\libc_syscalls.c</file>
@@ -8873,7 +8569,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.c</file>
-         <hash>41ff69e553ce22fa6fadb7b25189fbd0a00b7876d8b69848b1230322065eee9e</hash>
+         <hash>67d1ebb60ba712c8c0afaf02411cef21a67456e90a212b1d2f4d5e4e0c21e99f</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\clk\plib_clk.h</file>
@@ -8909,7 +8605,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\nvic\plib_nvic.c</file>
-         <hash>d095f22665333b2a9b232455efb8d1c77458326f4b68e2d2255ecc591e686fa5</hash>
+         <hash>a6c25af021996f1633a82c5f2ceb9cde99bbbe2ab7df88107856552a7a4c5bff</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\nvic\plib_nvic.h</file>
@@ -8961,11 +8657,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\tc\plib_tc0.c</file>
-         <hash>30596151ae55fb74477232afcd3b32067e29d622f090617cece851a31971eacf</hash>
+         <hash>cdc0f30c2ef3a41448647591bbc5a2b7c4fdcd26a39438f04e4e9fca8464847c</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\tc\plib_tc0.h</file>
-         <hash>79afe8007b0060db79e911ca3574ac588005761cabfd42c574d779bb71615a7d</hash>
+         <hash>88e449002d46d9013ef4cd5a4f78a0ebaa46ca1bdc0927d1e46c8f6e33de7503</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\tc\plib_tc_common.h</file>
@@ -8997,7 +8693,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\system\debug\sys_debug.h</file>
-         <hash>bc6fa321b0be542d074e4564065b7fd69f52556486ac3d892d315b51c434f9ec</hash>
+         <hash>4162d9e1fab93b8b33f6c8a24726f5dc287ea05c31e3ab984c3c920c725d0882</hash>
       </entry>
       <entry>
          <file>..\src\config\default\system\int\src\sys_int.c</file>
@@ -9085,7 +8781,7 @@
       </entry>
       <entry>
          <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_version.h</file>
-         <hash>8cda7ac3ff6f0eb5e83c4fe613dd195151b24da54167f5c3c007e599a03f1edc</hash>
+         <hash>2de01ae2556a38eb82c389de23c701805ec63308cfbcf3f84cb12141589b0858</hash>
       </entry>
       <entry>
          <file>..\src\packs\CMSIS\CMSIS\Core\Include\core_cm4.h</file>

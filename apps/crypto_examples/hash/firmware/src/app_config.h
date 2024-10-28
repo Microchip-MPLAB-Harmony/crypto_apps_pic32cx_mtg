@@ -25,7 +25,7 @@
 /* ************************************************************************** */
 
 #include "configuration.h"
-#include "crypto/common_crypto/MCHP_Crypto_Hash.h"
+#include "crypto/common_crypto/crypto_hash.h"
 #include "definitions.h"
 
 /* Provide C++ Compatibility */

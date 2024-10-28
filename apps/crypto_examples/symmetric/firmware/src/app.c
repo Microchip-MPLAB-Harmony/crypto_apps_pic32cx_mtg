@@ -109,7 +109,7 @@ void MultiStepEncrypt (AES *aes)
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to initialize, status: %d\r\n", status);
+        printf("Failed to initialize, status: %d\r\n", status);
     }
     if (isKeyWrap == true )
     {
@@ -135,7 +135,7 @@ void MultiStepEncrypt (AES *aes)
     
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to cipher, status: %d\r\n",status);
+        printf("Failed to cipher, status: %d\r\n",status);
         testsFailed++;
     }
     else
@@ -145,12 +145,12 @@ void MultiStepEncrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("Cipher correct: Multi-Step Encrypt Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("Cipher incorrect: Multi-Step Encrypt Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -200,7 +200,7 @@ void MultiStepDecrypt (AES *aes)
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to initialize, status: %d\r\n", status);
+        printf("Failed to initialize, status: %d\r\n", status);
     }
 
     if (isKeyWrap == true)
@@ -227,7 +227,7 @@ void MultiStepDecrypt (AES *aes)
     
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to cipher, status: %d\r\n", status);
+        printf("Failed to cipher, status: %d\r\n", status);
         testsFailed++;
     }
     else
@@ -237,12 +237,12 @@ void MultiStepDecrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("Deciphered text correct: Multi-Step Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("Deciphered text incorrect: Multi-Step Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -297,7 +297,7 @@ void SingleStepEncrypt (AES *aes)
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to encrypt direct\r\n");
+        printf("Failed to encrypt direct\r\n");
         testsFailed++;
     }
     else
@@ -307,12 +307,12 @@ void SingleStepEncrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("Cipher correct: Single-Step Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("Cipher incorrect: Single-Step Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -367,7 +367,7 @@ void SingleStepDecrypt (AES *aes)
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to decrypt direct\r\n");
+        printf("Failed to decrypt direct\r\n");
         testsFailed++;
     }
     else
@@ -377,12 +377,12 @@ void SingleStepDecrypt (AES *aes)
         if (outputMatch)
         {
             testsPassed++;
-            printf("Deciphered text correct: Single-Step Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("Deciphered text incorrect: Single-Step Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -451,26 +451,32 @@ void APP_Tasks(void) {
                     !appData.isTestedKeyWrap
                 )
             {
-                printf("\r\nBegin Symmetric Demo Application\r\n");
-                printf("\r\n-----------AES-ECB SW Test-------------\r\n");
+                printf("\r\n-----------AES-ECB wolfCrypt Wrapper-------------\r\n");
                 AES_ECB_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\nBegin KAS Demo Application\r\n");
-                printf("\r\n-----------AES-ECB HW Test-------------\r\n");
+                
+                printf("\r\n-----------AES-ECB Hardware Wrapper-------------\r\n");
                 AES_ECB_Test(CRYPTO_HANDLER_HW_INTERNAL);
-                printf("\r\n-----------AES-CBC SW Test-------------\r\n");
+
+                printf("\r\n-----------AES-CBC wolfCrypt Wrapper-------------\r\n");
                 AES_CBC_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------AES-CBC HW Test-------------\r\n");
+                
+                printf("\r\n-----------AES-CBC Hardware Wrapper-------------\r\n");
                 AES_CBC_Test(CRYPTO_HANDLER_HW_INTERNAL);
-                printf("\r\n-----------AES-CTR SW Test-------------\r\n");
+                
+                printf("\r\n-----------AES-CTR wolfCrypt Wrapper-------------\r\n");
                 AES_CTR_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------AES-CTR HW Test-------------\r\n");
+                
+                printf("\r\n-----------AES-CTR Hardware Wrapper-------------\r\n");
                 AES_CTR_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                
                 appData.isTestedAes      = true;
-                printf("\r\n-----------AES-KW SW Test-------------\r\n");
+                
+                printf("\r\n-----------AES-KW wolfCrypt Wrapper-------------\r\n");
                 AES_KeyWrap_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                
                 appData.isTestedKeyWrap  = true;
 
-                // TODO - implement these methods
+                // TODO - Not yet supported on Crypto_v4
                 appData.isTestedCamellia = true;
                 appData.isTestedTdes     = true;
                 appData.isTestedChaCha20 = true;

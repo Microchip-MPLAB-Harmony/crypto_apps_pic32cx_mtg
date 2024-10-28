@@ -25,7 +25,7 @@
 /* ************************************************************************** */
 
 #include "configuration.h"
-#include "crypto/common_crypto/MCHP_Crypto_Sym_Cipher.h"
+#include "crypto/common_crypto/crypto_sym_cipher.h"
 #include "definitions.h"
 
 /* Provide C++ Compatibility */

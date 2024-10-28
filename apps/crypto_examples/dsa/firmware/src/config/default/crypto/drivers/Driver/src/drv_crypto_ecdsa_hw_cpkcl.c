@@ -46,8 +46,8 @@ Microchip or any third party.
 // *****************************************************************************
 
 #include <string.h>
-#include "crypto/drivers/Driver/drv_crypto_ecc_hw_cpkcl.h"
-#include "crypto/drivers/Driver/drv_crypto_ecdsa_hw_cpkcl.h"
+#include "crypto/drivers/driver/drv_crypto_ecc_hw_cpkcl.h"
+#include "crypto/drivers/driver/drv_crypto_ecdsa_hw_cpkcl.h"
 #include "crypto/drivers/CPKCL_Lib/CryptoLib_typedef_pb.h"
 #include "crypto/drivers/CPKCL_Lib/CryptoLib_typedef_pb.h"
 #include "crypto/drivers/CPKCL_Lib/CryptoLib_mapping_pb.h"

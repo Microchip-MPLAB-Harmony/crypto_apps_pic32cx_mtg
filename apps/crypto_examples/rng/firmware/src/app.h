@@ -30,7 +30,7 @@
 #include <string.h>
 
 #include "configuration.h"
-#include "crypto/common_crypto/MCHP_Crypto_Rng.h"
+#include "crypto/common_crypto/crypto_rng.h"
 #include "definitions.h"
 
 // DOM-IGNORE-BEGIN
@@ -63,7 +63,6 @@ typedef enum
     /* Application's state machine's initial state. */
     APP_STATE_INIT=0,
     APP_STATE_SERVICE_TASKS,
-    /* TODO: Define states used by the application state machine. */
 
 } APP_STATES;
 

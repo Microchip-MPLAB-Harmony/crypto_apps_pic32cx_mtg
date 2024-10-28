@@ -26,8 +26,7 @@
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-#include "crypto/common_crypto/MCHP_Crypto_Common.h"
-#include "crypto/common_crypto/MCHP_Crypto_Kas_Config.h"
+#include "crypto/common_crypto/crypto_common.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Type Definitions

@@ -25,8 +25,8 @@
 /* ************************************************************************** */
 
 #include "configuration.h"
-#include "crypto/common_crypto/MCHP_Crypto_Common.h"
-#include "crypto/common_crypto/MCHP_Crypto_DigSign.h"
+#include "crypto/common_crypto/crypto_common.h"
+#include "crypto/common_crypto/crypto_digsign.h"
 #include "definitions.h"
 
 /* Provide C++ Compatibility */

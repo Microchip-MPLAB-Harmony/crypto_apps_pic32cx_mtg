@@ -92,18 +92,17 @@ void GenerateRng (crypto_HandlerType_E cryptoHandler)
     );
     
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_RNG_SUCCESS)
     {
         testsFailed++;
-        printf("\r\nFailed, status: %d\r\n", status);
+        printf("Failed, status: %d\r\n", status);
     }
     else
     {
         testsPassed++;
-
-        printf("\r\nRNG generated: Test Successful\r\n");
+        printf("Test successful\r\n");
     }
 }
 
@@ -160,11 +159,12 @@ void APP_Tasks ( void )
             
             if ( !appData.isTestedRng )
             {
-                printf("\r\nBegin RNG Demo Application\r\n");
-                printf("\r\n-----------PRNG Test-------------\r\n");
+                printf("\r\n-----------RNG wolfCrypt Wrapper-------------\r\n");
+                printf("\r\nPRNG\r\n");
                 GenerateRng(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
-                printf("\r\n-----------TRNG Test-------------\r\n");
+                printf("\r\n-----------RNG Hardware Wrapper-------------\r\n");
+                printf("\r\nTRNG\r\n");
                 GenerateRng(CRYPTO_HANDLER_HW_INTERNAL);
                 appData.isTestedRng = true;
 

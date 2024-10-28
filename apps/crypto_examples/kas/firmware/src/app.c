@@ -94,11 +94,11 @@ void GenerateSharedSecret (ECDH *ecdh)
     );
     
     endTime = TC0_CH1_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_KAS_SUCCESS)
     {
-        printf("\r\nFailed to create shared secret, status: %d\r\n", status);
+        printf("Failed to create shared secret, status: %d\r\n", status);
         testsFailed++;
     }
     else
@@ -111,12 +111,12 @@ void GenerateSharedSecret (ECDH *ecdh)
 
         if (outputMatch) {
             testsPassed++;
-            printf("\r\nShared secret correct: Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nShared secret incorrect: Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -179,15 +179,18 @@ void APP_Tasks ( void )
             
             if (!appData.isTestedECDH)
             {
-                printf("\r\nBegin KAS Demo Application\r\n");
-                printf("\r\n-----------ECDH SECP256 SW Test-------------\r\n");
+                printf("\r\n-----------ECDH SECP256 wolfCrypt Wrapper-------------\r\n");
                 SECP256R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------ECDH SECP256  HW Test-------------\r\n");
+
+                printf("\r\n-----------ECDH SECP256 Hardware Wrapper-------------\r\n");
                 SECP256R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
-                printf("\r\n-----------ECDH SECP384  SW Test-------------\r\n");
+                
+                printf("\r\n-----------ECDH SECP384 wolfCrypt Wrapper------------\r\n");
                 SECP384R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                printf("\r\n-----------ECDH SECP384 HW Test-------------\r\n");
+                
+                printf("\r\n-----------ECDH SECP384 Hardware Wrapper-------------\r\n");
                 SECP384R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                
                 appData.isTestedECDH = true;
 
                 printf("\r\n-----------------------------------\r\n");

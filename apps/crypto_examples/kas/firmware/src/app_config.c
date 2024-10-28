@@ -152,10 +152,12 @@ void SECP256R1_Test (crypto_HandlerType_E cryptoHandler)
         .expectedSecretSize = sizeof(Secret_SECP256R1)
     };
 
-    printf("secp256r1 Test Using Uncompressed Key");
+    printf("\r\nsecp256r1 with Uncompressed Key\r\n");
     GenerateSharedSecret(&secp256r1);
-    
- if (secp256r1.handler == CRYPTO_HANDLER_SW_WOLFCRYPT ){
+  
+  // wolfCrypt wrapper supports compressed key
+  if (secp256r1.handler == CRYPTO_HANDLER_SW_WOLFCRYPT)
+  {
     secp256r1.handler            = CRYPTO_HANDLER_SW_WOLFCRYPT;
     secp256r1.curveType          = CRYPTO_ECC_CURVE_SECP256R1;
     secp256r1.privKey            = Priv_SECP256R1;
@@ -166,9 +168,8 @@ void SECP256R1_Test (crypto_HandlerType_E cryptoHandler)
     secp256r1.sharedSecretSize   = sizeof(sharedSecret_SECP256R1);
     secp256r1.expectedSecret     = Secret_SECP256R1;
     secp256r1.expectedSecretSize = sizeof(Secret_SECP256R1);
-
     
-    printf("\r\nsecp256r1 SW Test Using Compressed Key");
+    printf("\r\nsecp256r1 with Compressed Key\r\n");
     GenerateSharedSecret(&secp256r1);
  }
 }
@@ -188,11 +189,12 @@ void SECP384R1_Test(crypto_HandlerType_E cryptoHandler)
         .expectedSecretSize = sizeof(Secret_SECP384R1)
     };
 
-    printf("secp384r1 Test Using Uncompressed Key");
+    printf("\r\nsecp384r1 with Uncompressed Key\r\n");
     GenerateSharedSecret(&secp384r1);
     
-
- if (secp384r1.handler == CRYPTO_HANDLER_SW_WOLFCRYPT ){
+  // wolfCrypt wrapper supports compressed key
+  if (secp384r1.handler == CRYPTO_HANDLER_SW_WOLFCRYPT)
+  {
     secp384r1.handler            = CRYPTO_HANDLER_SW_WOLFCRYPT;
     secp384r1.curveType          = CRYPTO_ECC_CURVE_SECP384R1;
     secp384r1.privKey            = Priv_SECP384R1;
@@ -204,9 +206,9 @@ void SECP384R1_Test(crypto_HandlerType_E cryptoHandler)
     secp384r1.expectedSecret     = Secret_SECP384R1;
     secp384r1.expectedSecretSize = sizeof(Secret_SECP384R1);
 
-    printf("\r\nsecp384r1 SW Test Using Compressed Key");
+    printf("\r\nsecp384r1 with Compressed Key\r\n");
     GenerateSharedSecret(&secp384r1); 
- }    
+  }
 }
 
 /*******************************************************************************

@@ -25,7 +25,7 @@
 /* ************************************************************************** */
 
 #include "configuration.h"
-#include "crypto/common_crypto/MCHP_Crypto_Kas.h"
+#include "crypto/common_crypto/crypto_kas.h"
 #include "definitions.h"
 
 /* Provide C++ Compatibility */

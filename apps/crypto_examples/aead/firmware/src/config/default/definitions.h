@@ -62,6 +62,7 @@
 #include "peripheral/sefc/plib_sefc0.h"
 #include "peripheral/sefc/plib_sefc1.h"
 #include "system/time/sys_time.h"
+#include "peripheral/trng/plib_trng.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "osal/osal.h"

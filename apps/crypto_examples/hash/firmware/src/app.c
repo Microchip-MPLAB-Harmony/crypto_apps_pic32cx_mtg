@@ -79,7 +79,7 @@ void SingleStepDigest(HASH *hash)
     (void) memset(hash->msgDigest, 0, hash->msgDigestSize);
 
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH0_TimerCounterGet(); 
+    startTime = TC0_CH1_TimerCounterGet(); 
     
     if (hash->hashMode == CRYPTO_HASH_MD5)
     {
@@ -103,8 +103,8 @@ void SingleStepDigest(HASH *hash)
         );
     }
 
-    endTime = TC0_CH0_TimerCounterGet();
-    printf("%lf (ms)\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = TC0_CH1_TimerCounterGet();
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
@@ -117,12 +117,12 @@ void SingleStepDigest(HASH *hash)
 
         if (outputMatch) {
             testsPassed++;
-            printf("Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -142,7 +142,7 @@ void MultiStepDigest(HASH *hash)
     (void) memset(hash->msgDigest, 0, hash->msgDigestSize);
 
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH0_TimerCounterGet(); 
+    startTime = TC0_CH1_TimerCounterGet(); 
     
     if (hash->hashMode == CRYPTO_HASH_MD5)
     {
@@ -190,8 +190,8 @@ void MultiStepDigest(HASH *hash)
         status = Crypto_Hash_Sha_Final(&hash->Hash_Sha_Ctx, hash->msgDigest);
     }
     
-    endTime = TC0_CH0_TimerCounterGet();
-    printf("%lf (ms)\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = TC0_CH1_TimerCounterGet();
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
@@ -204,12 +204,12 @@ void MultiStepDigest(HASH *hash)
 
         if (outputMatch) {
             testsPassed++;
-            printf("Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -258,6 +258,8 @@ void APP_Tasks (void)
             testsFailed = 0;
 
             bool appInitialized = true;
+            
+            TC0_CH1_TimerInitialize();
 
             if (appInitialized)
             {
@@ -267,33 +269,32 @@ void APP_Tasks (void)
         }
 
         case APP_STATE_SERVICE_TASKS:
-        {
-            TC0_CH0_TimerStart();
-            
+        {            
             if (
                     !appData.isTestedSha1   &&
                     !appData.isTestedSha2   &&
                     !appData.isTestedMd5
                 )
-            {          
-                printf("\r\nBegin Hash Demo Application\r\n");
-                printf("\r\n-----------MD5 SW Test-------------\r\n");
+            {
+                TC0_CH1_TimerStart();
+                
+                printf("\r\n-----------MD5 wolfCrypt Wrapper-------------\r\n");
                 MD5_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedMd5 = true;
 
-                printf("\r\n-----------SHA1 HW Test-------------\r\n");
+                printf("\r\n-----------SHA1 Hardware Wrapper-------------\r\n");
                 SHA1_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
-                printf("\r\n-----------SHA1 SW Test-------------\r\n");
+                printf("\r\n-----------SHA1 wolfCrypt Wrapper-------------\r\n");
                 SHA1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedSha1 = true;
                 
-                printf("\r\n-----------SHA2 HW Test-------------\r\n");
+                printf("\r\n-----------SHA2 Hardware Wrapper-------------\r\n");
                 SHA2_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
-                printf("\r\n-----------SHA2 SW Test-------------\r\n");
+                printf("\r\n-----------SHA2 wolfCrypt Wrapper-------------\r\n");
                 SHA2_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedSha2 = true;
@@ -301,9 +302,9 @@ void APP_Tasks (void)
                 printf("\r\n-----------------------------------\r\n");
                 printf("Tests attempted: %d", testsPassed + testsFailed);
                 printf("\r\nTests successful: %d\r\n", testsPassed);
+                
+                TC0_CH1_TimerStop();
             }
-            
-            TC0_CH0_TimerStop();
 
             break;
         }

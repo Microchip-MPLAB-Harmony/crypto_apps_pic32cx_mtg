@@ -127,11 +127,11 @@ void AES_GCM_Test (crypto_HandlerType_E cryptoHandler)
         .authTagSize = sizeof(AEAD_GCM_Tag)
     };
 
-    printf("\r\nAES_GCM Single-Step Test");
+    printf("\r\nAES-GCM Direct\r\n");
     AES_GCM_SingleStep(&AES_GCM);
-    printf("\r\nAES_GCM Multi-Step Test");
-    AES_GCM_MultiStep(&AES_GCM);
 
+    printf("\r\nAES-GCM Init->Add->Cipher->Final\r\n");
+    AES_GCM_MultiStep(&AES_GCM);
 }
 
 
@@ -152,27 +152,21 @@ void AES_CCM_Test (crypto_HandlerType_E cryptoHandler)
         .handler     = cryptoHandler,
         .pt          = AEAD_CCM_Plaintext,
         .ptSize      = sizeof(AEAD_CCM_Plaintext),
-        
         .cipher      = cipher,
         .cipherSize  = sizeof(cipher),
-        
         .symData     = symData,
         .symDataSize = sizeof(symData),
-
         .key         = AEAD_CCM_Key,
         .keySize     = sizeof(AEAD_CCM_Key),
-
         .iv          = AEAD_CCM_IV,
         .ivSize      = sizeof(AEAD_CCM_IV),
-
         .aad         = NULL,
         .aadSize     = 0,
-
         .authTag     = AEAD_CCM_Tag,
         .authTagSize = sizeof(AEAD_CCM_Tag)
     };
 
-    printf("\r\nAES_CCM Multi-Step Test");
+    printf("\r\nAES-CCM Init->Add->Cipher->Final\r\n");
     AES_CCM_MultiStep(&AES_CCM);
 }
 

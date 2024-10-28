@@ -367,105 +367,81 @@ void AES_ECB_Test (crypto_HandlerType_E cryptoHandler)
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_ECB,
-
         .iv                 = NULL,
-
         .key                = Key_AES_ECB128,
         .keySize            = sizeof(Key_AES_ECB128),
-
         .pt                 = Plaintext_AES_ECB,
         .ptSize             = sizeof(Plaintext_AES_ECB),
-
         .symData            = symData_AES_128,
         .symDataSize        = sizeof(symData_AES_128),
-
         .cipher             = Ciphertext_AES_ECB128,
         .cipherSize         = sizeof(Ciphertext_AES_ECB128)
     };
     
-
-    printf("\r\nMulti-Step AES ECB 128 Encrypt Test\r\n");
+    printf("\r\nAES-ECB 128 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&ecb128);
 
-    printf("\r\nMulti-Step AES ECB 128 Decrypt Test\r\n");
+    printf("\r\nAES-ECB 128 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&ecb128);
 
-    printf("\r\nSingle-Step AES ECB 128 Encrypt Test\r\n");
+    printf("\r\nAES-ECB 128 Direct Encrypt\r\n");
     SingleStepEncrypt(&ecb128);
     
-
-    printf("\r\nSingle-Step AES ECB 128 Decrypt Test\r\n");
+    printf("\r\nAES-ECB 128 Direct Decrypt\r\n");
     SingleStepDecrypt(&ecb128);
 
     AES ecb192 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_ECB,
-
         .iv                 = NULL,
-
         .key                = Key_AES_ECB192,
         .keySize            = sizeof(Key_AES_ECB192),
-
         .pt                 = Plaintext_AES_ECB,
         .ptSize             = sizeof(Plaintext_AES_ECB),
-
         .symData            = symData_AES_192,
         .symDataSize        = sizeof(symData_AES_192),
-
         .cipher             = Ciphertext_AES_ECB192,
         .cipherSize         = sizeof(Ciphertext_AES_ECB192)
     };
     
-
-    printf("\r\nMulti-Step AES ECB 192 Encrypt Test\r\n");
+    printf("\r\nAES-ECB 192 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&ecb192);
 
-
-    printf("\r\nMulti-Step AES ECB 192 Decrypt Test\r\n");
+    printf("\r\nAES-ECB 192 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&ecb192);
 
-
-    printf("\r\nSingle-Step AES ECB 192 Encrypt Test\r\n");
+    printf("\r\nAES-ECB 192 Direct Encrypt\r\n");
     SingleStepEncrypt(&ecb192);
-
-
-    printf("\r\nSingle-Step AES ECB 192 Decrypt Test\r\n");
+    
+    printf("\r\nAES-ECB 192 Direct Decrypt\r\n");
     SingleStepDecrypt(&ecb192);
 
     AES ecb256 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_ECB,
-
         .iv                 = NULL,
-
         .key                = Key_AES_ECB256,
         .keySize            = sizeof(Key_AES_ECB256),
-
         .pt                 = Plaintext_AES_ECB,
         .ptSize             = sizeof(Plaintext_AES_ECB),
-
         .symData            = symData_AES_256,
         .symDataSize        = sizeof(symData_AES_256),
-
         .cipher             = Ciphertext_AES_ECB256,
         .cipherSize         = sizeof(Ciphertext_AES_ECB256)
     };
     
-
-    printf("\r\nMulti-Step AES ECB 256 Encrypt Test\r\n");
+    printf("\r\nAES-ECB 256 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&ecb256);
 
-    printf("\r\nMulti-Step AES ECB 256 Decrypt Test\r\n");
+    printf("\r\nAES-ECB 256 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&ecb256);
 
-
-    printf("\r\nSingle-Step AES ECB 256 Encrypt Test\r\n");
+    printf("\r\nAES-ECB 256 Direct Encrypt\r\n");
     SingleStepEncrypt(&ecb256);
     
-
-    printf("\r\nSingle-Step AES ECB 256 Decrypt Test\r\n");
+    printf("\r\nAES-ECB 256 Direct Decrypt\r\n");
     SingleStepDecrypt(&ecb256);
 }
 
@@ -485,110 +461,81 @@ void AES_CBC_Test (crypto_HandlerType_E cryptoHandler)
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CBC,
-
         .iv                 = AES_CBC_IV,
-
         .key                = Key_AES_CBC128,
         .keySize            = sizeof(Key_AES_CBC128),
-
         .pt                 = Plaintext_AES_CBC,
         .ptSize             = sizeof(Plaintext_AES_CBC),
-
-        .symData            = symData_AES_192,
-        .symDataSize        = sizeof(symData_AES_192),
-
+        .symData            = symData_AES_128,
+        .symDataSize        = sizeof(symData_AES_128),
         .cipher             = Ciphertext_AES_CBC128,
         .cipherSize         = sizeof(Ciphertext_AES_CBC128)
     };
 
-
-    printf("\r\nMulti-Step AES CBC 128 Encrypt Test\r\n");
+    printf("\r\nAES-CBC 128 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&cbc128);
 
-
-    printf("\r\nMulti-Step AES CBC 128 Decrypt Test\r\n");
-
+    printf("\r\nAES-CBC 128 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&cbc128);
 
-
-    printf("\r\nSingle-Step AES CBC 128 Encrypt Test\r\n");
+    printf("\r\nAES-CBC 128 Direct Encrypt\r\n");
     SingleStepEncrypt(&cbc128);
 
-
-    printf("\r\nSingle-Step AES CBC 128 Decrypt Test\r\n");
+    printf("\r\nAES-CBC 128 Direct Decrypt\r\n");
     SingleStepDecrypt(&cbc128);
 
     AES cbc192 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CBC,
-
         .iv                 = AES_CBC_IV,
-
         .key                = Key_AES_CBC192,
         .keySize            = sizeof(Key_AES_CBC192),
-
         .pt                 = Plaintext_AES_CBC,
         .ptSize             = sizeof(Plaintext_AES_CBC),
-
         .symData            = symData_AES_192,
         .symDataSize        = sizeof(symData_AES_192),
-
         .cipher             = Ciphertext_AES_CBC192,
         .cipherSize         = sizeof(Ciphertext_AES_CBC192)
     };
 
-
-    printf("\r\nMulti-Step AES CBC 192 Encrypt Test\r\n");
+    printf("\r\nAES-CBC 192 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&cbc192);
 
-
-    printf("\r\nMulti-Step AES CBC 192 Decrypt Test\r\n");
+    printf("\r\nAES-CBC 192 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&cbc192);
 
-    printf("\r\nSingle-Step AES CBC 192 Encrypt Test\r\n");
-
+    printf("\r\nAES-CBC 192 Direct Encrypt\r\n");
     SingleStepEncrypt(&cbc192);
 
-
-    printf("\r\nSingle-Step AES CBC  192 Decrypt Test\r\n");
-
+    printf("\r\nAES-CBC 192 Direct Decrypt\r\n");
     SingleStepDecrypt(&cbc192);
 
     AES cbc256 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CBC,
-
         .iv                 = AES_CBC_IV,
-
         .key                = Key_AES_CBC256,
         .keySize            = sizeof(Key_AES_CBC256),
-
         .pt                 = Plaintext_AES_CBC,
         .ptSize             = sizeof(Plaintext_AES_CBC),
-
         .symData            = symData_AES_256,
         .symDataSize        = sizeof(symData_AES_256),
-
         .cipher             = Ciphertext_AES_CBC256,
         .cipherSize         = sizeof(Ciphertext_AES_CBC256)
     };
 
-
-    printf("\r\nMulti-Step AES CBC 256 Encrypt Test\r\n");
+    printf("\r\nAES-CBC 256 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&cbc256);
 
-
-    printf("\r\nMulti-Step AES CBC 256 Decrypt Test\r\n");
+    printf("\r\nAES-CBC 256 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&cbc256);
 
-
-    printf("\r\nSingle-Step AES CBC 256 Encrypt Test\r\n");
+    printf("\r\nAES-CBC 256 Direct Encrypt\r\n");
     SingleStepEncrypt(&cbc256);
 
-
-    printf("\r\nSingle-Step AES CBC 256 Decrypt Test\r\n");
+    printf("\r\nAES-CBC 256 Direct Decrypt\r\n");
     SingleStepDecrypt(&cbc256);
 }
 
@@ -608,108 +555,81 @@ void AES_CTR_Test (crypto_HandlerType_E cryptoHandler)
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CTR,
-
         .iv                 = AES_CTR_NONCE,
-
         .key                = Key_AES_CTR128,
         .keySize            = sizeof(Key_AES_CTR128),
-
         .pt                 = Plaintext_AES_CTR,
         .ptSize             = sizeof(Plaintext_AES_CTR),
-
         .symData            = symData_AES_128,
         .symDataSize        = sizeof(symData_AES_128),
-
-        .cipher         = Ciphertext_AES_CTR128,
-        .cipherSize     = sizeof(Ciphertext_AES_CTR128)        
+        .cipher             = Ciphertext_AES_CTR128,
+        .cipherSize         = sizeof(Ciphertext_AES_CTR128)        
     };
 
-
-    printf("\r\nMulti-Step AES CTR 128 Encrypt Test\r\n");
+    printf("\r\nAES-CTR 128 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&CTR128);
 
-
-    printf("\r\nMulti-Step AES CTR 128 Decrypt Test\r\n");
+    printf("\r\nAES-CTR 128 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&CTR128);
 
-
-    printf("\r\nSingle-Step AES CTR 128 Encrypt Test\r\n");
+    printf("\r\nAES-CTR 128 Direct Encrypt\r\n");
     SingleStepEncrypt(&CTR128);
 
-
-    printf("\r\nSingle-Step AES CTR 128 Decrypt Test\r\n");
+    printf("\r\nAES-CTR 128 Direct Decrypt\r\n");
     SingleStepDecrypt(&CTR128);
 
     AES CTR192 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CTR,
-
         .iv                 = AES_CTR_NONCE,
-
         .key                = Key_AES_CTR192,
         .keySize            = sizeof(Key_AES_CTR192),
-
         .pt                 = Plaintext_AES_CTR,
         .ptSize             = sizeof(Plaintext_AES_CTR),
-
         .symData            = symData_AES_192,
         .symDataSize        = sizeof(symData_AES_192),
-
-        .cipher         = Ciphertext_AES_CTR192,
-        .cipherSize     = sizeof(Ciphertext_AES_CTR192)        
+        .cipher             = Ciphertext_AES_CTR192,
+        .cipherSize         = sizeof(Ciphertext_AES_CTR192)        
     };
 
-
-    printf("\r\nMulti-Step AES CTR 192 Encrypt Test\r\n");
+    printf("\r\nAES-CTR 192 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&CTR192);
 
-
-    printf("\r\nMulti-Step AES CTR 192 Decrypt Test\r\n");
+    printf("\r\nAES-CTR 192 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&CTR192);
 
-    printf("\r\nSingle-Step AES CTR 192 Encrypt Test\r\n");
+    printf("\r\nAES-CTR 192 Direct Encrypt\r\n");
     SingleStepEncrypt(&CTR192);
 
-
-    printf("\r\nSingle-Step AES CTR 192 Decrypt Test\r\n");
-
+    printf("\r\nAES-CTR 192 Direct Decrypt\r\n");
     SingleStepDecrypt(&CTR192);
 
     AES CTR256 = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
         .handler            = cryptoHandler,
         .aesMode            = CRYPTO_SYM_OPMODE_CTR,
-
         .iv                 = AES_CTR_NONCE,
-
         .key                = Key_AES_CTR256,
         .keySize            = sizeof(Key_AES_CTR256),
-
         .pt                 = Plaintext_AES_CTR,
         .ptSize             = sizeof(Plaintext_AES_CTR),
-
         .symData            = symData_AES_256,
         .symDataSize        = sizeof(symData_AES_256),
-
         .cipher         = Ciphertext_AES_CTR256,
         .cipherSize     = sizeof(Ciphertext_AES_CTR256)        
     };
 
-
-    printf("\r\nMulti-Step AES CTR 256 Encrypt Test\r\n");
+    printf("\r\nAES-CTR 256 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&CTR256);
 
-
-    printf("\r\nMulti-Step AES CTR 256 Decrypt Test\r\n");
+    printf("\r\nAES-CTR 256 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&CTR256);
 
-
-    printf("\r\nSingle-Step AES CTR 256 Encrypt Test\r\n");
+    printf("\r\nAES-CTR 256 Direct Encrypt\r\n");
     SingleStepEncrypt(&CTR256);
 
-
-    printf("\r\nSingle-Step AES CTR 256 Decrypt Test\r\n");
+    printf("\r\nAES-CTR 256 Direct Decrypt\r\n");
     SingleStepDecrypt(&CTR256);
 }
 
@@ -729,164 +649,122 @@ void AES_KeyWrap_Test (crypto_HandlerType_E cryptoHandler)
 
     AES kw128_Encrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-
         .handler            = cryptoHandler,
         .iv                 = NULL,
-
         .key                = Key_AES_KW128_Encrypt,
         .keySize            = sizeof(Key_AES_KW128_Encrypt),
-
         .pt                 = Plaintext_AES_KW128_Encrypt,
         .ptSize             = sizeof(Plaintext_AES_KW128_Encrypt),
-
         .symData            = symData_AES_128,
         .symDataSize        = sizeof(symData_AES_128),
-
         .cipher             = Ciphertext_AES_KW128_Encrypt,
         .cipherSize         = sizeof(Ciphertext_AES_KW128_Encrypt)
     };
 
     AES kw128_Decrypt = {
         .Sym_Block_Ctx  = Sym_Block_Ctx,
-
         .handler            = cryptoHandler,
         .iv                 = NULL,
-
         .key                = Key_AES_KW128_Decrypt,
         .keySize            = sizeof(Key_AES_KW128_Decrypt),
-
         .pt                 = Plaintext_AES_KW128_Decrypt,
         .ptSize             = sizeof(Plaintext_AES_KW128_Decrypt),
-
         .symData            = symData_AES_128,
         .symDataSize        = sizeof(symData_AES_128),
-
         .cipher             = Ciphertext_AES_KW128_Decrypt,
         .cipherSize         = sizeof(Ciphertext_AES_KW128_Decrypt)
     };
 
-
-    printf("\r\nMulti-Step AES Keywrap 128 Encrypt Test\r\n");
+    printf("\r\nAES-KW 128 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&kw128_Encrypt);
 
-
-    printf("\r\nMulti-Step AES Keywrap 128 Decrypt Test\r\n");
+    printf("\r\nAES-KW 128 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&kw128_Decrypt);
 
-
-    printf("\r\nSingle-Step AES Keywrap 128 Encrypt Test\r\n");
+    printf("\r\nAES-KW 128 Direct Encrypt\r\n");
     SingleStepEncrypt(&kw128_Encrypt);
 
-
-    printf("\r\nSingle-Step AES Keywrap 128 Decrypt Test\r\n");
+    printf("\r\nAES-KW 128 Direct Decrypt\r\n");
     SingleStepDecrypt(&kw128_Decrypt);
 
     AES kw192_Encrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-
         .handler            = cryptoHandler,
         .iv                 = NULL,
-
         .key                = Key_AES_KW192_Encrypt,
         .keySize            = sizeof(Key_AES_KW192_Encrypt),
-
         .pt                 = Plaintext_AES_KW192_Encrypt,
         .ptSize             = sizeof(Plaintext_AES_KW192_Encrypt),
-
         .symData            = symData_AES_192,
         .symDataSize        = sizeof(symData_AES_192),
-
         .cipher             = Ciphertext_AES_KW192_Encrypt,
         .cipherSize         = sizeof(Ciphertext_AES_KW192_Encrypt)
     };
 
     AES kw192_Decrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-
         .handler            = cryptoHandler,
         .iv                 = NULL,
-
         .key                = Key_AES_KW192_Decrypt,
         .keySize            = sizeof(Key_AES_KW192_Decrypt),
-
         .pt                 = Plaintext_AES_KW192_Decrypt,
         .ptSize             = sizeof(Plaintext_AES_KW192_Decrypt),
-
         .symData            = symData_AES_192,
         .symDataSize        = sizeof(symData_AES_192),
-
         .cipher             = Ciphertext_AES_KW192_Decrypt,
         .cipherSize         = sizeof(Ciphertext_AES_KW192_Decrypt)
     };
 
-
-    printf("\r\nMulti-Step AES Keywrap 192 Encrypt Test\r\n");
+    printf("\r\nAES-KW 192 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&kw192_Encrypt);
 
-
-    printf("\r\nMulti-Step AES Keywrap 192 Decrypt Test\r\n");
+    printf("\r\nAES-KW 192 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&kw192_Decrypt);
 
-
-    printf("\r\nSingle-Step AES Keywrap 192 Encrypt Test\r\n");
+    printf("\r\nAES-KW 192 Direct Encrypt\r\n");
     SingleStepEncrypt(&kw192_Encrypt);
 
-
-    printf("\r\nSingle-Step AES Keywrap SW 192 Decrypt Test\r\n");
+    printf("\r\nAES-KW 192 Direct Decrypt\r\n");
     SingleStepDecrypt(&kw192_Decrypt);
 
     AES kw256_Encrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-
         .handler            = cryptoHandler,
         .iv                 = NULL,
-
         .key                = Key_AES_KW256_Encrypt,
         .keySize            = sizeof(Key_AES_KW256_Encrypt),
-
         .pt                 = Plaintext_AES_KW256_Encrypt,
         .ptSize             = sizeof(Plaintext_AES_KW256_Encrypt),
-
         .symData            = symData_AES_256,
         .symDataSize        = sizeof(symData_AES_256),
-
         .cipher             = Ciphertext_AES_KW256_Encrypt,
         .cipherSize         = sizeof(Ciphertext_AES_KW256_Encrypt)
     };
 
     AES kw256_Decrypt = {
         .Sym_Block_Ctx      = Sym_Block_Ctx,
-
         .handler            = cryptoHandler,
         .iv                 = NULL,
-
         .key                = Key_AES_KW256_Decrypt,
         .keySize            = sizeof(Key_AES_KW256_Decrypt),
-
         .pt                 = Plaintext_AES_KW256_Decrypt,
         .ptSize             = sizeof(Plaintext_AES_KW256_Decrypt),
-
         .symData            = symData_AES_256,
         .symDataSize        = sizeof(symData_AES_256),
-
         .cipher             = Ciphertext_AES_KW256_Decrypt,
         .cipherSize         = sizeof(Ciphertext_AES_KW256_Decrypt)
     };
 
-
-    printf("\r\nMulti-Step AES Keywrap 256 Encrypt Test\r\n");
+    printf("\r\nAES-KW 256 Init->Cipher Encrypt\r\n");
     MultiStepEncrypt(&kw256_Encrypt);
 
-
-    printf("\r\nMulti-Step AES Keywrap 256 Decrypt Test\r\n");
+    printf("\r\nAES-KW 256 Init->Cipher Decrypt\r\n");
     MultiStepDecrypt(&kw256_Decrypt);
 
-
-    printf("\r\nSingle-Step AES Keywrap 256 Encrypt Test\r\n");
+    printf("\r\nAES-KW 256 Direct Encrypt\r\n");
     SingleStepEncrypt(&kw256_Encrypt);
 
-
-    printf("\r\nSingle-Step AES Keywrap 256 Decrypt Test\r\n");
+    printf("\r\nAES-KW 256 Direct Decrypt\r\n");
     SingleStepDecrypt(&kw256_Decrypt);
 
     isKeyWrap = false;

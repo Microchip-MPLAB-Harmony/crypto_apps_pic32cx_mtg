@@ -98,8 +98,8 @@ void AES_GCM_SingleStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to create cipher text\r\n");
-        printf("\r\nStatus: %d\r\n", status);
+        printf("Failed to create cipher text\r\n");
+        printf("Status: %d\r\n", status);
     }
     
     /* save ciphertext from msgOut to decipher*/
@@ -122,11 +122,11 @@ void AES_GCM_SingleStep (GCM *gcm)
     );
 
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to decipher text, status: %d\r\n", status);
+        printf("Failed to decipher text, status: %d\r\n", status);
         testsFailed++;
     }
     else
@@ -136,12 +136,12 @@ void AES_GCM_SingleStep (GCM *gcm)
         if (outputMatch)
         {
             testsPassed++;
-            printf("\r\nCipher correct: Direct Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nCipher incorrect: Direct Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -176,7 +176,7 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to initialize structure, status: %d\r\n", status);
+        printf("Failed to initialize structure, status: %d\r\n", status);
     }
 
     status =  Crypto_Aead_AesGcm_AddAadData(
@@ -186,8 +186,8 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to add associated data\r\n");
-        printf("\r\nStatus: %d\r\n", status);
+        printf("Failed to add associated data\r\n");
+        printf("Status: %d\r\n", status);
     }
 
     status = Crypto_Aead_AesGcm_Cipher(
@@ -198,7 +198,7 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to add select cipher direction, status: \r\n", status);
+        printf("Failed to add select cipher direction, status: \r\n", status);
     }
 
     status = Crypto_Aead_AesGcm_Final(
@@ -208,7 +208,7 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to finalize cipher text, status: %d\r\n", status);
+        printf("Failed to finalize cipher text, status: %d\r\n", status);
     }
 
     /* save ciphertext from msgOut to decipher*/
@@ -226,7 +226,7 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to initialize structure, status: %d\r\n", status);
+        printf("Failed to initialize structure, status: %d\r\n", status);
     }
 
     status =  Crypto_Aead_AesGcm_AddAadData(
@@ -236,7 +236,7 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to add associated data\r\n");
+        printf("Failed to add associated data\r\n");
     }
 
     status = Crypto_Aead_AesGcm_Cipher(
@@ -247,7 +247,7 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to add select cipher direction, status: %d\r\n", status);
+        printf("Failed to add select cipher direction, status: %d\r\n", status);
     }
 
     status = Crypto_Aead_AesGcm_Final(
@@ -257,11 +257,11 @@ void AES_GCM_MultiStep (GCM *gcm)
     );
 
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to decipher text, status: %d\r\n", status);
+        printf("Failed to decipher text, status: %d\r\n", status);
         testsFailed++;
     }
     else
@@ -271,12 +271,12 @@ void AES_GCM_MultiStep (GCM *gcm)
         if (outputMatch)
         {
             testsPassed++;
-            printf("\r\nCipher correct: Multi-Step Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nCipher incorrect: Multi-Step Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -308,7 +308,7 @@ void AES_CCM_MultiStep (CCM *ccm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to initialize structure, status: %d\r\n", status);
+        printf("Failed to initialize structure, status: %d\r\n", status);
     }
 
     status = Crypto_Aead_AesCcm_Cipher(
@@ -326,7 +326,7 @@ void AES_CCM_MultiStep (CCM *ccm)
     );
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to add select cipher direction, status: \r\n", status);
+        printf("Failed to add select cipher direction, status: \r\n", status);
     }
 
     status = Crypto_Aead_AesCcm_Cipher(
@@ -344,11 +344,11 @@ void AES_CCM_MultiStep (CCM *ccm)
     );
 
     endTime = TC0_CH0_TimerCounterGet();
-    printf("\r\nTime elapsed (ms): %lf", (endTime - startTime)*TEN_NS_TO_MS);
+    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
 
     if (status != CRYPTO_AEAD_CIPHER_SUCCESS)
     {
-        printf("\r\nFailed to decipher text, status: %d\r\n", status);
+        printf("Failed to decipher text, status: %d\r\n", status);
         testsFailed++;
     }
     else
@@ -358,12 +358,12 @@ void AES_CCM_MultiStep (CCM *ccm)
         if (outputMatch)
         {
             testsPassed++;
-            printf("\r\nCipher correct: Multi-Step Test Successful\r\n");
+            printf("Test successful\r\n");
         }
         else
         {
             testsFailed++;
-            printf("\r\nCipher incorrect: Multi-Step Test Unsuccessful\r\n");
+            printf("Test unsuccessful\r\n");
         }
     }
 }
@@ -425,15 +425,19 @@ void APP_Tasks ( void )
             
             if (!appData.isTestedAES_GCM && !appData.isTestedAES_CCM)
             {
-                printf("\r\nBegin AEAD Demo Application\r\n");
-                printf("\r\n-----------GCM HW test-------------\r\n");
+                printf("\r\n-----------AEAD AES-GCM Hardware Wrapper-------------\r\n");
                 AES_GCM_Test(CRYPTO_HANDLER_HW_INTERNAL);
-                printf("\r\n-----------GCM SW test-------------\r\n");
+
+                printf("\r\n-----------AEAD AES-GCM wolfCrypt Wrapper-------------\r\n");
                 AES_GCM_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+
                 appData.isTestedAES_GCM = true;
-                printf("\r\n-----------CCM SW test-------------\r\n");
+                
+                printf("\r\n-----------AEAD AES-CCM wolfCrypt Wrapper-------------\r\n");
                 AES_CCM_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);         
+                
                 appData.isTestedAES_CCM = true;
+                
                 printf("\r\n-----------------------------------\r\n");
                 printf("Tests attempted: %d", testsPassed + testsFailed);
                 printf("\r\nTests successful: %d\r\n", testsPassed);

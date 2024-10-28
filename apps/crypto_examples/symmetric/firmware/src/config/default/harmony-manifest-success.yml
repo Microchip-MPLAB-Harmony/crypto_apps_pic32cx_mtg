@@ -4,7 +4,7 @@
 
 
 project: symmetric
-creation_date: 2024-10-22T10:31:53.574-07:00[America/Phoenix]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2024-10-28T13:57:35.309-07:00[America/Phoenix]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.5.1
@@ -14,11 +14,11 @@ harmony_version: v1.5.1
 compiler: XC32 4.40
 
 modules:
-    - {name: "csp", version: "v3.19.4"}
-    - {name: "core", version: "Branch_v3.13.1"}
-    - {name: "CMSIS_5", version: "Branch_5.9.0"}
+    - {name: "csp", version: "v3.19.6"}
+    - {name: "core", version: "v3.13.5"}
+    - {name: "CMSIS_5", version: "5.8.0"}
     - {name: "crypto_v4", version: "MH3-98870-CryptoGUI-Redesign"}
-    - {name: "wolfssl", version: "Branch_v5.7.0-stable"}
+    - {name: "wolfssl", version: "v5.7.0-stable"}
     - {name: "bsp", version: "v3.20.1"}
 
 packs:

@@ -153,7 +153,7 @@ void ECDSA_Test (crypto_HandlerType_E cryptoHandler)
         .sigSize = sizeof(sig256)
     };
 
-    printf("\r\nECDSA p-256 Sign Test Using Uncompressed Key");
+    printf("\r\nECDSA P-256 Sign with Uncompressed Key\r\n");
     ECDSA_Sign_Test(&ECDSA_Sign256);
 
     ECDSA ECDSA_Verify256 = {
@@ -167,24 +167,24 @@ void ECDSA_Test (crypto_HandlerType_E cryptoHandler)
         .sigSize = sizeof(sig256),
         .hashVerifyStat = 0
     };
-//    printf("\r\n-----------------------------------\r\n");
-    printf("\r\nECDSA p-256 Verify Test Using Uncompressed Key");
+    printf("\r\nECDSA P-256 Verify with Uncompressed Key\r\n");
     ECDSA_Verify_Test(&ECDSA_Verify256);
 
-    if (ECDSA_Verify256.handler == CRYPTO_HANDLER_SW_WOLFCRYPT ){
-    ECDSA_Verify256.handler   = CRYPTO_HANDLER_SW_WOLFCRYPT;
-    ECDSA_Verify256.curveType = CRYPTO_ECC_CURVE_SECP256R1;
-    ECDSA_Verify256.inputHash = msg;
-    ECDSA_Verify256.inputHashSize = sizeof(msg);
-    ECDSA_Verify256.key = pubKeyECDSA256_Compressed;
-    ECDSA_Verify256.keySize = sizeof(pubKeyECDSA256_Compressed);
-    ECDSA_Verify256.sig = sig256;
-    ECDSA_Verify256.sigSize = sizeof(sig256);
-    ECDSA_Verify256.hashVerifyStat = 0;
-            
-//    printf("\r\n-----------------------------------\r\n");
-    printf("\r\nECDSA p-256 SW Verify Test Using Compressed Key");
-    ECDSA_Verify_Test(&ECDSA_Verify256);
+    // wolfCrypt wrapper supports compressed key
+    if (ECDSA_Verify256.handler == CRYPTO_HANDLER_SW_WOLFCRYPT)
+    {
+        ECDSA_Verify256.handler   = CRYPTO_HANDLER_SW_WOLFCRYPT;
+        ECDSA_Verify256.curveType = CRYPTO_ECC_CURVE_SECP256R1;
+        ECDSA_Verify256.inputHash = msg;
+        ECDSA_Verify256.inputHashSize = sizeof(msg);
+        ECDSA_Verify256.key = pubKeyECDSA256_Compressed;
+        ECDSA_Verify256.keySize = sizeof(pubKeyECDSA256_Compressed);
+        ECDSA_Verify256.sig = sig256;
+        ECDSA_Verify256.sigSize = sizeof(sig256);
+        ECDSA_Verify256.hashVerifyStat = 0;
+                
+        printf("\r\nECDSA P-256 Verify with Compressed Key\r\n");
+        ECDSA_Verify_Test(&ECDSA_Verify256);
     }
     
     ECDSA ECDSA_Sign384 = {
@@ -198,8 +198,7 @@ void ECDSA_Test (crypto_HandlerType_E cryptoHandler)
         .sigSize = sizeof(sig384),
     };
 
-//    printf("\r\n-----------------------------------\r\n");
-    printf("\r\nECDSA p-384 Sign Test Using Uncompressed Key");
+    printf("\r\nECDSA P-384 Sign with Uncompressed Key\r\n");
     ECDSA_Sign_Test(&ECDSA_Sign384);
 
     ECDSA ECDSA_Verify384 = {
@@ -213,24 +212,25 @@ void ECDSA_Test (crypto_HandlerType_E cryptoHandler)
         .sigSize = sizeof(sig384),
         .hashVerifyStat = 0
     };
-//    printf("\r\n-----------------------------------\r\n");
-    printf("\r\nECDSA p-384 Verify Test Using Uncompressed Key");
+
+    printf("\r\nECDSA P-384 Verify with Uncompressed Key\r\n");
     ECDSA_Verify_Test(&ECDSA_Verify384);
     
-    if (ECDSA_Verify384.handler == CRYPTO_HANDLER_SW_WOLFCRYPT){
-    ECDSA_Verify384.handler   = CRYPTO_HANDLER_SW_WOLFCRYPT;
-    ECDSA_Verify384.curveType = CRYPTO_ECC_CURVE_SECP384R1;
-    ECDSA_Verify384.inputHash = msg;
-    ECDSA_Verify384.inputHashSize = sizeof(msg);
-    ECDSA_Verify384.key = pubKeyECDSA384_Compressed;
-    ECDSA_Verify384.keySize = sizeof(pubKeyECDSA384_Compressed);
-    ECDSA_Verify384.sig = sig384;
-    ECDSA_Verify384.sigSize = sizeof(sig384);
-    ECDSA_Verify384.hashVerifyStat = 0;
-            
-//    printf("\r\n-----------------------------------\r\n");
-    printf("\r\nECDSA p-384 SW Verify Test Using Compressed Key");
-    ECDSA_Verify_Test(&ECDSA_Verify384);
+    // wolfCrypt wrapper supports compressed key
+    if (ECDSA_Verify384.handler == CRYPTO_HANDLER_SW_WOLFCRYPT)
+    {
+        ECDSA_Verify384.handler   = CRYPTO_HANDLER_SW_WOLFCRYPT;
+        ECDSA_Verify384.curveType = CRYPTO_ECC_CURVE_SECP384R1;
+        ECDSA_Verify384.inputHash = msg;
+        ECDSA_Verify384.inputHashSize = sizeof(msg);
+        ECDSA_Verify384.key = pubKeyECDSA384_Compressed;
+        ECDSA_Verify384.keySize = sizeof(pubKeyECDSA384_Compressed);
+        ECDSA_Verify384.sig = sig384;
+        ECDSA_Verify384.sigSize = sizeof(sig384);
+        ECDSA_Verify384.hashVerifyStat = 0;
+                
+        printf("\r\nECDSA P-384 SW Verify with Compressed Key\r\n");
+        ECDSA_Verify_Test(&ECDSA_Verify384);
     }
 }
 
