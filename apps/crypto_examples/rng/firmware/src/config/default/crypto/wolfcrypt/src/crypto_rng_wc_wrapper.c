@@ -57,8 +57,8 @@ void crypto_rng_deinitialize(WC_RNG* rng)
 crypto_Rng_Status_E Crypto_Rng_Wc_Prng_GenerateBlock(uint8_t* ptr_rngData, uint32_t rngLen, uint8_t* ptr_nonce, uint32_t nonceLen)
 {
     crypto_Rng_Status_E ret_rngStat_en = CRYPTO_RNG_ERROR_FAIL;
+    int wcStat = -1, wcFreeStat = -1;
     WC_RNG rng_st;
-    int wcStat = -1;
     
     wcStat = wc_InitRng(&rng_st);
     
@@ -71,8 +71,8 @@ crypto_Rng_Status_E Crypto_Rng_Wc_Prng_GenerateBlock(uint8_t* ptr_rngData, uint3
     {
         wcStat = wc_RNG_GenerateBlock(&rng_st, ptr_rngData, rngLen);
     }
-    
-    int wcFreeStat = wc_FreeRng(&rng_st);
+
+    wcFreeStat = wc_FreeRng(&rng_st);
     
     if (wcStat == 0 && wcFreeStat == 0)
     {

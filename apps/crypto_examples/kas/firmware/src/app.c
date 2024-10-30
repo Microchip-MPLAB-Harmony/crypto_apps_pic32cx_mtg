@@ -36,7 +36,6 @@
 // *****************************************************************************
 
 #define SESSION_ID    1
-#define TEN_NS_TO_MS  0.00001
 
 uint8_t testsPassed;
 uint8_t testsFailed;
@@ -78,8 +77,9 @@ void GenerateSharedSecret (ECDH *ecdh)
     
     (void) memset(ecdh->sharedSecret, 0, ecdh->sharedSecretSize);
     
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
 
     status = Crypto_Kas_Ecdh_SharedSecret (
         ecdh->handler,
@@ -93,8 +93,8 @@ void GenerateSharedSecret (ECDH *ecdh)
         SESSION_ID
     );
     
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_KAS_SUCCESS)
     {
@@ -163,6 +163,9 @@ void APP_Tasks ( void )
             testsPassed = 0;
             testsFailed = 0;
 
+            SYSTICK_TimerInitialize();
+            SYSTICK_TimerPeriodSet(INT32_MAX);
+
             bool appInitialized = true;
 
             if (appInitialized)
@@ -174,31 +177,32 @@ void APP_Tasks ( void )
         }
 
         case APP_STATE_SERVICE_TASKS:
-        {
-            TC0_CH1_TimerStart();
-            
+        {           
             if (!appData.isTestedECDH)
             {
-                printf("\r\n-----------ECDH SECP256 wolfCrypt Wrapper-------------\r\n");
-                SECP256R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                SYSTICK_TimerStart();
 
                 printf("\r\n-----------ECDH SECP256 Hardware Wrapper-------------\r\n");
                 SECP256R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
-                
-                printf("\r\n-----------ECDH SECP384 wolfCrypt Wrapper------------\r\n");
-                SECP384R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+
+                printf("\r\n-----------ECDH SECP256 wolfCrypt Wrapper-------------\r\n");
+                SECP256R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 printf("\r\n-----------ECDH SECP384 Hardware Wrapper-------------\r\n");
                 SECP384R1_Test(CRYPTO_HANDLER_HW_INTERNAL);
-                
+
+                printf("\r\n-----------ECDH SECP384 wolfCrypt Wrapper------------\r\n");
+                SECP384R1_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                                
                 appData.isTestedECDH = true;
 
                 printf("\r\n-----------------------------------\r\n");
                 printf("Tests attempted: %d", testsPassed + testsFailed);
                 printf("\r\nTests successful: %d\r\n", testsPassed);
+                
+                SYSTICK_TimerStop();
             }
             
-            TC0_CH1_TimerStop();
 
             break;
         }

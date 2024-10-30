@@ -77,10 +77,11 @@ void GenerateRng (crypto_HandlerType_E cryptoHandler)
     crypto_Rng_Status_E status;
     uint8_t rngData[DATA_SIZE];  
     
-    memset(rngData, 0, DATA_SIZE);
+    (void) memset(rngData, 0, DATA_SIZE);
     
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
     
     status = Crypto_Rng_Prng_Generate(
             cryptoHandler,
@@ -91,8 +92,8 @@ void GenerateRng (crypto_HandlerType_E cryptoHandler)
             SESSION_ID
     );
     
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_RNG_SUCCESS)
     {
@@ -145,6 +146,8 @@ void APP_Tasks ( void )
         {
             bool appInitialized = true;
 
+            SYSTICK_TimerInitialize();
+            SYSTICK_TimerPeriodSet(INT32_MAX);
 
             if (appInitialized)
             {
@@ -155,25 +158,28 @@ void APP_Tasks ( void )
 
         case APP_STATE_SERVICE_TASKS:
         {
-            TC0_CH1_TimerStart();
             
             if ( !appData.isTestedRng )
             {
-                printf("\r\n-----------RNG wolfCrypt Wrapper-------------\r\n");
-                printf("\r\nPRNG\r\n");
-                GenerateRng(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                
+                SYSTICK_TimerStart();
+
                 printf("\r\n-----------RNG Hardware Wrapper-------------\r\n");
                 printf("\r\nTRNG\r\n");
                 GenerateRng(CRYPTO_HANDLER_HW_INTERNAL);
+
+                printf("\r\n-----------RNG wolfCrypt Wrapper-------------\r\n");
+                printf("\r\nPRNG\r\n");
+                GenerateRng(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                                
                 appData.isTestedRng = true;
 
                 printf("\r\n-----------------------------------\r\n");
                 printf("Tests attempted: %d", testsPassed + testsFailed);
                 printf("\r\nTests successful: %d\r\n", testsPassed);
+                
+                SYSTICK_TimerStop();
             }
 
-            TC0_CH1_TimerStop();
             
             break;
         }

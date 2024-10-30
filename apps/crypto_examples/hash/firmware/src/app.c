@@ -36,7 +36,6 @@
 // *****************************************************************************
 
 #define SESSION_ID    1
-#define TEN_NS_TO_MS  0.00001
 
 uint8_t testsPassed;
 uint8_t testsFailed;
@@ -78,8 +77,9 @@ void SingleStepDigest(HASH *hash)
 
     (void) memset(hash->msgDigest, 0, hash->msgDigestSize);
 
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
     
     if (hash->hashMode == CRYPTO_HASH_MD5)
     {
@@ -103,8 +103,8 @@ void SingleStepDigest(HASH *hash)
         );
     }
 
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
@@ -141,8 +141,9 @@ void MultiStepDigest(HASH *hash)
 
     (void) memset(hash->msgDigest, 0, hash->msgDigestSize);
 
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
     
     if (hash->hashMode == CRYPTO_HASH_MD5)
     {
@@ -190,8 +191,8 @@ void MultiStepDigest(HASH *hash)
         status = Crypto_Hash_Sha_Final(&hash->Hash_Sha_Ctx, hash->msgDigest);
     }
     
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_HASH_SUCCESS)
     {
@@ -258,9 +259,10 @@ void APP_Tasks (void)
             testsFailed = 0;
 
             bool appInitialized = true;
-            
-            TC0_CH1_TimerInitialize();
 
+            SYSTICK_TimerInitialize();
+            SYSTICK_TimerPeriodSet(INT32_MAX);
+            
             if (appInitialized)
             {
                 appData.state = APP_STATE_SERVICE_TASKS;
@@ -276,7 +278,7 @@ void APP_Tasks (void)
                     !appData.isTestedMd5
                 )
             {
-                TC0_CH1_TimerStart();
+                SYSTICK_TimerStart();
                 
                 printf("\r\n-----------MD5 wolfCrypt Wrapper-------------\r\n");
                 MD5_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
@@ -303,7 +305,7 @@ void APP_Tasks (void)
                 printf("Tests attempted: %d", testsPassed + testsFailed);
                 printf("\r\nTests successful: %d\r\n", testsPassed);
                 
-                TC0_CH1_TimerStop();
+                SYSTICK_TimerStop();
             }
 
             break;

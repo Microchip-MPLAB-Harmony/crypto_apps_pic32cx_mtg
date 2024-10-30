@@ -144,6 +144,7 @@ extern "C" {
 #define WOLFSSL_AES_COUNTER
 #define WOLFSSL_AES_CFB
 #define WOLFSSL_AES_OFB
+#define WOLFSSL_DES_ECB
 #define HAVE_AESGCM
 #define WOLFSSL_AES_XTS
 #define HAVE_AESCCM

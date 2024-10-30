@@ -104,17 +104,19 @@ SYSTEM_OBJECTS sysObj;
 // <editor-fold defaultstate="collapsed" desc="SYS_TIME Initialization Data">
 
 static const SYS_TIME_PLIB_INTERFACE sysTimePlibAPI = {
-    .timerCallbackSet = (SYS_TIME_PLIB_CALLBACK_REGISTER)TC0_CH0_TimerCallbackRegister,
-    .timerStart = (SYS_TIME_PLIB_START)TC0_CH0_TimerStart,
-    .timerStop = (SYS_TIME_PLIB_STOP)TC0_CH0_TimerStop ,
-    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)TC0_CH0_TimerFrequencyGet,
-    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)TC0_CH0_TimerPeriodSet,
+    .timerCallbackSet = (SYS_TIME_PLIB_CALLBACK_REGISTER)SYSTICK_TimerCallbackSet,
+    .timerStart = (SYS_TIME_PLIB_START)SYSTICK_TimerStart,
+    .timerStop = (SYS_TIME_PLIB_STOP)SYSTICK_TimerStop,
+    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)SYSTICK_TimerFrequencyGet,
+    .timerInterruptRestore = (SYS_TIME_PLIB_INTERRUPT_RESTORE)SYSTICK_TimerInterruptRestore,
+    .timerInterruptDisable = (SYS_TIME_PLIB_INTERRUPT_DISABLE)SYSTICK_TimerInterruptDisable,
+    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)SYSTICK_TimerPeriodSet,
 };
 
 static const SYS_TIME_INIT sysTimeInitData =
 {
     .timePlib = &sysTimePlibAPI,
-    .hwTimerIntNum = TC0_CH0_IRQn,
+    .hwTimerIntNum = SysTick_IRQn,
 };
 
 // </editor-fold>
@@ -179,13 +181,13 @@ void SYS_Initialize ( void* data )
     /* MISRA C-2012 Rule 2.2 deviated in this file.  Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1 */
     #pragma coverity compliance block deviate "MISRA C-2012 Rule 2.2" "H3_MISRAC_2012_R_2_2_DR_1"
 
+    STDIO_BufferModeSet();
+
+
 
     SEFC0_Initialize();
 
     SEFC1_Initialize();
-    STDIO_BufferModeSet();
-
-
   
     DWDT_Initialize();
     CLK_Initialize();
@@ -197,11 +199,8 @@ void SYS_Initialize ( void* data )
 
 
 
+	SYSTICK_TimerInitialize();
 	BSP_Initialize();
- 
-    TC0_CH0_TimerInitialize(); 
-     
-    
     FLEXCOM0_USART_Initialize();
 
 

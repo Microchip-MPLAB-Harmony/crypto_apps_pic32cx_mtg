@@ -69,6 +69,9 @@ extern "C" {
 //Crypto V4 Common Crypto API - WolfCrypt Library Support
 #define CRYPTO_WOLFCRYPT_SUPPORT_ENABLE
 
+#define DEBUG_WOLFSSL
+#define WOLFSSL_DEBUG_MEMORY
+
 //JK
 #define CRYPTO_DIGISIGN_ALGO_EN
 #define CRYPTO_KAS_ALGO_EN    
@@ -148,6 +151,7 @@ extern "C" {
 #define WOLFSSL_AES_XTS
 #define HAVE_AESCCM
 #define WOLFSSL_CMAC
+#define WOLFSSL_DES_ECB
 #define HAVE_CAMELLIA
 #define HAVE_IDEA
 #define HAVE_HC128

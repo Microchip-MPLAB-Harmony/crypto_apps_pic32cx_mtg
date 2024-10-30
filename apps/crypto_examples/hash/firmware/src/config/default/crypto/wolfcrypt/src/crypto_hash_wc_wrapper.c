@@ -36,6 +36,8 @@
 #include "wolfssl/wolfcrypt/sha.h"
 #include "wolfssl/wolfcrypt/sha256.h"
 #include "wolfssl/wolfcrypt/sha512.h"
+#include "wolfssl/wolfcrypt/sha3.h"
+#include "wolfssl/wolfcrypt/blake2.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
@@ -321,6 +323,18 @@ crypto_Hash_Status_E Crypto_Hash_Wc_ShaInit(void *ptr_shaCtx_st, crypto_Hash_Alg
             case CRYPTO_HASH_SHA2_512_256:
                 wcShaStatus = wc_InitSha512_256((wc_Sha512*)ptr_shaCtx_st);
                 break;
+            case CRYPTO_HASH_SHA3_224:
+                wcShaStatus = wc_InitSha3_224((wc_Sha3*)ptr_shaCtx_st, NULL, INVALID_DEVID);
+            break;
+            case CRYPTO_HASH_SHA3_256:
+                wcShaStatus = wc_InitSha3_256((wc_Sha3*)ptr_shaCtx_st, NULL, INVALID_DEVID);
+            break;
+            case CRYPTO_HASH_SHA3_384:
+                wcShaStatus = wc_InitSha3_384((wc_Sha3*)ptr_shaCtx_st, NULL, INVALID_DEVID);
+            break;
+            case CRYPTO_HASH_SHA3_512:
+                wcShaStatus = wc_InitSha3_512((wc_Sha3*)ptr_shaCtx_st, NULL, INVALID_DEVID);
+            break;
             default:
                 ret_shaStat_en = CRYPTO_HASH_ERROR_ALGO;
                 break;
@@ -378,6 +392,18 @@ crypto_Hash_Status_E Crypto_Hash_Wc_ShaUpdate(void *ptr_shaCtx_st, uint8_t *ptr_
         case CRYPTO_HASH_SHA2_512_256:
             wcShaStatus = wc_Sha512_256Update((wc_Sha512*)ptr_shaCtx_st, (const byte*)ptr_data, (word32)dataLen);
             break;            
+		case CRYPTO_HASH_SHA3_224:
+			wcShaStatus = wc_Sha3_224_Update((wc_Sha3*)ptr_shaCtx_st, (const byte*)ptr_data, (word32)dataLen);
+            break;
+		case CRYPTO_HASH_SHA3_256:
+			wcShaStatus = wc_Sha3_256_Update((wc_Sha3*)ptr_shaCtx_st, (const byte*)ptr_data, (word32)dataLen);
+            break;
+		case CRYPTO_HASH_SHA3_384:
+			wcShaStatus = wc_Sha3_384_Update((wc_Sha3*)ptr_shaCtx_st, (const byte*)ptr_data, (word32)dataLen);
+            break;
+		case CRYPTO_HASH_SHA3_512:
+			wcShaStatus = wc_Sha3_512_Update((wc_Sha3*)ptr_shaCtx_st, (const byte*)ptr_data, (word32)dataLen);
+            break;
         default:
             ret_shaStat_en = CRYPTO_HASH_ERROR_ALGO;
             break;
@@ -427,6 +453,18 @@ crypto_Hash_Status_E Crypto_Hash_Wc_ShaFinal(void *ptr_shaCtx_st, uint8_t *ptr_d
         case CRYPTO_HASH_SHA2_512_256:
             wcShaStatus = wc_Sha512_256Final((wc_Sha512*)ptr_shaCtx_st, (byte*)ptr_digest);
             break;
+		case CRYPTO_HASH_SHA3_224:
+			wcShaStatus = wc_Sha3_224_Final((wc_Sha3*)ptr_shaCtx_st, (byte*)ptr_digest);
+            break;
+		case CRYPTO_HASH_SHA3_256:
+			wcShaStatus = wc_Sha3_256_Final((wc_Sha3*)ptr_shaCtx_st, (byte*)ptr_digest);
+            break;
+		case CRYPTO_HASH_SHA3_384:
+			wcShaStatus = wc_Sha3_384_Final((wc_Sha3*)ptr_shaCtx_st, (byte*)ptr_digest);
+            break;
+		case CRYPTO_HASH_SHA3_512:
+			wcShaStatus = wc_Sha3_512_Final((wc_Sha3*)ptr_shaCtx_st, (byte*)ptr_digest);
+            break;
         default:
             ret_shaStat_en = CRYPTO_HASH_ERROR_ALGO;
             break;
@@ -446,4 +484,375 @@ crypto_Hash_Status_E Crypto_Hash_Wc_ShaFinal(void *ptr_shaCtx_st, uint8_t *ptr_d
     }
     
 	return ret_shaStat_en;  
+}
+
+crypto_Hash_Status_E Crypto_Hash_Wc_ShakeDigest(uint8_t *ptr_data, uint32_t dataLen, uint8_t *ptr_digest, uint32_t digestLen, crypto_Hash_Algo_E hashAlgo_en)
+{
+    crypto_Hash_Status_E ret_shakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+
+    if( (ptr_data != NULL) && (dataLen > 0u) && (ptr_digest != NULL) && (digestLen > 0u) )
+    {
+        wc_Shake ptr_shakeCtx_st[1];
+        switch(hashAlgo_en)
+        {
+            case CRYPTO_HASH_SHA3_SHAKE128:
+                ret_shakeStat_en = Crypto_Hash_Wc_ShakeInit(ptr_shakeCtx_st, CRYPTO_HASH_SHA3_SHAKE128);
+                if(ret_shakeStat_en == CRYPTO_HASH_SUCCESS)
+                {
+                    ret_shakeStat_en = Crypto_Hash_Wc_ShakeUpdate(ptr_shakeCtx_st, ptr_data, dataLen, CRYPTO_HASH_SHA3_SHAKE128);
+                    if(ret_shakeStat_en == CRYPTO_HASH_SUCCESS)
+                    {
+                        ret_shakeStat_en = Crypto_Hash_Wc_ShakeFinal(ptr_shakeCtx_st, ptr_digest, digestLen, CRYPTO_HASH_SHA3_SHAKE128);
+                    }
+                }
+                break;
+            case CRYPTO_HASH_SHA3_SHAKE256:
+                ret_shakeStat_en = Crypto_Hash_Wc_ShakeInit(ptr_shakeCtx_st, CRYPTO_HASH_SHA3_SHAKE256);
+                if(ret_shakeStat_en == CRYPTO_HASH_SUCCESS)
+                {
+                    ret_shakeStat_en = Crypto_Hash_Wc_ShakeUpdate(ptr_shakeCtx_st, ptr_data, dataLen, CRYPTO_HASH_SHA3_SHAKE256);
+                    if(ret_shakeStat_en == CRYPTO_HASH_SUCCESS)
+                    {
+                        ret_shakeStat_en = Crypto_Hash_Wc_ShakeFinal(ptr_shakeCtx_st, ptr_digest, digestLen, CRYPTO_HASH_SHA3_SHAKE256);
+                    }
+                }
+                break;
+            default:
+                ret_shakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+                break; 
+        }
+    }
+    else
+    {
+        ret_shakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }   
+    return ret_shakeStat_en;
+}
+
+crypto_Hash_Status_E Crypto_Hash_Wc_ShakeInit(void *ptr_shakeCtx_st, crypto_Hash_Algo_E hashAlgo_en)
+{
+    crypto_Hash_Status_E ret_shakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;    
+     int wcShakeStatus = BAD_FUNC_ARG;
+    if(ptr_shakeCtx_st != NULL)
+    {
+        switch(hashAlgo_en)
+        {
+            case CRYPTO_HASH_SHA3_SHAKE128:
+                wcShakeStatus = wc_InitShake128((wc_Shake*)ptr_shakeCtx_st, NULL, INVALID_DEVID);
+                break;
+            case CRYPTO_HASH_SHA3_SHAKE256:
+                wcShakeStatus = wc_InitShake256((wc_Shake*)ptr_shakeCtx_st, NULL, INVALID_DEVID);
+                break;
+            default:
+                ret_shakeStat_en = CRYPTO_HASH_ERROR_ALGO;
+                break; 
+        }
+        
+        if(ret_shakeStat_en != CRYPTO_HASH_ERROR_ALGO)
+        {
+            if(wcShakeStatus == 0)
+            {
+                ret_shakeStat_en = CRYPTO_HASH_SUCCESS;
+            }
+            else if (wcShakeStatus == BAD_FUNC_ARG)
+            {
+                ret_shakeStat_en = CRYPTO_HASH_ERROR_ARG;
+            }
+            else
+            {
+                ret_shakeStat_en = CRYPTO_HASH_ERROR_FAIL;
+            }
+        }
+    }
+    else
+    {
+        ret_shakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }   
+    return ret_shakeStat_en;
+}          
+
+crypto_Hash_Status_E Crypto_Hash_Wc_ShakeUpdate(void *ptr_shakeCtx_st, uint8_t *ptr_data, uint32_t dataLen, crypto_Hash_Algo_E hashAlgo_en)
+{
+    crypto_Hash_Status_E ret_shakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+    int wcShakeStatus = BAD_FUNC_ARG;
+    if( (ptr_shakeCtx_st != NULL) && (ptr_data != NULL) && (dataLen > 0u) )
+    {
+        switch(hashAlgo_en)
+        {
+            case CRYPTO_HASH_SHA3_SHAKE128:
+                //wcShakeStatus = wc_Shake128_Update((wc_Shake*)ptr_shakeCtx_st, (const byte*)ptr_data, (word32)dataLen);
+                break;
+            case CRYPTO_HASH_SHA3_SHAKE256:
+                wcShakeStatus = wc_Shake256_Update((wc_Shake*)ptr_shakeCtx_st, (const byte*)ptr_data, (word32)dataLen);
+                break;
+            default:
+                //ret_shakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+                break; 
+        }
+
+        if(wcShakeStatus == 0)
+        {
+            ret_shakeStat_en = CRYPTO_HASH_SUCCESS;
+        }
+        else if (wcShakeStatus == BAD_FUNC_ARG)
+        {
+            ret_shakeStat_en = CRYPTO_HASH_ERROR_ARG;
+        }
+        else
+        {
+            ret_shakeStat_en = CRYPTO_HASH_ERROR_FAIL;
+        }
+    }
+    else
+    {
+        ret_shakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }  
+    return ret_shakeStat_en;
+} 
+
+crypto_Hash_Status_E Crypto_Hash_Wc_ShakeFinal(void *ptr_shakeCtx_st, uint8_t *ptr_digest, uint32_t digestLen, crypto_Hash_Algo_E hashAlgo_en)
+{
+   crypto_Hash_Status_E ret_shakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+    int wcShakeStatus = BAD_FUNC_ARG;	
+    if( (ptr_shakeCtx_st != NULL) && (ptr_digest != NULL) )
+    {
+        switch(hashAlgo_en)
+        {
+            case CRYPTO_HASH_SHA3_SHAKE128:
+                //wcShakeStatus = wc_Shake128_Final((wc_Shake*)ptr_shakeCtx_st, ptr_digest, digestLen);
+                break;
+            case CRYPTO_HASH_SHA3_SHAKE256:
+                wcShakeStatus = wc_Shake256_Final((wc_Shake*)ptr_shakeCtx_st, ptr_digest, digestLen);
+                break;
+            default:
+                ret_shakeStat_en = CRYPTO_HASH_ERROR_ALGO;
+                break; 
+        }
+        
+        if(ret_shakeStat_en != CRYPTO_HASH_ERROR_ALGO)
+        {
+            if(wcShakeStatus == 0)
+            {
+                ret_shakeStat_en = CRYPTO_HASH_SUCCESS;
+            }
+            else if (wcShakeStatus == BAD_FUNC_ARG)
+            {
+                ret_shakeStat_en = CRYPTO_HASH_ERROR_ARG;
+            }
+            else
+            {
+                ret_shakeStat_en = CRYPTO_HASH_ERROR_FAIL;
+            }
+        }
+        else
+        {
+            //do nothing
+        }
+    }
+    else
+    {
+        ret_shakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }  
+    return ret_shakeStat_en;
+} 
+
+crypto_Hash_Status_E Crypto_Hash_Wc_BlakeDigest(uint8_t *ptr_data, uint32_t dataLen, 
+                                                uint8_t *ptr_blakeKey, uint32_t keySize, uint8_t *ptr_digest, uint32_t digestLen, crypto_Hash_Algo_E blakeAlgorithm_en)
+{   
+	crypto_Hash_Status_E ret_blakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;   
+
+	if( (ptr_data != NULL) && (dataLen > 0u) && (ptr_digest != NULL) && (digestLen > 0u) )
+    {
+        if(blakeAlgorithm_en == CRYPTO_HASH_BLAKE2B)
+        {
+            Blake2b arr_blakeCtx_st[1];
+
+            ret_blakeStat_en =  Crypto_Hash_Wc_BlakeInit((void *)arr_blakeCtx_st, CRYPTO_HASH_BLAKE2B, ptr_blakeKey, keySize, digestLen); 
+
+            if(ret_blakeStat_en == CRYPTO_HASH_SUCCESS)
+            {
+                ret_blakeStat_en =  Crypto_Hash_Wc_BlakeUpdate((void *)arr_blakeCtx_st, ptr_data, dataLen, CRYPTO_HASH_BLAKE2B);
+
+                if(ret_blakeStat_en == CRYPTO_HASH_SUCCESS)
+                {
+                  ret_blakeStat_en =  Crypto_Hash_Wc_BlakeFinal((void *)arr_blakeCtx_st, ptr_digest, digestLen, CRYPTO_HASH_BLAKE2B);  
+                }  
+            }
+        }
+        if(blakeAlgorithm_en == CRYPTO_HASH_BLAKE2S)
+        {
+            Blake2s arr_blakeCtx_st[1];
+
+            ret_blakeStat_en =  Crypto_Hash_Wc_BlakeInit((void *)arr_blakeCtx_st, CRYPTO_HASH_BLAKE2S, ptr_blakeKey, keySize, digestLen); 
+
+            if(ret_blakeStat_en == CRYPTO_HASH_SUCCESS)
+            {
+                ret_blakeStat_en =  Crypto_Hash_Wc_BlakeUpdate((void *)arr_blakeCtx_st, ptr_data, dataLen, CRYPTO_HASH_BLAKE2S);
+
+                if(ret_blakeStat_en == CRYPTO_HASH_SUCCESS)
+                {
+                  ret_blakeStat_en =  Crypto_Hash_Wc_BlakeFinal((void *)arr_blakeCtx_st, ptr_digest, digestLen, CRYPTO_HASH_BLAKE2S);  
+                }  
+            }
+        }
+    }
+    else
+    {
+        ret_blakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }   
+    return ret_blakeStat_en;
+}
+
+crypto_Hash_Status_E Crypto_Hash_Wc_BlakeInit(void *ptr_blakeCtx_st, crypto_Hash_Algo_E hashAlgo_en, uint8_t *ptr_blakeKey, uint32_t keySize, uint32_t digestLen)        
+{	   
+	crypto_Hash_Status_E ret_blakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+    int wcBlakeStatus = BAD_FUNC_ARG;
+	if(ptr_blakeCtx_st != NULL)
+    {
+        switch(hashAlgo_en)
+        {
+            case CRYPTO_HASH_BLAKE2B:
+                if( (ptr_blakeKey != NULL) && (keySize != 0u) )
+                {
+                    wcBlakeStatus = wc_InitBlake2b_WithKey((Blake2b*)ptr_blakeCtx_st, digestLen, ptr_blakeKey, keySize);
+                }
+                else
+                {
+                    wcBlakeStatus = wc_InitBlake2b((Blake2b*)ptr_blakeCtx_st, digestLen);
+                }
+                break;
+            case CRYPTO_HASH_BLAKE2S:
+                if( (ptr_blakeKey != NULL) && (keySize != 0u) )
+                {
+                   wcBlakeStatus = wc_InitBlake2s_WithKey((Blake2s*)ptr_blakeCtx_st, digestLen, ptr_blakeKey, keySize); 
+                }
+                else
+                {
+                    wcBlakeStatus = wc_InitBlake2s((Blake2s*)ptr_blakeCtx_st, digestLen); 
+                }
+                break;
+            default:
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_ALGO;
+                break;
+        }
+        
+        if(ret_blakeStat_en != CRYPTO_HASH_ERROR_ALGO)
+        {
+            if(wcBlakeStatus == 0)
+            {
+                 ret_blakeStat_en = CRYPTO_HASH_SUCCESS;
+            }
+            else if (wcBlakeStatus == BAD_FUNC_ARG)
+            {
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_ARG;
+            }
+            else
+            {
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_FAIL;
+            }
+        }
+        else
+        {
+            //do nothing
+        }
+    }
+    else
+    {
+        ret_blakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }   
+    return ret_blakeStat_en;
+}
+
+crypto_Hash_Status_E Crypto_Hash_Wc_BlakeUpdate(void *ptr_blakeCtx_st, uint8_t *ptr_data, uint32_t dataLen, crypto_Hash_Algo_E hashAlgo_en)
+{   
+	crypto_Hash_Status_E ret_blakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+    int wcBlakeStatus = BAD_FUNC_ARG;
+	if(ptr_blakeCtx_st != NULL)
+    {
+        switch(hashAlgo_en)
+        {
+            case CRYPTO_HASH_BLAKE2B:
+                wcBlakeStatus = wc_Blake2bUpdate((Blake2b*)ptr_blakeCtx_st, (const byte*)ptr_data, (word32)dataLen);
+                break;
+            case CRYPTO_HASH_BLAKE2S:
+                
+                wcBlakeStatus = wc_Blake2sUpdate((Blake2s*)ptr_blakeCtx_st, (const byte*)ptr_data, (word32)dataLen);
+                break;
+            default:
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_ALGO;
+                break;
+        }
+        
+        if(ret_blakeStat_en != CRYPTO_HASH_ERROR_ALGO)
+        {
+            if(wcBlakeStatus == 0)
+            {
+                 ret_blakeStat_en = CRYPTO_HASH_SUCCESS;
+            }
+            else if (wcBlakeStatus == BAD_FUNC_ARG)
+            {
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_ARG;
+            }
+            else
+            {
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_FAIL;
+            }
+        }
+        else
+        {
+            //do nothing
+        }
+    }
+    else
+    {
+        ret_blakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }    
+    return ret_blakeStat_en;       
+}
+
+crypto_Hash_Status_E Crypto_Hash_Wc_BlakeFinal(void *ptr_blakeCtx_st, uint8_t *ptr_digest, uint32_t digestLen, crypto_Hash_Algo_E hashAlgo_en)
+{   
+	crypto_Hash_Status_E ret_blakeStat_en = CRYPTO_HASH_ERROR_NOTSUPPTED;
+    int wcBlakeStatus = BAD_FUNC_ARG;
+	if(ptr_blakeCtx_st != NULL)
+    {
+        switch(hashAlgo_en)
+        {
+            case CRYPTO_HASH_BLAKE2B:
+                wcBlakeStatus = wc_Blake2bFinal((Blake2b*)ptr_blakeCtx_st, (byte*)ptr_digest, (word32)digestLen);
+                break;
+            case CRYPTO_HASH_BLAKE2S:
+                
+                wcBlakeStatus = wc_Blake2sFinal((Blake2s*)ptr_blakeCtx_st, (byte*)ptr_digest, (word32)digestLen);
+                break;
+            default:
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_ALGO;
+                break;
+        }
+        
+        if(ret_blakeStat_en != CRYPTO_HASH_ERROR_ALGO)
+        {
+            if(wcBlakeStatus == 0)
+            {
+                 ret_blakeStat_en = CRYPTO_HASH_SUCCESS;
+            }
+            else if (wcBlakeStatus == BAD_FUNC_ARG)
+            {
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_ARG;
+            }
+            else
+            {
+                ret_blakeStat_en = CRYPTO_HASH_ERROR_FAIL;
+            }
+        }
+        else
+        {
+            //do nothing
+        }
+    }
+    else
+    {
+        ret_blakeStat_en = CRYPTO_HASH_ERROR_ARG;
+    }   
+    return ret_blakeStat_en;       
 }

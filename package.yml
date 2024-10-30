@@ -21,4 +21,4 @@ package:
       version: "v3.13.1"
     - name: "crypto_v4"
       type: "package"
-      version: "MH3-98870-CryptoGUI-Redesign"
+      version: "dev"

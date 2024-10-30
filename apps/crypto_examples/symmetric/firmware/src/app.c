@@ -36,7 +36,6 @@
 // *****************************************************************************
 
 #define SESSION_ID    1
-#define TEN_NS_TO_MS  0.00001
 
 uint8_t testsPassed;
 uint8_t testsFailed;
@@ -78,8 +77,9 @@ void MultiStepEncrypt (AES *aes)
     
     (void) memset(aes->symData, 0, aes->symDataSize);
     
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
     
     if (isKeyWrap == true)
     {
@@ -130,8 +130,8 @@ void MultiStepEncrypt (AES *aes)
         );
     }
     
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
     
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -169,8 +169,9 @@ void MultiStepDecrypt (AES *aes)
     
     (void) memset(aes->symData, 0, aes->symDataSize);
 
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
     
     if (isKeyWrap == true)
     {
@@ -222,8 +223,8 @@ void MultiStepDecrypt (AES *aes)
         );
     }
 
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
     
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -261,8 +262,9 @@ void SingleStepEncrypt (AES *aes)
     
     (void) memset(aes->symData, 0, aes->symDataSize);
 
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
     
     if (isKeyWrap == true)
     {
@@ -292,8 +294,8 @@ void SingleStepEncrypt (AES *aes)
         );
     }
 
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -331,8 +333,9 @@ void SingleStepDecrypt (AES *aes)
     
     (void) memset(aes->symData, 0, aes->symDataSize);
     
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH1_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
 
     if (isKeyWrap == true )
     {
@@ -362,8 +365,8 @@ void SingleStepDecrypt (AES *aes)
         );
     }
     
-    endTime = TC0_CH1_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_SYM_CIPHER_SUCCESS)
     {
@@ -429,6 +432,9 @@ void APP_Tasks(void) {
         {
             testsPassed = 0;
             testsFailed = 0;
+            
+            SYSTICK_TimerInitialize();
+            SYSTICK_TimerPeriodSet(INT32_MAX);
 
             bool appInitialized = true;
 
@@ -441,8 +447,6 @@ void APP_Tasks(void) {
 
         case APP_STATE_SERVICE_TASKS:
         {
-            TC0_CH1_TimerStart();
-            
             if (
                     !appData.isTestedAes       &&
                     !appData.isTestedCamellia  &&
@@ -451,23 +455,25 @@ void APP_Tasks(void) {
                     !appData.isTestedKeyWrap
                 )
             {
-                printf("\r\n-----------AES-ECB wolfCrypt Wrapper-------------\r\n");
-                AES_ECB_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                SYSTICK_TimerStart();
                 
                 printf("\r\n-----------AES-ECB Hardware Wrapper-------------\r\n");
                 AES_ECB_Test(CRYPTO_HANDLER_HW_INTERNAL);
-
-                printf("\r\n-----------AES-CBC wolfCrypt Wrapper-------------\r\n");
-                AES_CBC_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                
+                printf("\r\n-----------AES-ECB wolfCrypt Wrapper-------------\r\n");
+                AES_ECB_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 printf("\r\n-----------AES-CBC Hardware Wrapper-------------\r\n");
                 AES_CBC_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
-                printf("\r\n-----------AES-CTR wolfCrypt Wrapper-------------\r\n");
-                AES_CTR_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
-                
+                printf("\r\n-----------AES-CBC wolfCrypt Wrapper-------------\r\n");
+                AES_CBC_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                                
                 printf("\r\n-----------AES-CTR Hardware Wrapper-------------\r\n");
                 AES_CTR_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                
+                printf("\r\n-----------AES-CTR wolfCrypt Wrapper-------------\r\n");
+                AES_CTR_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedAes      = true;
                 
@@ -484,10 +490,10 @@ void APP_Tasks(void) {
                 printf("\r\n-----------------------------------\r\n");
                 printf("Tests attempted: %d", testsPassed + testsFailed);
                 printf("\r\nTests successful: %d\r\n", testsPassed);
+                
+                SYSTICK_TimerStop();
             }
-
-            TC0_CH1_TimerStop();
-            
+           
             break;
         }
         default:

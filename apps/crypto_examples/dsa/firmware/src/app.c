@@ -79,8 +79,9 @@ void ECDSA_Sign_Test(ECDSA *ecdsa)
     
     (void) memset(ecdsa->sig, 0, ecdsa->sigSize);
 
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH0_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
 
     status = Crypto_DigiSign_Ecdsa_Sign(
         ecdsa->handler,
@@ -94,8 +95,8 @@ void ECDSA_Sign_Test(ECDSA *ecdsa)
         SESSION_ID
     );
     
-    endTime = TC0_CH0_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
     {
@@ -122,8 +123,9 @@ void ECDSA_Verify_Test(ECDSA *ecdsa)
 {
     crypto_DigiSign_Status_E status;
     
+    SYSTICK_TimerRestart();
     uint32_t startTime = 0, endTime = 0;
-    startTime = TC0_CH0_TimerCounterGet(); 
+    startTime = SYSTICK_TimerCounterGet(); 
     
     status = Crypto_DigiSign_Ecdsa_Verify(
         ecdsa->handler,
@@ -138,8 +140,8 @@ void ECDSA_Verify_Test(ECDSA *ecdsa)
         SESSION_ID
     );
     
-    endTime = TC0_CH0_TimerCounterGet();
-    printf("Time elapsed (ms): %lf\r\n", (endTime - startTime)*TEN_NS_TO_MS);
+    endTime = SYSTICK_TimerCounterGet();
+    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
     {
@@ -201,6 +203,9 @@ void APP_Tasks ( void )
             testsPassed = 0;
             testsFailed = 0;
 
+            SYSTICK_TimerInitialize();
+            SYSTICK_TimerPeriodSet(INT32_MAX);
+
             bool appInitialized = true;
 
             if (appInitialized)
@@ -212,26 +217,26 @@ void APP_Tasks ( void )
         }
 
         case APP_STATE_SERVICE_TASKS:
-        {
-            TC0_CH0_TimerStart();
-                
+        {               
             if (!appData.isTestedECDSA)
             {
-                printf("\r\n-----------ECDSA wolfCrypt Wrapper-------------\r\n");
-                ECDSA_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
+                SYSTICK_TimerStart(); 
 
                 printf("\r\n-----------ECDSA Hardware Wrapper-------------\r\n");
                 ECDSA_Test(CRYPTO_HANDLER_HW_INTERNAL);
+                
+                printf("\r\n-----------ECDSA wolfCrypt Wrapper-------------\r\n");
+                ECDSA_Test(CRYPTO_HANDLER_SW_WOLFCRYPT);
                 
                 appData.isTestedECDSA = true;
 
                 printf("\r\n-----------------------------------\r\n");
                 printf("Tests attempted: %d", testsPassed + testsFailed);
                 printf("\r\nTests successful: %d\r\n", testsPassed);
-            }
 
-            TC0_CH0_TimerStop();
-            
+                SYSTICK_TimerStop();
+            }
+           
             break;
         }
 

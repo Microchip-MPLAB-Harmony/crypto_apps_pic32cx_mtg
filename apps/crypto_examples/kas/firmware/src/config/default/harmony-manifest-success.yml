@@ -4,7 +4,7 @@
 
 
 project: kas
-creation_date: 2024-10-28T14:57:44.975-07:00[America/Phoenix]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2024-10-30T13:11:17.064-07:00[America/Phoenix]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.5.1
@@ -17,7 +17,7 @@ modules:
     - {name: "csp", version: "v3.19.6"}
     - {name: "core", version: "v3.13.5"}
     - {name: "CMSIS_5", version: "5.8.0"}
-    - {name: "crypto_v4", version: "MH3-98870-CryptoGUI-Redesign"}
+    - {name: "crypto_v4", version: "MH3-105104-fix-wolfcrypt-rng-memory-leak"}
     - {name: "wolfssl", version: "v5.7.0-stable"}
     - {name: "bsp", version: "v3.20.1"}
 
