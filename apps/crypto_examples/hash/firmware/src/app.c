@@ -113,7 +113,7 @@ void SingleStepDigest(HASH *hash)
     }
     else
     {
-        bool outputMatch = CompareHexArray(hash->msgDigest, hash->expectedMsg, hash->msgSize);
+        bool outputMatch = CompareHexArray(hash->msgDigest, hash->expectedMsg, hash->msgDigestSize);
 
         if (outputMatch) {
             testsPassed++;
@@ -201,7 +201,7 @@ void MultiStepDigest(HASH *hash)
     }
     else
     {
-        bool outputMatch = CompareHexArray(hash->msgDigest, hash->expectedMsg, hash->msgSize);
+        bool outputMatch = CompareHexArray(hash->msgDigest, hash->expectedMsg, hash->msgDigestSize);
 
         if (outputMatch) {
             testsPassed++;
