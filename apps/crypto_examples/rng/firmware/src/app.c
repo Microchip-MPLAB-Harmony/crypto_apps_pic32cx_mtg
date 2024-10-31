@@ -37,7 +37,6 @@
 
 #define DATA_SIZE     32
 #define SESSION_ID    1
-#define TEN_NS_TO_MS  0.00001
 
 uint8_t testsPassed;
 uint8_t testsFailed;
@@ -94,7 +93,7 @@ void GenerateRng (crypto_HandlerType_E cryptoHandler)
     
     endTime = SYSTICK_TimerCounterGet();
     printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
-
+    
     if (status != CRYPTO_RNG_SUCCESS)
     {
         testsFailed++;
@@ -157,8 +156,7 @@ void APP_Tasks ( void )
         }
 
         case APP_STATE_SERVICE_TASKS:
-        {
-            
+        {            
             if ( !appData.isTestedRng )
             {
                 SYSTICK_TimerStart();
@@ -179,7 +177,6 @@ void APP_Tasks ( void )
                 
                 SYSTICK_TimerStop();
             }
-
             
             break;
         }

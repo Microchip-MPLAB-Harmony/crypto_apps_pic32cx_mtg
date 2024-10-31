@@ -7835,11 +7835,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_common_wc_wrapper.c</file>
-         <hash>64e95fa65b44560e30881c523bf43e74f8f7a403e371afbf3549185a69527913</hash>
+         <hash>c5fe661c9ae709d5d069faab8588be972b6296b925010f28e0fa2b4a2bb98c73</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_rng_wc_wrapper.c</file>
-         <hash>f30e8b9cfab744210597e6bf9d0512996450afac1076ac0a4e25d5e4023096ee</hash>
+         <hash>044e1cab95f64849ee9532517122932c88ea9163a4ce23eb7ed4b493f24c7961</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\user_settings.h</file>
@@ -7847,11 +7847,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\wolfcrypt_config.h</file>
-         <hash>20c580e340575fa29a8e40ef401ac3b16653c7f0bb4e5e42e8a42191f30b7d22</hash>
+         <hash>ee0712706d1d9203a21334680e076155fc8f2ad8a8c0ee07231295670f972e71</hash>
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>ceaeb39d307cf8d907c21157a81cda876e0e812ee4bf4b315198a4483d5639ff</hash>
+         <hash>c4d4ca74c13507d0a7c2bf853c5f220543ca86f2f73f3ea865d0a9f4713a7464</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>

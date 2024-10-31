@@ -32,40 +32,13 @@
 #include "wolfssl/wolfcrypt/random.h"
 #include "wolfssl/wolfcrypt/error-crypt.h"
 
-void crypto_rng_deinitialize(WC_RNG* rng)
-{
-    WC_RNG* myRng = (WC_RNG*)(rng);
-    
-    //doing what wc_rng_free does
-    void* heap = myRng->heap;
-
-    wc_FreeRng(myRng);
-    
-    int len = sizeof(WC_RNG);
-    volatile byte* z = (volatile byte*)myRng;
-    while (len--) *z++ = 0;
-
-    //doing what XFREE does
-    void* xp = (void*)(myRng);
-    if(xp) 
-    {
-        free(xp);
-    }
-    (void)heap;
-}
-
 crypto_Rng_Status_E Crypto_Rng_Wc_Prng_GenerateBlock(uint8_t* ptr_rngData, uint32_t rngLen, uint8_t* ptr_nonce, uint32_t nonceLen)
 {
     crypto_Rng_Status_E ret_rngStat_en = CRYPTO_RNG_ERROR_FAIL;
     int wcStat = -1, wcFreeStat = -1;
     WC_RNG rng_st;
     
-    wcStat = wc_InitRng(&rng_st);
-    
-    if (wcStat == 0)
-    {
-        wcStat = wc_InitRngNonce(&rng_st, ptr_nonce, nonceLen);
-    }
+    wcStat = wc_InitRngNonce(&rng_st, ptr_nonce, nonceLen);
     
     if (wcStat == 0)
     {
