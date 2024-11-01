@@ -69,9 +69,6 @@ extern "C" {
 //Crypto V4 Common Crypto API - WolfCrypt Library Support
 #define CRYPTO_WOLFCRYPT_SUPPORT_ENABLE
 
-#define DEBUG_WOLFSSL
-#define WOLFSSL_DEBUG_MEMORY
-
 //JK
 #define CRYPTO_DIGISIGN_ALGO_EN
 #define CRYPTO_KAS_ALGO_EN    

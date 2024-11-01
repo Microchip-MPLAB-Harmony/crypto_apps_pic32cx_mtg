@@ -3361,7 +3361,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;334&quot; canvasWidth=&quot;777&quot; dnOrder=&quot;0&quot;/&gt;
+    &lt;GraphSettings canvasHeight=&quot;353&quot; canvasWidth=&quot;772&quot; dnOrder=&quot;0&quot;/&gt;
     &lt;PowerProfiles dnOrder=&quot;1&quot;&gt;
       &lt;Profile dnOrder=&quot;0&quot; id=&quot;profile0&quot; name=&quot;Main&quot;/&gt;
     &lt;/PowerProfiles&gt;
@@ -8185,9 +8185,6 @@
       &lt;Boolean dnOrder=&quot;0&quot; id=&quot;readOnly&quot;&gt;
         &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
       &lt;/Boolean&gt;
-      &lt;Boolean dnOrder=&quot;1&quot; id=&quot;visible&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
-      &lt;/Boolean&gt;
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sys_time&quot; value=&quot;TICK BASED&quot;/&gt;
@@ -8200,7 +8197,12 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_time" name="SYS_TIME_PLIB"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_time&gt;
   &lt;sys_time dnOrder=&quot;0&quot; id=&quot;SYS_TIME_PLIB&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
+    &lt;Values dnOrder=&quot;1&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sys_time&quot; value=&quot;core&quot;/&gt;
     &lt;/Values&gt;
   &lt;/sys_time&gt;
@@ -8274,7 +8276,14 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_time" name="SYS_TIME_TICK_RATE_MS"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_time&gt;
   &lt;sys_time dnOrder=&quot;0&quot; id=&quot;SYS_TIME_TICK_RATE_MS&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;visible&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
+    &lt;Values dnOrder=&quot;1&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;1.0&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/sys_time&gt;
 &lt;/sys_time&gt;
 </value>
@@ -8539,7 +8548,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_common_wc_wrapper.c</file>
-         <hash>5a67783cb7dfcd5c79cb3946d7e43287933d937538a64c13bfef41c4e27a2391</hash>
+         <hash>0359b550f4373594db8ad92857e24d0957ccd2bee7bc4ce503a7f1913e16765f</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_digisign_wc_wrapper.c</file>
@@ -8555,11 +8564,11 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\wolfcrypt_config.h</file>
-         <hash>20c580e340575fa29a8e40ef401ac3b16653c7f0bb4e5e42e8a42191f30b7d22</hash>
+         <hash>ee0712706d1d9203a21334680e076155fc8f2ad8a8c0ee07231295670f972e71</hash>
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>2dd259df73dfc71005c0da5ac9bfd417fe7f3c4dd7301fd0e285632f86f13f93</hash>
+         <hash>490967bb4838c150d5cc74156c6d34b9ccb533f41668f61ee9bfa85644f87c4d</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>

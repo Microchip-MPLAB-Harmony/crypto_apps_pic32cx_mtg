@@ -58,28 +58,17 @@ int Crypto_Common_Wc_Ecc_GetWcCurveId(crypto_EccCurveType_E curveType_en)
 
 __attribute__((weak)) int Crypto_Rng_Wc_Prng_EntropySource(void)
 {
-    /* MISRA C-2012 deviation block start */
-    /* MISRA C-2012 Rule 21.10 deviated: 1. Deviation record ID - H3_MISRAC_2012_R_21_10_DR_1 */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunknown-pragmas"
-#pragma coverity compliance block deviate "MISRA C-2012 Rule 21.10" "H3_MISRAC_2012_R_21_10_DR_1"
-  return (int) time(NULL);
-#pragma coverity compliance end_block "MISRA C-2012 Rule 21.10"
-#pragma GCC diagnostic pop
-    /* MISRA C-2012 deviation block end */
+  return (int) rand();
 }
 
 __attribute__((weak)) int Crypto_Rng_Wc_Prng_Srand(uint8_t* output, unsigned int sz)
-{
-    // Seed the random number generator
-    srand((unsigned int)Crypto_Rng_Wc_Prng_EntropySource());
-    
+{   
     unsigned int i;
     for (i = 0; i < sz; i++)
     {
-        int randVal = rand() % 256;
+        int randVal = Crypto_Rng_Wc_Prng_EntropySource() % 256;
         output[i] = (uint8_t)randVal;
     }
     
     return 0;
-}
+} 

@@ -36,11 +36,8 @@
 // *****************************************************************************
 
 #define SESSION_ID    1
-#define TEN_NS_TO_MS  0.00001
 
-uint8_t testsPassed;
-uint8_t testsFailed;
-
+uint64_t diffCount;
 
 // *****************************************************************************
 /* Application Data
@@ -79,10 +76,8 @@ void ECDSA_Sign_Test(ECDSA *ecdsa)
     
     (void) memset(ecdsa->sig, 0, ecdsa->sigSize);
 
-    SYSTICK_TimerRestart();
-    uint32_t startTime = 0, endTime = 0;
-    startTime = SYSTICK_TimerCounterGet(); 
-
+    appData.prevCounterVal = SYS_TIME_Counter64Get();
+    
     status = Crypto_DigiSign_Ecdsa_Sign(
         ecdsa->handler,
         ecdsa->inputHash,
@@ -95,19 +90,19 @@ void ECDSA_Sign_Test(ECDSA *ecdsa)
         SESSION_ID
     );
     
-    endTime = SYSTICK_TimerCounterGet();
-    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
+    diffCount = (SYS_TIME_Counter64Get() - appData.prevCounterVal);
+    printf("Time elapsed (ms): %d\r\n", (int)SYS_TIME_CountToMS(diffCount));
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
     {
         printf("Failed to create message signature\r\n");
         printf("Status: %d\r\n", status);
-        testsFailed++;
+        appData.testsFailed++;
     }
     else
     {
         printf("Test successful\r\n");
-        testsPassed++;
+        appData.testsPassed++;
     }
 }
 
@@ -123,9 +118,7 @@ void ECDSA_Verify_Test(ECDSA *ecdsa)
 {
     crypto_DigiSign_Status_E status;
     
-    SYSTICK_TimerRestart();
-    uint32_t startTime = 0, endTime = 0;
-    startTime = SYSTICK_TimerCounterGet(); 
+    appData.prevCounterVal = SYS_TIME_Counter64Get();
     
     status = Crypto_DigiSign_Ecdsa_Verify(
         ecdsa->handler,
@@ -140,24 +133,24 @@ void ECDSA_Verify_Test(ECDSA *ecdsa)
         SESSION_ID
     );
     
-    endTime = SYSTICK_TimerCounterGet();
-    printf("Time elapsed (ms): %f\r\n", (double)(startTime - endTime)/(SYSTICK_FREQ/1000U));
+    diffCount = (SYS_TIME_Counter64Get() - appData.prevCounterVal);
+    printf("Time elapsed (ms): %d\r\n", (int)SYS_TIME_CountToMS(diffCount));
 
     if (status != CRYPTO_DIGISIGN_SUCCESS)
     {
         printf("Failed to verify signature\r\n");
         printf("Status: %d\r\n", status);
-        testsFailed++;
+        appData.testsFailed++;
     }
 
     if (ecdsa->hashVerifyStat)
     {
-        testsPassed++;
+        appData.testsPassed++;
         printf("Test successful\r\n");
     }
     else
     {
-        testsFailed++;
+        appData.testsFailed++;
         printf("Test unsuccessful\r\n");
     }
 }
@@ -180,6 +173,12 @@ void APP_Initialize ( void )
 {
     /* Place the App state machine in its initial state. */
     appData.state = APP_STATE_INIT;
+    
+    appData.speedTest = SYS_TIME_HANDLE_INVALID;
+
+    appData.testsPassed = 0; 
+    appData.testsFailed = 0;
+
     appData.isTestedECDSA = false;
 }
 
@@ -193,19 +192,12 @@ void APP_Initialize ( void )
 
 void APP_Tasks ( void )
 {
-
     /* Check the application's current state. */
     switch ( appData.state )
     {
         /* Application's initial state. */
         case APP_STATE_INIT:
         {
-            testsPassed = 0;
-            testsFailed = 0;
-
-            SYSTICK_TimerInitialize();
-            SYSTICK_TimerPeriodSet(INT32_MAX);
-
             bool appInitialized = true;
 
             if (appInitialized)
@@ -220,8 +212,6 @@ void APP_Tasks ( void )
         {               
             if (!appData.isTestedECDSA)
             {
-                SYSTICK_TimerStart(); 
-
                 printf("\r\n-----------ECDSA Hardware Wrapper-------------\r\n");
                 ECDSA_Test(CRYPTO_HANDLER_HW_INTERNAL);
                 
@@ -231,10 +221,8 @@ void APP_Tasks ( void )
                 appData.isTestedECDSA = true;
 
                 printf("\r\n-----------------------------------\r\n");
-                printf("Tests attempted: %d", testsPassed + testsFailed);
-                printf("\r\nTests successful: %d\r\n", testsPassed);
-
-                SYSTICK_TimerStop();
+                printf("Tests attempted: %d", appData.testsPassed + appData.testsFailed);
+                printf("\r\nTests successful: %d\r\n", appData.testsPassed);
             }
            
             break;
