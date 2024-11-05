@@ -240,7 +240,7 @@ void SHA2_Test (crypto_HandlerType_E cryptoHandler)
 
     HASH SHA2_384 = {
         .Hash_Sha_Ctx    = Hash_Sha_Ctx,
-        .handler         = CRYPTO_HANDLER_HW_INTERNAL,
+        .handler         = cryptoHandler,
         .hashMode        = CRYPTO_HASH_SHA2_384,
         .msg             = msgSha2_384,
         .msgSize         = sizeof(msgSha2_384),
