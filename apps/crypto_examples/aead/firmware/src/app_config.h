@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    app_config
+    app_config.h
 
   Summary:
     Provides test vectors and functions for cryptographic tests.
