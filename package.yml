@@ -21,4 +21,4 @@ package:
       version: "v3.13.1"
     - name: "crypto_v4"
       type: "package"
-      version: "MH3-105104-fix-wolfcrypt-rng-memory-leak"
+      version: "MH3-105590-bug-fixes-and-misra-cleaning"
