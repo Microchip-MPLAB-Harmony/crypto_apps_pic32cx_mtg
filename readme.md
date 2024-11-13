@@ -16,3 +16,6 @@ Release notes and more information can be found in the link below.
 
 - [MPLAB® Harmony 3 crypto_apps_pic32cx_mtg example documentation](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-2/index.html)
 
+Link to download online documentation:
+https://onlinedocs.microchip.com/download/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879?type=webhelp
+
