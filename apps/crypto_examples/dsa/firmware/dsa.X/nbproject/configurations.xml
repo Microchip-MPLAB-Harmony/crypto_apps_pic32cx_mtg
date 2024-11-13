@@ -60,9 +60,11 @@
               <logicalFolder name="driver" displayName="driver" projectFiles="true">
                 <itemPath>../src/config/default/crypto/drivers/driver/drv_crypto_ecc_hw_cpkcl.h</itemPath>
                 <itemPath>../src/config/default/crypto/drivers/driver/drv_crypto_ecdsa_hw_cpkcl.h</itemPath>
+                <itemPath>../src/config/default/crypto/drivers/driver/drv_crypto_sha_hw_6156.h</itemPath>
               </logicalFolder>
               <logicalFolder name="wrapper" displayName="wrapper" projectFiles="true">
                 <itemPath>../src/config/default/crypto/drivers/wrapper/crypto_digisign_cpkcc44163_wrapper.h</itemPath>
+                <itemPath>../src/config/default/crypto/drivers/wrapper/crypto_hash_sha6156_wrapper.h</itemPath>
               </logicalFolder>
             </logicalFolder>
             <logicalFolder name="wolfcrypt" displayName="wolfcrypt" projectFiles="true">
@@ -404,9 +406,11 @@
               <logicalFolder name="driver" displayName="driver" projectFiles="true">
                 <itemPath>../src/config/default/crypto/drivers/driver/src/drv_crypto_ecc_hw_cpkcl.c</itemPath>
                 <itemPath>../src/config/default/crypto/drivers/driver/src/drv_crypto_ecdsa_hw_cpkcl.c</itemPath>
+                <itemPath>../src/config/default/crypto/drivers/driver/src/drv_crypto_sha_hw_6156.c</itemPath>
               </logicalFolder>
               <logicalFolder name="wrapper" displayName="wrapper" projectFiles="true">
                 <itemPath>../src/config/default/crypto/drivers/wrapper/src/crypto_digisign_cpkcc44163_wrapper.c</itemPath>
+                <itemPath>../src/config/default/crypto/drivers/wrapper/src/crypto_hash_sha6156_wrapper.c</itemPath>
               </logicalFolder>
             </logicalFolder>
             <logicalFolder name="wolfcrypt" displayName="wolfcrypt" projectFiles="true">

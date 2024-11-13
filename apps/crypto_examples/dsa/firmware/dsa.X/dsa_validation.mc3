@@ -5893,7 +5893,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="CRYPTO_HW_SHA2_256"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
   &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;CRYPTO_HW_SHA2_256&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/lib_crypto&gt;
 &lt;/lib_crypto&gt;
 </value>
@@ -7059,12 +7061,38 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="crypto_hash_sha6156_wrapper_c_ftl"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
+  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;crypto_hash_sha6156_wrapper_c_ftl&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
+  &lt;/lib_crypto&gt;
+&lt;/lib_crypto&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="crypto_hash_sha6156_wrapper_c_ftl_flag"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
   &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;crypto_hash_sha6156_wrapper_c_ftl_flag&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/lib_crypto&gt;
+&lt;/lib_crypto&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="crypto_hash_sha6156_wrapper_h_ftl"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
+  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;crypto_hash_sha6156_wrapper_h_ftl&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
   &lt;/lib_crypto&gt;
 &lt;/lib_crypto&gt;
 </value>
@@ -7074,7 +7102,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
   &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;crypto_hash_sha6156_wrapper_h_ftl_flag&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/lib_crypto&gt;
 &lt;/lib_crypto&gt;
@@ -7384,12 +7412,38 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="drv_crypto_sha_hw_6156_c_ftl"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
+  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;drv_crypto_sha_hw_6156_c_ftl&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
+  &lt;/lib_crypto&gt;
+&lt;/lib_crypto&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="drv_crypto_sha_hw_6156_c_ftl_flag"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
   &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;drv_crypto_sha_hw_6156_c_ftl_flag&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/lib_crypto&gt;
+&lt;/lib_crypto&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_crypto" name="drv_crypto_sha_hw_6156_h_ftl"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
+  &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;drv_crypto_sha_hw_6156_h_ftl&quot;&gt;
+    &lt;Attributes dnOrder=&quot;0&quot;&gt;
+      &lt;Boolean dnOrder=&quot;0&quot; id=&quot;enabled&quot;&gt;
+        &lt;Value dnOrder=&quot;0&quot;&gt;true&lt;/Value&gt;
+      &lt;/Boolean&gt;
+    &lt;/Attributes&gt;
   &lt;/lib_crypto&gt;
 &lt;/lib_crypto&gt;
 </value>
@@ -7399,7 +7453,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_crypto&gt;
   &lt;lib_crypto dnOrder=&quot;0&quot; id=&quot;drv_crypto_sha_hw_6156_h_ftl_flag&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;lib_crypto&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/lib_crypto&gt;
 &lt;/lib_crypto&gt;
@@ -7691,7 +7745,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="lib_wolfcrypt" name="CRYPTO_WC_SHA2_256"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;lib_wolfcrypt&gt;
   &lt;lib_wolfcrypt dnOrder=&quot;0&quot; id=&quot;CRYPTO_WC_SHA2_256&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/lib_wolfcrypt&gt;
 &lt;/lib_wolfcrypt&gt;
 </value>
@@ -8344,7 +8400,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\common_crypto\crypto_hash.h</file>
-         <hash>b224cd778b53681f82eac9f1af03a01879b8a57909a0fd58eacf3e119938cf6b</hash>
+         <hash>a6b070c2699dd914392ebf32372fd3c15726818ed2817e9bad7774ed17a4e82e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\common_crypto\src\crypto_digsign.c</file>
@@ -8352,7 +8408,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\common_crypto\src\crypto_hash.c</file>
-         <hash>95f32041060090d0e7a0e44169066587f77f58b225d82757d3ae3583dd778637</hash>
+         <hash>85a3eb6088cf91abd903b7803f6e79b7ef876a792eb62bc04f2c8031924c2f54</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\crypto_config.h</file>
@@ -8515,6 +8571,10 @@
          <hash>12b7fb094a61acb450e7bba4ce8e51598edd6489831f71d18884ea3c028fb2b5</hash>
       </entry>
       <entry>
+         <file>..\src\config\default\crypto\drivers\driver\drv_crypto_sha_hw_6156.h</file>
+         <hash>383f6a97c3dc887eab23d864871891178970acf201438798d0f21d82fe947fa6</hash>
+      </entry>
+      <entry>
          <file>..\src\config\default\crypto\drivers\driver\src\drv_crypto_ecc_hw_cpkcl.c</file>
          <hash>e84d5d60ec108dd4a886213b178bdbce8d84928eb6e81fa13268a4fd60e805b7</hash>
       </entry>
@@ -8523,12 +8583,24 @@
          <hash>cea8e9af55f198efd50d88f673f5f52f52e886834ec27a6bfea7eac9313f33e5</hash>
       </entry>
       <entry>
+         <file>..\src\config\default\crypto\drivers\driver\src\drv_crypto_sha_hw_6156.c</file>
+         <hash>ef15ed7715f52c75ad24af3f082cdaacd585c5ba4886df34e62e30c53b17f940</hash>
+      </entry>
+      <entry>
          <file>..\src\config\default\crypto\drivers\wrapper\crypto_digisign_cpkcc44163_wrapper.h</file>
          <hash>a03c14dc0044398d980fca18cf739ad979f0a86876369f28ae187f05f16f119d</hash>
       </entry>
       <entry>
+         <file>..\src\config\default\crypto\drivers\wrapper\crypto_hash_sha6156_wrapper.h</file>
+         <hash>2ae24ffc8b187e047efe3dfb4b90c06f4c532a241f35884cc2b4ae77d7c80e62</hash>
+      </entry>
+      <entry>
          <file>..\src\config\default\crypto\drivers\wrapper\src\crypto_digisign_cpkcc44163_wrapper.c</file>
          <hash>56d003c8fbc26a5e7343142267e98e7ccf4d6d19236d76807c5a603992e1ce17</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\default\crypto\drivers\wrapper\src\crypto_hash_sha6156_wrapper.c</file>
+         <hash>ab539e31d4350768b40a1c971347a332abe8da0900aa7717e7147856c35fc9be</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\config.h</file>
@@ -8544,7 +8616,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\crypto_hash_wc_wrapper.h</file>
-         <hash>c02faba4dced8210c2110fb2281fb7ee3de2475117de92eda74c9c81e1528828</hash>
+         <hash>3d9e9e39e8e2aa878b7f9c9e62793c1997577288a6eb0efea2f03c13c6ad1a1e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_common_wc_wrapper.c</file>
@@ -8556,7 +8628,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\src\crypto_hash_wc_wrapper.c</file>
-         <hash>3211d6426dcc768cd0000c34fb75785646f26e6d734bb2cb6fcc63b6934e8c22</hash>
+         <hash>a0a2c5b800f1f44dba6728c4edb337a53480524f53164a6b3da2266547e741a9</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\wolfcrypt\user_settings.h</file>
@@ -8568,7 +8640,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>490967bb4838c150d5cc74156c6d34b9ccb533f41668f61ee9bfa85644f87c4d</hash>
+         <hash>f9960fa2d3ab0e3b59c741fa416109801867f27f43fece3273abef5f7f3015b7</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>

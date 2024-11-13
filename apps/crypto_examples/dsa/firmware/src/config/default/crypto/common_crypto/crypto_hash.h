@@ -36,6 +36,7 @@
 
 typedef enum {
     CRYPTO_HASH_INVALID = 0,
+    CRYPTO_HASH_SHA2_256 = 3,
     CRYPTO_HASH_MAX
 }crypto_Hash_Algo_E;
 
@@ -52,7 +53,21 @@ typedef enum {
     CRYPTO_HASH_ERROR_FAIL = -118,
     CRYPTO_HASH_SUCCESS = 0
 }crypto_Hash_Status_E;
+
+//SHA-1, SHA-2, SHA-3(Except SHAKE)
+typedef struct{
+    uint32_t shaSessionId;
+    crypto_Hash_Algo_E shaAlgo_en;
+    crypto_HandlerType_E shaHandler_en;
+    uint8_t arr_shaDataCtx[CRYPTO_HASH_SHA512CTX_SIZE] __attribute__((aligned (4)));
+}st_Crypto_Hash_Sha_Ctx;
 // *****************************************************************************
+
+//SHA-1, SHA-2, SHA-3(Except SHAKE)
+crypto_Hash_Status_E Crypto_Hash_Sha_Digest(crypto_HandlerType_E shaHandler_en, uint8_t *ptr_data, uint32_t dataLen, uint8_t *ptr_digest, crypto_Hash_Algo_E shaAlgorithm_en, uint32_t shaSessionId);
+crypto_Hash_Status_E Crypto_Hash_Sha_Init(st_Crypto_Hash_Sha_Ctx *ptr_shaCtx_st, crypto_Hash_Algo_E shaAlgorithm_en, crypto_HandlerType_E shaHandler_en, uint32_t shaSessionId);
+crypto_Hash_Status_E Crypto_Hash_Sha_Update(st_Crypto_Hash_Sha_Ctx *ptr_shaCtx_st, uint8_t *ptr_data, uint32_t dataLen);
+crypto_Hash_Status_E Crypto_Hash_Sha_Final(st_Crypto_Hash_Sha_Ctx *ptr_shaCtx_st, uint8_t *ptr_digest);
 
 uint32_t Crypto_Hash_GetHashAndHashSize(crypto_HandlerType_E shaHandler_en, crypto_Hash_Algo_E hashType_en, uint8_t *ptr_wcInputData, uint32_t wcDataLen, uint8_t *ptr_outHash);
 #endif //CRYPTO_HASH_H

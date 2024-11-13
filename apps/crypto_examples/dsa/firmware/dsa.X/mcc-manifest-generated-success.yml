@@ -2,7 +2,7 @@
 
 manifest_file_version: 1.0.0
 project: dsa
-creation_date: 2024-11-01T12:42:31.018-07:00[America/Phoenix]
+creation_date: 2024-11-13T10:06:07.794-07:00[America/Phoenix]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
@@ -21,6 +21,6 @@ modules:
 - {name: csp, type: HARMONY, version: Branch_v3.20.0-E1}
 - {name: core, type: HARMONY, version: Branch_v3.14.0-E1}
 - {name: CMSIS_5, type: HARMONY, version: 5.8.0}
-- {name: crypto_v4, type: HARMONY, version: MH3-105104-fix-wolfcrypt-rng-memory-leak}
+- {name: crypto_v4, type: HARMONY, version: MH3-105590-bug-fixes-and-misra-cleaning}
 - {name: wolfssl, type: HARMONY, version: v5.7.0-stable}
 - {name: bsp, type: HARMONY, version: Branch_v3.21.0-E1}

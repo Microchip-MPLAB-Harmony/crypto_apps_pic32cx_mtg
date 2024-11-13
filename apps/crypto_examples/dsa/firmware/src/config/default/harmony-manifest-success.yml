@@ -4,7 +4,7 @@
 
 
 project: dsa
-creation_date: 2024-11-01T12:42:31.102-07:00[America/Phoenix]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2024-11-13T10:06:07.903-07:00[America/Phoenix]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
 mcc_version: v5.5.1
@@ -17,7 +17,7 @@ modules:
     - {name: "csp", version: "Branch_v3.20.0-E1"}
     - {name: "core", version: "Branch_v3.14.0-E1"}
     - {name: "CMSIS_5", version: "5.8.0"}
-    - {name: "crypto_v4", version: "MH3-105104-fix-wolfcrypt-rng-memory-leak"}
+    - {name: "crypto_v4", version: "MH3-105590-bug-fixes-and-misra-cleaning"}
     - {name: "wolfssl", version: "v5.7.0-stable"}
     - {name: "bsp", version: "Branch_v3.21.0-E1"}
 
