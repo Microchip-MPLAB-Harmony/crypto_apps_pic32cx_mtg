@@ -82,7 +82,7 @@ void GenerateRng (crypto_HandlerType_E cryptoHandler)
     uint32_t startTime = 0, endTime = 0;
     startTime = SYSTICK_TimerCounterGet(); 
     
-    status = Crypto_Rng_Prng_Generate(
+    status = Crypto_Rng_Generate(
             cryptoHandler,
             rngData,
             DATA_SIZE,
