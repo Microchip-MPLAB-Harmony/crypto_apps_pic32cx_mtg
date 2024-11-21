@@ -3,6 +3,6 @@
 
 # Symmetric
 
-- [Symmetric](https://onlinedocs.microchip.com/oxy/GUID-26BFE460-0BA8-46E3-9164-7DFDDABE915D-en-US-2/index.html)
+- [Symmetric](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-3/GUID-26BFE460-0BA8-46E3-9164-7DFDDABE915D.html)
 
 

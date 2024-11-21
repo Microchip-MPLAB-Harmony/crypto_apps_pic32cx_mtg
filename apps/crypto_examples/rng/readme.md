@@ -3,6 +3,6 @@
 
 # RNG
 
-- [RNG](https://onlinedocs.microchip.com/oxy/GUID-9DCB4726-47FE-4115-BCCE-FD086FB1470E-en-US-2/index.html)
+- [RNG](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-3/GUID-9DCB4726-47FE-4115-BCCE-FD086FB1470E.html)
 
 

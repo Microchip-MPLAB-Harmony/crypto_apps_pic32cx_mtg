@@ -3,6 +3,6 @@
 
 # DSA
 
-- [DSA](https://onlinedocs.microchip.com/oxy/GUID-D0624B1C-31D1-4B88-AF26-FE5CDFD31904-en-US-2/index.html)
+- [DSA](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-3/GUID-D0624B1C-31D1-4B88-AF26-FE5CDFD31904.html)
 
 
