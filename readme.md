@@ -11,11 +11,16 @@ MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating embedded
 - [Microchip MPLAB® Harmony](https://www.microchip.com/mplab/mplab-harmony)
 - [Microchip MPLAB® Harmony Pages](https://microchip-mplab-harmony.github.io/)
 
-This repository contains the MPLAB® Harmony 3 crypto_apps_pic32cx_mtg example demos using crypto_v4.
-Release notes and more information can be found in the link below.
+## **Contents Summary**
 
-- [MPLAB® Harmony 3 crypto_apps_pic32cx_mtg online documentation](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-3/index.html)
+|Folder|Description|
+|------|-----------|
+|apps|Contains Harmony 3 crypto_apps_pic32cx_mtg examples
 
+## **Code Examples**
+Click [here](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-3/index.html) to view the online documentation of code examples hosted in this repository.
 
-- [MPLAB® Harmony 3 crypto_apps_pic32cx_mtg documentation download](https://onlinedocs.microchip.com/download/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879?type=webhelp)
-
+To view the documentation offline, follow these steps:
+ - Download the publication as a zip file from [here](https://onlinedocs.microchip.com/download/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879?type=webhelp).
+ - Extract the zip file into a folder.
+ - Navigate to the folder and open **index.html** in a web browser of your choice.

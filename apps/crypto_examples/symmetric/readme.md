@@ -1,8 +1,10 @@
-![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
-![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
+
+[![MCHP](https://www.microchip.com/ResourcePackages/Microchip/assets/dist/images/logo.png)](https://www.microchip.com)
 
 # Symmetric
 
-- [Symmetric](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-3/GUID-26BFE460-0BA8-46E3-9164-7DFDDABE915D.html)
+This application shows Symmetric examples for crypto_apps_pic32cx_mtg
+
+[Click here to be redirected to the demo application documentation.](https://onlinedocs.microchip.com/oxy/GUID-09251AF5-BCD7-427A-ACCD-98C7C2FE3879-en-US-3/GUID-26BFE460-0BA8-46E3-9164-7DFDDABE915D.html)
 
 
