@@ -42,8 +42,8 @@ Following table provides number of crypto library examples available for differe
 
 ### Development Tools
 - [MPLAB® X IDE v6.20](https://www.microchip.com/mplab/mplab-x-ide)
-- [MPLAB® XC32 C/C++ Compiler v4.40](https://www.microchip.com/mplab/compilers)
+- [MPLAB® XC32 C/C++ Compiler v4.45](https://www.microchip.com/mplab/compilers)
 - MPLAB® X IDE plug-ins:
-    - MPLAB® Code Configurator v5.5.0
+    - MPLAB® Code Configurator v5.5.1
 
 
